@@ -48,7 +48,6 @@ Biblioteki statyczne %{name}.
 %setup -q
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure
 %{__make}
 
