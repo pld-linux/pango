@@ -2,15 +2,14 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.2.4
-Release:	2
+Version:	1.2.5
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	ddca316a0ce4ea6a0832b7a4f874cdfb
+# Source0-md5:	df00fe3e71cd297010f24f439b6c8ee6
 #Patch0:		%{name}-freetype.patch
 Patch1:		%{name}-xfonts.patch
-Patch2:		%{name}-indic-xft_module_fix.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.53
@@ -106,7 +105,6 @@ internacionalizado.
 %setup -q
 ##%patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 rm -f missing acinclude.m4
