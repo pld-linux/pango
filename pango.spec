@@ -108,7 +108,7 @@ rm -f missing acinclude.m4
 %{__automake}
 %configure \
 	--with-fribidi \
-	--disable-gtk-doc \
+	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--enable-static
 %{__make}
@@ -159,7 +159,6 @@ umask 022
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
-%attr(644,root,root) %{_libdir}/pango/1.0.0/modules/*.a
 
 %files modules
 %defattr(644,root,root,755)
