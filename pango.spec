@@ -2,14 +2,15 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.0.4
-Release:	2
+Version:	1.0.5
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	e300e5c163bc28e180e45c8e20543b4b
 Patch0:		%{name}-am_ac.patch
+Patch1:		%{name}-gtkdoc.patch
 URL:		http://www.pango.org/
-Requires:	freetype >= 2.1.2
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -44,6 +45,9 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	XFree86-devel
+Requires:	freetype-devel
+Requires:	glib2-devel
 Requires:	gtk-doc-common
 Obsoletes:	libpango24-devel
 
@@ -77,15 +81,15 @@ internacionalizado.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing acinclude.m4
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-fribidi \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--enable-static
@@ -120,7 +124,7 @@ umask 022
 %dir %{_libdir}/pango/1.0.0
 %dir %{_libdir}/pango/1.0.0/modules
 %attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.so
-%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.la
+%{_libdir}/pango/1.0.0/modules/*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
@@ -128,7 +132,7 @@ umask 022
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpango*.so
-%attr(755,root,root) %{_libdir}/libpango*.la
+%{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_gtkdocdir}/pango
@@ -136,4 +140,3 @@ umask 022
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
-%attr(644,root,root) %{_libdir}/pango/1.0.0/modules/*.a
