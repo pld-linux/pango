@@ -2,12 +2,11 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.0.4
-Release:	2
+Version:	1.1.1
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-am_ac.patch
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
 URL:		http://www.pango.org/
 Requires:	freetype >= 2.1.2
 BuildRequires:	XFree86-devel
@@ -76,7 +75,6 @@ internacionalizado.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 rm -f missing acinclude.m4
@@ -117,10 +115,10 @@ umask 022
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/1.0.0
-%dir %{_libdir}/pango/1.0.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.so
-%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.la
+%dir %{_libdir}/pango/1.1.0
+%dir %{_libdir}/pango/1.1.0/modules
+%attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*.so
+%attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
@@ -136,4 +134,4 @@ umask 022
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
-%attr(644,root,root) %{_libdir}/pango/1.0.0/modules/*.a
+%attr(644,root,root) %{_libdir}/pango/1.1.0/modules/*.a
