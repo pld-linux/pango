@@ -14,7 +14,7 @@ Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/%{_major_ver}/%{name}-%{version}.tar.bz2
-# Source0-md5:	d41d8cd98f00b204e9800998ecf8427e
+# Source0-md5:	39868e0da250fd4c00b2970e4eb84389
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
 URL:		http://www.pango.org/
