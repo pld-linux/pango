@@ -123,7 +123,6 @@ rm -f missing acinclude.m4
 %{__automake}
 
 # Workaround as in glib2.spec
-LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--with-fribidi \
 	--enable-gtk-doc \
@@ -142,10 +141,6 @@ perl -p -i -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
 
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
-for i in %{buildroot}%{_libdir}/*.la; do
-	cat $i|sed -e "s,-L%{buildroot}%{_libdir},,">$i.tmp;
-	mv $i.tmp $i;
-done;
 
 %clean
 rm -rf $RPM_BUILD_ROOT
