@@ -7,6 +7,7 @@ Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-Xft2.patch
 URL:		http://www.pango.org/
 Requires:	freetype >= 2.1.2
 BuildRequires:	autoconf
@@ -80,6 +81,7 @@ internacionalizado.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm -f missing acinclude.m4
