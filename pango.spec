@@ -37,7 +37,7 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf README AUTHORS ChangeLog TODO examples/HELLO.utf8
