@@ -14,3 +14,14 @@ diff -Nur pango-0.23/pango/Makefile.am pango-0.23.new/pango/Makefile.am
  endif
  
  EXTRA_DIST =					\
+--- pango-0.24/modules/hebrew/Makefile.am~	Sat Feb  2 07:31:16 2002
++++ pango-0.24/modules/hebrew/Makefile.am	Sat Feb  2 07:31:16 2002
+@@ -85,7 +85,7 @@
+ pango_hebrew_xft_la_SOURCES = $(hebrew_xft_sources)
+ libpango_hebrew_xft_la_SOURCES = $(hebrew_xft_sources)
+ 
+-pango_hebrew_ft2_la_LDFLAGS = -export-dynamic -avoid-version -module $(no_undefined)
++pango_hebrew_ft2_la_LDFLAGS = -export-dynamic -avoid-version -module
+ pango_hebrew_ft2_la_LIBADD = $(hebrew_ft2_libadd)
+ pango_hebrew_ft2_la_SOURCES = $(hebrew_ft2_sources)
+ libpango_hebrew_ft2_la_SOURCES = $(hebrew_ft2_sources)
