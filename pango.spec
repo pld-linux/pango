@@ -104,10 +104,10 @@ umask 022
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/%{version}
-%dir %{_libdir}/pango/%{version}/modules
-%attr(755,root,root) %{_libdir}/pango/%{version}/modules/*.so
-%attr(755,root,root) %{_libdir}/pango/%{version}/modules/*.la
+%dir %{_libdir}/pango/1.0.0
+%dir %{_libdir}/pango/1.0.0/modules
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.so
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
