@@ -1,8 +1,9 @@
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
+Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.0.1
-Release:	3
+Version:	1.0.2
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
@@ -30,9 +31,14 @@ System for layout and rendering of internationalized text.
 %description -l pl
 System obs³ugi i renderowania miêdzynarodowego tekstu.
 
+%description -l pt_BR
+Pango é um sistema para layout e renderização de texto
+internacionalizado.
+
 %package devel
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
+Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Obsoletes:	libpango24-devel
@@ -43,9 +49,14 @@ Developer files for pango.
 %description devel -l pl
 Pliki developerskie pango.
 
+%description devel -l pt_BR
+Pango é um sistema para layout e renderização de texto
+internacionalizado.
+
 %package static
 Summary:	Static %{name} libraries
 Summary(pl):	Biblioteki statyczne %{name}
+Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
@@ -54,6 +65,10 @@ Static %{name} libraries.
 
 %description static -l pl
 Biblioteki statyczne %{name}.
+
+%description static -l pt_BR
+Pango é um sistema para layout e renderização de texto
+internacionalizado.
 
 %prep
 %setup -q
@@ -73,12 +88,6 @@ aclocal
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-# avoid relinking
-for lafile in pango/*.la; do
-  mv ${lafile} ${lafile}.old
-  grep -v "^relink_command" ${lafile}.old > ${lafile}
-done
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
