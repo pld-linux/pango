@@ -51,8 +51,8 @@ Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel
-Requires:	Xft-devel
-Requires:	freetype-devel >= 2.0.1
+Requires:	Xft-devel >= 2.0-3
+Requires:	freetype-devel >= 2.1.2-2
 Requires:	glib2-devel >= 2.0.1
 Requires:	gtk-doc-common
 Obsoletes:	libpango24-devel
@@ -112,8 +112,7 @@ internacionalizado.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-# todo
-#%patch2 -p1
+%patch2 -p1
 %patch3 -p1
 
 %build
