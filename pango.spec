@@ -9,13 +9,14 @@ Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
 URL:		http://www.pango.org/
 Requires:	freetype >= 2.1.2
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	glib2-devel >= 2.0.1
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	XFree86-devel
+BuildRequires:	freetype-devel >= 2.0.1
+BuildRequires:	glib2-devel >= 2.0.1
+BuildRequires:	Xft-devel
 BuildRequires:	gtk-doc >= 0.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
@@ -44,6 +45,10 @@ Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	gtk-doc-common
+Requires:	XFree86-devel
+Requires:	freetype-devel >= 2.0.1
+Requires:	glib2-devel >= 2.0.1
+Requires:	Xft-devel
 Obsoletes:	libpango24-devel
 
 %description devel
