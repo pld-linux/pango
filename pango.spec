@@ -29,7 +29,7 @@ BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
-BuildRequires:	rpm-build >= 4.1-8.2
+BuildRequires:	rpmbuild(macros) >= 1.98
 BuildRequires:	xft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.7
