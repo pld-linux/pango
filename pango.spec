@@ -13,12 +13,17 @@ Group(pt_BR):	Bibliotecas
 Group(ru):	âÉÂÌÉÏÔÅËÉ
 Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
+Patch0:		%{name}-am_ac.patch
 URL:		http://www.pango.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-BuildRequires:	libunicode-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	freetype-devel >= 2.0.1
+BuildRequires:	glib2-devel >= 1.3.10
+BuildRequires:	fribidi-devel
 BuildRequires:	pkgconfig
 BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	libtool
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
@@ -72,19 +77,90 @@ Static %{name} libraries.
 %description -l pl static
 Biblioteki statyczne %{name}.
 
+%package X11
+Summary:	System for layout and rendering of internationalized text - X11 version
+Summary(pl):	System renderowania miêdzynarodowego tekstu - wersja X11
+Group:		Libraries
+Group(de):	Libraries
+Group(es):	Bibliotecas
+Group(fr):	Librairies
+Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
+
+%description X11
+System for layout and rendering of internationalized text - X11
+version.
+
+%description -l pl X11
+System renderowania miêdzynarodowego tekstu - wersja X11.
+
+%package freetype
+Summary:	System for layout and rendering of internationalized text - FreeType version
+Summary(pl):	System renderowania miêdzynarodowego tekstu - wersja FreeType
+Group:		Libraries
+Group(de):	Libraries
+Group(es):	Bibliotecas
+Group(fr):	Librairies
+Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
+
+%description freetype
+System for layout and rendering of internationalized text - FreeType
+version.
+
+%description -l pl freetype
+System renderowania miêdzynarodowego tekstu - wersja FreeType.
+
+%package XRender
+Summary:	System for layout and rendering of internationalized text - X11 version with XRender support
+Summary(pl):	System renderowania miêdzynarodowego tekstu - wersja X11 z obs³ug± XRender
+Group:		Libraries
+Group(de):	Libraries
+Group(es):	Bibliotecas
+Group(fr):	Librairies
+Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
+
+%description XRender
+System for layout and rendering of internationalized text - X11
+version with XRender support.
+
+%description -l pl XRender
+System renderowania miêdzynarodowego tekstu - wersja X11 z obs³ug±
+XRender.
+
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+rm -f missing acinclude.m4
+libtoolize --copy --force
 aclocal
 autoconf
-%configure
+automake -a -c
+%configure \
+	--with-fribidi
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+# avoid relinking
+for lafile in pango/*.la; do
+  mv ${lafile} ${lafile}.old
+  grep -v "^relink_command" ${lafile}.old > ${lafile}
+done
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	pkgconfigdir=%{_pkgconfigdir}
 
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
@@ -102,23 +178,43 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz examples/*gz
-%attr(755,root,root) %{_libdir}/libpango*-%{version}.so
 %attr(755,root,root) %{_bindir}/pango-querymodules
+%attr(755,root,root) %{_libdir}/libpango-*.so
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/modules
-%attr(755,root,root) %{_libdir}/pango/modules/*.so
 %dir %{_sysconfdir}/pango
-%config %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
+
+%files X11
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libpangox-*.so
+%attr(755,root,root) %{_libdir}/pango/modules/*-x.so
+%attr(755,root,root) %{_libdir}/pango/modules/*-x.la
+%config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
+
+%files XRender
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libpangoxft-*.so
+%attr(755,root,root) %{_libdir}/pango/modules/*-xft.so
+%attr(755,root,root) %{_libdir}/pango/modules/*-xft.la
+
+%files freetype
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libpangoft2-*.so
+%attr(755,root,root) %{_libdir}/pango/modules/*-ft2.so
+%attr(755,root,root) %{_libdir}/pango/modules/*-ft2.la
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpango*[^%{version}].so
-#%attr(755,root,root) %{_bindir}/pango-config
+%attr(755,root,root) %{_libdir}/libpango.so
+%attr(755,root,root) %{_libdir}/libpangox.so
+%attr(755,root,root) %{_libdir}/libpangoxft.so
+%attr(755,root,root) %{_libdir}/libpangoft2.so
+%attr(755,root,root) %{_libdir}/libpango*.la
+%{_pkgconfigdir}/*
 %{_includedir}/*
-%dir %{_pkgconfig}/*.pc
+%{_datadir}/gtk-doc/html/pango
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
-%{_libdir}/pango/modules/*.a
