@@ -16,11 +16,13 @@ BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	glib2-devel >= 2.0.1
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	gtk-doc >= 0.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_gtkdocdir	/usr/share/doc/gtk-doc/html
 
 # pango is not GNOME-specific
 %define		_sysconfdir	/etc/X11
@@ -82,7 +84,8 @@ aclocal
 %{__automake}
 %configure \
 	--with-fribidi \
-	--enable-gtk-doc=no \
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir} \
 	--enable-static
 %{__make}
 
@@ -91,7 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} \
+	HTML_DIR=%{_gtkdocdir}
 
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
