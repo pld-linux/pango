@@ -19,7 +19,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	glib2-devel >= 2.0.1
 BuildRequires:	Xft-devel
-BuildRequires:	gtk-doc >= 0.9
+BuildRequires:	gtk-doc >= 0.9-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
 
