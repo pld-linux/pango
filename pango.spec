@@ -54,19 +54,18 @@ LDFLAGS="-s"; export LDFLAGS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/pango
-touch $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
-
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
+> $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
+
 gzip -9nf README AUTHORS ChangeLog TODO examples/HELLO.utf8
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-/usr/bin/pango-querymodules /usr/lib/pango/modules/*.so > %{_sysconfdir}/pango/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
 
 %postun -p /sbin/ldconfig
 
@@ -76,10 +75,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpango-*.so
 %attr(755,root,root) %{_libdir}/libpangox-*.so
 %attr(755,root,root) %{_bindir}/pango-querymodules
-%{_libdir}/pango
-%config %{_sysconfdir}/pango/pangox.aliases
-%config %{_sysconfdir}/pango/*
+%dir %{_libdir}/pango
+%dir %{_libdir}/pango/modules
+%attr(755,root,root) %{_libdir}/pango/modules/*.so
 %dir %{_sysconfdir}/pango
+%config %{_sysconfdir}/pango/pangox.aliases
+%ghost %{_sysconfdir}/pango/pango.modules
 
 %files devel
 %defattr(644,root,root,755)
@@ -91,3 +92,4 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
+%{_libdir}/pango/modules/*.a
