@@ -5,14 +5,6 @@ Version:	0.25
 Release:	1
 License:	LGPL
 Group:		Libraries
-Group(de):	Bibliotheken
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt):	Bibliotecas
-Group(pt_BR):	Bibliotecas
-Group(ru):	Библиотеки
-Group(uk):	Б╕бл╕отеки
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am_ac.patch
 Patch1:		%{name}-use_system_fribidi.patch
@@ -45,14 +37,6 @@ System obsЁugi i renderowania miЙdzynarodowego tekstu.
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obsЁugi i renderowania miЙdzynarodowego tekstu
 Group:		Development/Libraries
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Requires:	fribidi-devel
 Obsoletes:	libpango24-devel
@@ -67,14 +51,6 @@ Pliki developerskie pango.
 Summary:	Static %{name} libraries
 Summary(pl):	Biblioteki statyczne %{name}
 Group:		Development/Libraries
-Group(de):	Entwicklung/Bibliotheken
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(pt):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
