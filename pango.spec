@@ -5,7 +5,7 @@ Name:		pango
 Version:	1.0.2
 Release:	1
 License:	LGPL
-Group:		Libraries
+Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am_ac.patch
 URL:		http://www.pango.org/
@@ -39,7 +39,7 @@ internacionalizado.
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Obsoletes:	libpango24-devel
 
@@ -57,7 +57,7 @@ internacionalizado.
 Summary:	Static %{name} libraries
 Summary(pl):	Biblioteki statyczne %{name}
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -76,7 +76,7 @@ internacionalizado.
 
 %build
 rm -f missing acinclude.m4
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 %{__automake}
@@ -95,8 +95,6 @@ rm -rf $RPM_BUILD_ROOT
 
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
-gzip -9nf README AUTHORS ChangeLog TODO examples/HELLO.utf8
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -109,7 +107,7 @@ umask 022
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz examples/*gz
+%doc README AUTHORS ChangeLog TODO examples/HELLO.utf8
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
