@@ -2,28 +2,28 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.1.5
+Version:	1.1.6
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-freetype.patch
-Patch1:		%{name}-slighthint.patch
+#Patch1:		%{name}-slighthint.patch
 Patch2:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	Xft-devel >= 2.0-6
+BuildRequires:	Xft-devel >= 2.1-2
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	freetype-devel >= 2.1.2-2
-BuildRequires:	glib2-devel >= 2.1.3
+BuildRequires:	freetype-devel >= 2.1.3
+BuildRequires:	glib2-devel >= 2.1.5
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-8.2
 Requires(post):	/sbin/ldconfig
-Requires:	freetype >= 2.1.2-2
+Requires:	freetype >= 2.1.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
 
@@ -104,7 +104,7 @@ internacionalizado.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 
 %build
@@ -157,10 +157,10 @@ umask 022
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/1.1.0
-%dir %{_libdir}/pango/1.1.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*basic*.so
-%{_libdir}/pango/1.1.0/modules/*basic*.la
+%dir %{_libdir}/pango/1.2.0
+%dir %{_libdir}/pango/1.2.0/modules
+%attr(755,root,root) %{_libdir}/pango/1.2.0/modules/*basic*.so
+%{_libdir}/pango/1.2.0/modules/*basic*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
@@ -180,7 +180,7 @@ umask 022
 
 %files modules
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*.so
-%exclude %{_libdir}/pango/1.1.0/modules/*basic*.so
-%{_libdir}/pango/1.1.0/modules/*.la
-%exclude %{_libdir}/pango/1.1.0/modules/*basic*.la
+%attr(755,root,root) %{_libdir}/pango/1.2.0/modules/*.so
+%exclude %{_libdir}/pango/1.2.0/modules/*basic*.so
+%{_libdir}/pango/1.2.0/modules/*.la
+%exclude %{_libdir}/pango/1.2.0/modules/*basic*.la
