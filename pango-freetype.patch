@@ -1,0 +1,11 @@
+--- pango-1.1.1/examples/Makefile.am.orig	Fri Aug  9 03:39:48 2002
++++ pango-1.1.1/examples/Makefile.am	Sun Oct  6 19:01:26 2002
+@@ -2,7 +2,7 @@
+ 
+ aliasdir = $(sysconfdir)/pango
+ 
+-INCLUDES = -DG_DISABLE_DEPRECATED -I$(top_srcdir) $(QT_INCLUDES) $(GLIB_CFLAGS) $(FONTCONFIG_CFLAGS) $(FREETYPE_CFLAGS)
++INCLUDES = -DG_DISABLE_DEPRECATED -I$(top_srcdir) $(QT_INCLUDES) $(FREETYPE_CFLAGS) $(GLIB_CFLAGS) $(FONTCONFIG_CFLAGS)
+ 
+ ###################################################
+ 
