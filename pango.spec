@@ -9,6 +9,7 @@ License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am_ac.patch
+Patch1:		%{name}-gtkdoc.patch
 URL:		http://www.pango.org/
 Requires:	freetype >= 2.1.2
 BuildRequires:	XFree86-devel
@@ -100,6 +101,7 @@ internacionalizado.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing acinclude.m4
@@ -108,7 +110,6 @@ rm -f missing acinclude.m4
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-fribidi \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--enable-static
