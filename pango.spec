@@ -1,11 +1,11 @@
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Name:		pango
-Version:	0.25
-Release:	2
+Version:	1.0.0
+Release:	0.1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/testing/%{name}-rc2-%{version}.tar.gz
 Patch0:		%{name}-am_ac.patch
 Patch1:		%{name}-use_system_fribidi.patch
 URL:		http://www.pango.org/
@@ -14,7 +14,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	fribidi-devel
-BuildRequires:	glib2-devel >= 1.3.14
+BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -25,7 +25,6 @@ Obsoletes:	libpango24
 
 # pango is not GNOME-specific
 %define		_sysconfdir	/etc/X11
-%define		_pkgconfig	%{_libdir}/pkgconfig
 
 %description
 System for layout and rendering of internationalized text.
@@ -60,7 +59,7 @@ Static %{name} libraries.
 Biblioteki statyczne %{name}.
 
 %prep
-%setup -q
+%setup -q -n %{name}-rc2-%{version}
 %patch0 -p1
 %patch1 -p1
 
@@ -72,7 +71,8 @@ autoconf
 automake -a -c
 %configure \
 	--with-fribidi \
-	--enable-gtk-doc=no
+	--enable-gtk-doc=no \
+	--enable-static
 %{__make}
 
 %install
@@ -108,19 +108,17 @@ umask 022
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_libdir}/lib*.so
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/modules
-%attr(755,root,root) %{_libdir}/pango/modules/*.so
-%attr(755,root,root) %{_libdir}/pango/modules/*.la
+%dir %{_libdir}/pango/%{version}
+%dir %{_libdir}/pango/%{version}/modules
+%attr(755,root,root) %{_libdir}/pango/%{version}/modules/*.so
+%attr(755,root,root) %{_libdir}/pango/%{version}/modules/*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpango.so
-%attr(755,root,root) %{_libdir}/libpangox.so
-%attr(755,root,root) %{_libdir}/libpangoxft.so
-%attr(755,root,root) %{_libdir}/libpangoft2.so
+%attr(755,root,root) %{_libdir}/libpango*.so
 %attr(755,root,root) %{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
