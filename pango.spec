@@ -84,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpango.so
 %attr(755,root,root) %{_libdir}/libpangox.so
-%attr(755,root,root) %{_bindir}/pango-config
+#%attr(755,root,root) %{_bindir}/pango-config
 %{_includedir}/*
 
 %files static
