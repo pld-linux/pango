@@ -13,7 +13,7 @@ Patch2:		%{name}-slighthint.patch
 Patch3:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	Xft-devel
+BuildRequires:	Xft-devel >= 1.1.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.2-2
