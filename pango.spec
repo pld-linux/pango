@@ -11,7 +11,7 @@ Patch0:		%{name}-freetype.patch
 Patch1:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	Xft-devel
+BuildRequires:	XFree86-xft-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.3
