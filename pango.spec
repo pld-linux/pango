@@ -6,8 +6,9 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-%define		_major_ver	1.5
-%define		_minor_ver	2
+%define		_major_ver	1.4
+%define		_minor_ver	1
+Epoch:		1
 Version:	%{_major_ver}.%{_minor_ver}
 Release:	1
 License:	LGPL
@@ -52,7 +53,7 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{!?with_xlibs:Requires:	XFree86-devel}
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.4.0
@@ -76,7 +77,7 @@ Summary:	Static %{name} libraries
 Summary(pl):	Biblioteki statyczne %{name}
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static %{name} libraries.
@@ -94,7 +95,7 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires(post,postun):	%{name} = %{version}-%{release}
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description modules
 System for layout and rendering of internationalized text.
