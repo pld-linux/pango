@@ -12,7 +12,6 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.t
 Patch1:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	xft-devel >= 2.1.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.3
@@ -22,6 +21,7 @@ BuildRequires:	libtool
 BuildRequires:	perl
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-8.2
+BuildRequires:	xft-devel >= 2.1.2
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,10 +44,10 @@ Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel
-Requires:	Xft-devel
 Requires:	freetype-devel >= 2.1.2-2
 Requires:	glib2-devel >= 2.0.1
 Requires:	gtk-doc-common
+Requires:	xft-devel >= 2.1.2
 Obsoletes:	libpango24-devel
 
 %description devel
