@@ -32,7 +32,7 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-8.2
-BuildRequires:	xft-devel >= 2.1.2
+BuildRequires:	xft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.4.4
@@ -63,7 +63,7 @@ Requires:	XFree86-devel
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.4.4
 Requires:	gtk-doc-common
-Requires:	xft-devel >= 2.1.2
+Requires:	xft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
