@@ -1,13 +1,15 @@
+%define	_rc	rc1
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.2.3
-Release:	1
+Version:	1.2.4
+Release:	0.%{_rc}.1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	12247592ea582907cfd2de81aeb32caf
+#Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.2/testing/%{name}-%{_rc}-%{version}.tar.gz
+# Source0-md5:	69d682874bac7fbac8aefa91270dd5ae
 #Patch0:		%{name}-freetype.patch
 Patch1:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
@@ -15,7 +17,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.3
-BuildRequires:	glib2-devel >= 2.2.0
+BuildRequires:	glib2-devel >= 2.2.3
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
@@ -24,8 +26,8 @@ BuildRequires:	rpm-build >= 4.1-8.2
 BuildRequires:	xft-devel >= 2.1.2
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.3
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 System for layout and rendering of internationalized text.
@@ -44,8 +46,8 @@ Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel
-Requires:	freetype-devel >= 2.1.2-2
-Requires:	glib2-devel >= 2.0.1
+Requires:	freetype-devel >= 2.1.3
+Requires:	glib2-devel >= 2.2.3
 Requires:	gtk-doc-common
 Requires:	xft-devel >= 2.1.2
 Obsoletes:	libpango24-devel
@@ -102,8 +104,8 @@ Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
 %prep
-%setup -q
-#%patch0 -p1
+%setup -q -n %{name}-%{_rc}-%{version}
+##%patch0 -p1
 %patch1 -p1
 
 %build
@@ -132,7 +134,6 @@ perl -p -i -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
 
 #Remove uneeded static files from modules dir
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}/1.2.0/modules/*.a
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
