@@ -1,6 +1,7 @@
---- pango-1.1.0/pango/pangoft2.c.slighthint	Thu Aug  8 19:13:38 2002
-+++ pango-1.1.0/pango/pangoft2.c	Tue Aug 13 00:42:17 2002
-@@ -205,6 +205,8 @@
+diff -urN pango-1.1.5.orig/pango/pangoft2.c pango-1.1.5/pango/pangoft2.c
+--- pango-1.1.5.orig/pango/pangoft2.c	Wed Dec 11 01:31:31 2002
++++ pango-1.1.5/pango/pangoft2.c	Wed Dec 11 01:38:29 2002
+@@ -204,6 +204,8 @@
    FcPattern *pattern;
    FcChar8 *filename;
    FcBool hinting, autohint;
@@ -9,7 +10,7 @@
    int id;
  
    pattern = ft2font->font_pattern;
-@@ -220,8 +222,22 @@
+@@ -219,8 +221,22 @@
        if (FcPatternGetBool (pattern, FC_HINTING, 0, &hinting) != FcResultMatch)
  	hinting = FcTrue;
  
@@ -34,13 +35,12 @@
  
        /* force autohinting if requested */
        if (FcPatternGetBool (pattern, FC_AUTOHINT, 0, &autohint) != FcResultMatch)
-@@ -243,6 +259,9 @@
- 	bail0:
+@@ -243,6 +259,8 @@
  	  load_fallback_face (ft2font, filename);
  	}
-+
+ 
 +      FT_Set_Hint_Flags (ft2font->face, hint_flags);
 +      
-       ft2font->face->generic.data = 0;
-     }
- 
+       g_assert (ft2font->face);
+       
+       if (!set_unicode_charmap (ft2font->face))
