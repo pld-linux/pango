@@ -129,7 +129,7 @@ umask 022
 %attr(755,root,root) %{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
-%{_datadir}/gtk-doc/html/pango
+%{_gtkdocdir}/pango
 
 %files static
 %defattr(644,root,root,755)
