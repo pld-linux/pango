@@ -25,7 +25,6 @@ Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 Requires:	libunicode-devel
-Requires:	fribidi-devel
 
 %description devel
 
