@@ -8,6 +8,7 @@ Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.5.2
 Release:	1
+Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.5/%{name}-%{version}.tar.bz2
@@ -53,7 +54,7 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 %if %{with xlibs}
 Requires:	libX11-devel
 %else
@@ -80,7 +81,7 @@ Summary:	Static pango libraries
 Summary(pl):	Biblioteki statyczne pango
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static pango libraries.
@@ -97,8 +98,8 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires(post,postun):	%{name} = %{version}-%{release}
-Requires:	%{name} = %{version}-%{release}
+Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description modules
 System for layout and rendering of internationalized text.
