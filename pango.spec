@@ -1,6 +1,6 @@
 Summary:	System for layout and rendering of internationalized text
 Name:		pango
-Version:	0.9
+Version:	0.12
 Release:	1
 License:	LGPL
 Group:		Libraries
@@ -25,6 +25,8 @@ Group:		Development/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
+Requires:	libunicode-devel
+Requires:	fribidi-devel
 
 %description devel
 
@@ -53,8 +55,10 @@ LDFLAGS="-s"; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/var/lib/pango
+touch $RPM_BUILD_ROOT/var/lib/pango/pango.modules
+
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf README AUTHORS ChangeLog TODO examples/HELLO.utf8
 %clean
@@ -71,16 +75,17 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz examples/*gz
 %attr(755,root,root) %{_libdir}/libpango-*.so
 %attr(755,root,root) %{_libdir}/libpangox-*.so
-%{_bindir}/pango-querymodules
-%{_bindir}/pango-viewer
-%{_libdir}/pango/modules/*
-%config %{_sysconfdir}/pango/pangox_aliases
+%attr(755,root,root) %{_bindir}/pango-querymodules
+%{_libdir}/pango
+%config %{_sysconfdir}/pango/pangox.aliases
+%config /var/lib/pango/*
+%dir /var/lib/pango
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpango.so
 %attr(755,root,root) %{_libdir}/libpangox.so
-%{_bindir}/pango-config
+%attr(755,root,root) %{_bindir}/pango-config
 %{_includedir}/*
 
 %files static
