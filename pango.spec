@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_with	xlibs	# use pkgconfig to find libX11 CFLAGS
+#
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
@@ -9,8 +13,9 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	9b5d9a5dcce5b3899d401f9c2cd6873f
 Patch0:		%{name}-xfonts.patch
+Patch1:		%{name}-xlibs.patch
 URL:		http://www.pango.org/
-BuildRequires:	XFree86-devel
+BuildRequires:	%{?with_xlibs:libX11-devel}%{!?with_xlibs:XFree86-devel}
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	docbook-dtd412-xml
@@ -45,7 +50,7 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	XFree86-devel
+Requires:	%{?with_xlibs:libX11-devel}%{!?with_xlibs:XFree86-devel}
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.4.0
 Requires:	gtk-doc-common
@@ -106,6 +111,7 @@ internacionalizado.
 %prep
 %setup -q
 %patch0 -p1
+%{?with_xlibs:%patch1 -p1}
 
 %build
 gtkdocize --copy
