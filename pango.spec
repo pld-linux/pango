@@ -106,7 +106,7 @@ umask 022
 %defattr(644,root,root,755)
 %doc *.gz examples/*gz
 %attr(755,root,root) %{_bindir}/pango-querymodules
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/%{version}
 %dir %{_libdir}/pango/%{version}/modules
