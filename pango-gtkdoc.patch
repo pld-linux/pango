@@ -1,0 +1,25 @@
+diff -Nru pango-1.0.5.orig/configure.in pango-1.0.5/configure.in
+--- pango-1.0.5.orig/configure.in	Sun Oct 13 18:32:57 2002
++++ pango-1.0.5/configure.in	Thu Dec 19 14:55:11 2002
+@@ -523,21 +523,6 @@
+ 
+ AC_CHECK_PROG(GTKDOC, gtkdoc-mkdb, true, false)
+ 
+-gtk_doc_min_version=0.6
+-if $GTKDOC ; then 
+-    gtk_doc_version=`gtkdoc-mkdb --version`
+-    AC_MSG_CHECKING([gtk-doc version ($gtk_doc_version) >= $gtk_doc_min_version])
+-    if perl <<EOF ; then
+-      exit (("$gtk_doc_version" =~ /^[[0-9]]+\.[[0-9]]+$/) &&
+-            ("$gtk_doc_version" >= "$gtk_doc_min_version") ? 0 : 1);
+-EOF
+-      AC_MSG_RESULT(yes)
+-   else
+-      AC_MSG_RESULT(no)
+-      GTKDOC=false
+-   fi
+-fi
+-
+ AM_CONDITIONAL(HAVE_GTK_DOC, $GTKDOC)
+ AC_SUBST(HAVE_GTK_DOC)
+ 
