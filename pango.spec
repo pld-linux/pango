@@ -6,15 +6,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-%define		_major_ver	1.4
-%define		_minor_ver	1
+Version:	1.6.0
+Release:	1
 Epoch:		1
-Version:	%{_major_ver}.%{_minor_ver}
-Release:	4
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/%{_major_ver}/%{name}-%{version}.tar.bz2
-# Source0-md5:	39868e0da250fd4c00b2970e4eb84389
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	6c732bbc5fba5a0f1f8086e8aa4f490d
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
 URL:		http://www.pango.org/
@@ -23,8 +21,9 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	fontconfig-devel >= 1.0.1
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.4.0
+BuildRequires:	glib2-devel >= 1:2.4.4
 BuildRequires:	gtk-doc >= 1.0
 %{?with_xlibs:BuildRequires:	libX11-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
@@ -34,7 +33,7 @@ BuildRequires:	rpm-build >= 4.1-8.2
 BuildRequires:	xft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.4.0
+Requires:	glib2 >= 1:2.4.4
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,7 +55,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{!?with_xlibs:Requires:	XFree86-devel}
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.4.0
+Requires:	glib2-devel >= 1:2.4.4
 Requires:	gtk-doc-common
 %{?with_xlibs:Requires:	libX11-devel}
 Requires:	xft-devel >= 2.1.0
@@ -73,17 +72,17 @@ Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
 %package static
-Summary:	Static %{name} libraries
-Summary(pl):	Biblioteki statyczne %{name}
+Summary:	Static pango libraries
+Summary(pl):	Biblioteki statyczne pango
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
-Static %{name} libraries.
+Static pango libraries.
 
 %description static -l pl
-Biblioteki statyczne %{name}.
+Biblioteki statyczne pango.
 
 %description static -l pt_BR
 Pango é um sistema para layout e renderização de texto
