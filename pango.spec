@@ -22,7 +22,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	fribidi-devel
-BuildRequires:	glib2-devel >= 1.3.13
+BuildRequires:	glib2-devel >= 1.3.14
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
