@@ -1,0 +1,182 @@
+--- pango-1.2.5/pango/opentype/ftxopen.c.orig	2003-08-08 19:05:10.000000000 +0200
++++ pango-1.2.5/pango/opentype/ftxopen.c	2003-12-22 22:57:33.266995840 +0100
+@@ -15,9 +15,10 @@
+  *
+  ******************************************************************/
+ 
+-#include <freetype/internal/ftstream.h>
+-#include <freetype/internal/ftmemory.h>
+-#include <freetype/internal/tttypes.h>
++#include <ft2build.h>
++#include FT_INTERNAL_STREAM_H
++#include FT_INTERNAL_MEMORY_H
++#include FT_INTERNAL_TRUETYPE_TYPES_H
+ 
+ #include "fterrcompat.h"
+ 
+--- pango-1.2.5/pango/opentype/ftxopen.h.orig	2003-08-08 19:05:10.000000000 +0200
++++ pango-1.2.5/pango/opentype/ftxopen.h	2003-12-22 22:57:53.081983504 +0100
+@@ -22,7 +22,8 @@
+ #ifndef FTXOPEN_H
+ #define FTXOPEN_H
+ 
+-#include <freetype/freetype.h>
++#include <ft2build.h>
++#include FT_FREETYPE_H
+ 
+ #ifdef __cplusplus
+ extern "C" {
+--- pango-1.2.5/pango/opentype/ftxgdef.c.orig	2003-08-08 19:05:09.000000000 +0200
++++ pango-1.2.5/pango/opentype/ftxgdef.c	2003-12-22 22:58:40.844722464 +0100
+@@ -15,11 +15,12 @@
+  *
+  ******************************************************************/
+ 
+-#include <freetype/tttags.h>
++#include <ft2build.h>
++#include FT_TRUETYPE_TAGS_H
+ 
+-#include <freetype/internal/ftstream.h>
+-#include <freetype/internal/ftmemory.h>
+-#include <freetype/internal/tttypes.h>
++#include FT_INTERNAL_STREAM_H
++#include FT_INTERNAL_MEMORY_H
++#include FT_INTERNAL_TRUETYPE_TYPES_H
+ 
+ #include "fterrcompat.h"
+ 
+--- pango-1.2.5/pango/opentype/ftxgpos.c.orig	2003-08-25 16:22:30.000000000 +0200
++++ pango-1.2.5/pango/opentype/ftxgpos.c	2003-12-22 22:59:39.728770728 +0100
+@@ -23,11 +23,12 @@
+ 
+ #define TTAG_GPOS  FT_MAKE_TAG( 'G', 'P', 'O', 'S' )
+ 
+-#include <freetype/tttags.h>
++#include <ft2build.h>
++#include FT_TRUETYPE_TAGS_H
+ 
+-#include <freetype/internal/ftstream.h>
+-#include <freetype/internal/ftmemory.h>
+-#include <freetype/internal/tttypes.h>
++#include FT_INTERNAL_STREAM_H
++#include FT_INTERNAL_MEMORY_H
++#include FT_INTERNAL_TRUETYPE_TYPES_H
+ 
+ #include "fterrcompat.h"
+ 
+--- pango-1.2.5/pango/opentype/ftxgsub.c.orig	2003-08-25 16:22:15.000000000 +0200
++++ pango-1.2.5/pango/opentype/ftxgsub.c	2003-12-22 23:00:05.478856120 +0100
+@@ -23,11 +23,12 @@
+ 
+ #define EXPORT_FUNC
+ 
+-#include <freetype/tttags.h>
++#include <ft2build.h>
++#include FT_TRUETYPE_TAGS_H
+ 
+-#include <freetype/internal/ftstream.h>
+-#include <freetype/internal/ftmemory.h>
+-#include <freetype/internal/tttypes.h>
++#include FT_INTERNAL_STREAM_H
++#include FT_INTERNAL_MEMORY_H
++#include FT_INTERNAL_TRUETYPE_TYPES_H
+ 
+ #include "fterrcompat.h"
+ 
+--- pango-1.2.5/pango/opentype/pango-ot-info.c.orig	2003-04-16 23:48:20.000000000 +0200
++++ pango-1.2.5/pango/opentype/pango-ot-info.c	2003-12-22 23:00:51.777817608 +0100
+@@ -21,8 +21,8 @@
+ 
+ #include "pango-ot-private.h"
+ #include "fterrcompat.h"
+-#include <freetype/internal/ftobjs.h>
+-#include <freetype/ftmodule.h>
++#include <ft2build.h>
++#include FT_INTERNAL_OBJECTS_H
+ 
+ static void pango_ot_info_class_init (GObjectClass *object_class);
+ static void pango_ot_info_finalize   (GObject *object);
+--- pango-1.2.5/pango/opentype/pango-ot-private.h.orig	2000-12-20 05:41:36.000000000 +0100
++++ pango-1.2.5/pango/opentype/pango-ot-private.h	2003-12-22 23:01:09.436133136 +0100
+@@ -22,7 +22,8 @@
+ #ifndef __PANGO_OT_PRIVATE_H__
+ #define __PANGO_OT_PRIVATE_H__
+ 
+-#include <freetype/freetype.h>
++#include <ft2build.h>
++#include FT_FREETYPE_H
+ 
+ #include <glib-object.h>
+ 
+--- pango-1.2.5/pango/opentype/pango-ot-ruleset.c.orig	2003-07-24 23:04:13.000000000 +0200
++++ pango-1.2.5/pango/opentype/pango-ot-ruleset.c	2003-12-22 23:01:32.846574208 +0100
+@@ -19,7 +19,8 @@
+  * Boston, MA 02111-1307, USA.
+  */
+ 
+-#include <freetype/internal/ftmemory.h>
++#include <ft2build.h>
++#include FT_INTERNAL_MEMORY_H
+ 
+ #include <pango/pango-ot.h>
+ #include "pango-ot-private.h"
+--- pango-1.2.5/pango/opentype/ottest.c.orig	2000-12-20 05:41:36.000000000 +0100
++++ pango-1.2.5/pango/opentype/ottest.c	2003-12-22 23:01:51.878680888 +0100
+@@ -23,7 +23,8 @@
+ #include <stdlib.h>
+ 
+ #include "ftxopen.h"
+-#include <freetype/internal/ftmemory.h>
++#include <ft2build.h>
++#include FT_INTERNAL_MEMORY_H
+ 
+ #include "disasm.h"
+ 
+--- pango-1.2.5/pango/pangoft2.h.orig	2002-07-04 00:30:36.000000000 +0200
++++ pango-1.2.5/pango/pangoft2.h	2003-12-22 22:54:03.820836496 +0100
+@@ -23,7 +23,8 @@
+ #ifndef __PANGOFT2_H__
+ #define __PANGOFT2_H__
+ 
+-#include <freetype/freetype.h>
++#include <ft2build.h>
++#include FT_FREETYPE_H
+ 
+ #include <fontconfig/fontconfig.h>
+ 
+--- pango-1.2.5/pango/pangoft2.c.orig	2003-08-08 19:05:05.000000000 +0200
++++ pango-1.2.5/pango/pangoft2.c	2003-12-22 22:54:31.300658928 +0100
+@@ -28,7 +28,8 @@
+ #include <glib.h>
+ #include <glib/gprintf.h>
+ 
+-#include <freetype/freetype.h>
++#include <ft2build.h>
++#include FT_FREETYPE_H
+ 
+ #include "pango-utils.h"
+ #include "pangoft2.h"
+--- pango-1.2.5/pango/pango-ot.h.orig	2002-06-04 02:20:47.000000000 +0200
++++ pango-1.2.5/pango/pango-ot.h	2003-12-22 22:54:48.915980992 +0100
+@@ -22,7 +22,8 @@
+ #ifndef __PANGO_OT_H__
+ #define __PANGO_OT_H__
+ 
+-#include <freetype/freetype.h>
++#include <ft2build.h>
++#include FT_FREETYPE_H
+ #include <pango/pango-glyph.h>
+ 
+ G_BEGIN_DECLS
+--- pango-1.2.5/modules/indic/indic-ot.h.orig	2003-08-08 19:05:01.000000000 +0200
++++ pango-1.2.5/modules/indic/indic-ot.h	2003-12-22 22:53:40.826332192 +0100
+@@ -9,7 +9,8 @@
+ #ifndef __INDIC_OT_H__
+ #define __INDIC_OT_H__
+ 
+-#include <freetype/freetype.h>
++#include <ft2build.h>
++#include FT_FREETYPE_H
+ #include <pango/pango-glyph.h>
+ #include <pango/pango-types.h>
+ #include "mprefixups.h"
