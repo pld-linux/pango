@@ -1,7 +1,7 @@
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Name:		pango
-Version:	0.23
+Version:	0.24
 Release:	2
 License:	LGPL
 Group:		Libraries
@@ -20,7 +20,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	fribidi-devel
-BuildRequires:	glib2-devel >= 1.3.12
+BuildRequires:	glib2-devel >= 1.3.13
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
