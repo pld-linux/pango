@@ -1,7 +1,7 @@
 Summary:	System for layout and rendering of internationalized text
 Name:		pango
 Version:	0.16
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
@@ -15,6 +15,7 @@ BuildRequires:	pkgconfig
 # pango is not GNOME-specific
 # %define		_sysconfdir	/etc/X11/GNOME
 %define		_sysconfdir	/etc/X11
+%define		_pkgconfig	%{_libdir}/pkgconfig
 
 %description
 System for layout and rendering of internationalized text.
@@ -84,6 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpango*[^%{version}].so
 #%attr(755,root,root) %{_bindir}/pango-config
 %{_includedir}/*
+%dir %{_pkgconfig}/*.pc
 
 %files static
 %defattr(644,root,root,755)
