@@ -1,0 +1,4 @@
+- fixed lib*.so symlinks.
+
+* Fri Feb 11 2000 Owen Taylor <otaylor@redhat.com>
+- Created spec file
