@@ -10,16 +10,18 @@ Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-Xft2.patch
 Patch1:		%{name}-freetype.patch
 URL:		http://www.pango.org/
-Requires:	freetype >= 2.1.2
+BuildRequires:	XFree86-devel
+BuildRequires:	Xft-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
-BuildRequires:	pkgconfig
-BuildRequires:	XFree86-devel
 BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	glib2-devel >= 2.0.1
-BuildRequires:	Xft-devel
 BuildRequires:	gtk-doc >= 0.9-4
+BuildRequires:	libtool
+BuildRequires:	perl
+BuildRequires:	pkgconfig
+Requires(post):	/sbin/ldconfig
+Requires:	freetype >= 2.1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
 
@@ -47,11 +49,11 @@ Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	%{name}-modules = %{version}
-Requires:	gtk-doc-common
 Requires:	XFree86-devel
+Requires:	Xft-devel
 Requires:	freetype-devel >= 2.0.1
 Requires:	glib2-devel >= 2.0.1
-Requires:	Xft-devel
+Requires:	gtk-doc-common
 Obsoletes:	libpango24-devel
 
 %description devel
@@ -86,6 +88,7 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
+Requires(post,postun):	%{name} = %{version}
 Requires:	%{name} = %{version}
 
 %description modules
@@ -141,6 +144,8 @@ rm -rf $RPM_BUILD_ROOT
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
 
+%postun -p /sbin/ldconfig
+
 %post modules
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
@@ -148,8 +153,6 @@ umask 022
 %postun modules
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
-
-%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
