@@ -4,7 +4,7 @@ Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.3.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
@@ -143,16 +143,19 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
+exit 0
 
 %postun -p /sbin/ldconfig
 
 %post modules
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
+exit 0
 
 %postun modules
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
+exit 0
 
 %files
 %defattr(644,root,root,755)
