@@ -7,13 +7,12 @@ Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-Xft2.patch
-Patch1:		%{name}-freetype.patch
-Patch2:		%{name}-slighthint.patch
-Patch3:		%{name}-xfonts.patch
+Patch0:		%{name}-freetype.patch
+Patch1:		%{name}-slighthint.patch
+Patch2:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	Xft-devel >= 2.0-4
+BuildRequires:	Xft-devel >= 2.0-5
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.2-2
@@ -27,10 +26,6 @@ Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.2-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
-
-
-# pango is not GNOME-specific
-%define		_sysconfdir	/etc/X11
 
 %description
 System for layout and rendering of internationalized text.
@@ -111,7 +106,6 @@ internacionalizado.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 rm -f missing acinclude.m4
