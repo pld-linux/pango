@@ -148,7 +148,7 @@ umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
 exit 0
 
-%triggerpostun -- pango < 1.05-2
+%triggerpostun -- pango < 1.05
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
 exit 0
