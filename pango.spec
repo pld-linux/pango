@@ -2,26 +2,28 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.1.2
-Release:	3
+Version:	1.1.3
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-Xft2.patch
 Patch1:		%{name}-freetype.patch
+Patch2:		%{name}-slighthint.patch
+Patch3:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	Xft-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	freetype-devel >= 2.0.1
+BuildRequires:	freetype-devel >= 2.1.2-2
 BuildRequires:	glib2-devel >= 2.0.1
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
 BuildRequires:	pkgconfig
 Requires(post):	/sbin/ldconfig
-Requires:	freetype >= 2.1.2
+Requires:	freetype >= 2.1.2-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
 
@@ -110,6 +112,9 @@ internacionalizado.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+# todo
+#%patch2 -p1
+%patch3 -p1
 
 %build
 rm -f missing acinclude.m4
