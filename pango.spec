@@ -18,7 +18,7 @@ Patch1:		%{name}-xlibs.patch
 URL:		http://www.pango.org/
 %{!?with_xlibs:BuildRequires:	XFree86-devel}
 BuildRequires:	autoconf >= 2.54
-BuildRequires:	automake >= 1.7
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1.0.1
