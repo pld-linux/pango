@@ -11,12 +11,11 @@ Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am_ac.patch
 Patch1:		%{name}-gtkdoc.patch
 URL:		http://www.pango.org/
-Requires:	freetype >= 2.1.2
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	glib2-devel >= 2.0.1
+BuildRequires:	freetype-devel
+BuildRequires:	glib2-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,6 +44,9 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	XFree86-devel
+Requires:	freetype-devel
+Requires:	glib2-devel
 Requires:	gtk-doc-common
 Obsoletes:	libpango24-devel
 
