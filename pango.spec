@@ -3,12 +3,13 @@ Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.2.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
 # Source0-md5:	df00fe3e71cd297010f24f439b6c8ee6
 Patch0:		%{name}-xfonts.patch
+Patch1:		%{name}-freetype-includes.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.53
@@ -17,7 +18,7 @@ BuildRequires:	freetype-devel >= 2.1.3
 BuildRequires:	glib2-devel >= 2.2.3
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
-BuildRequires:	perl
+BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-8.2
 BuildRequires:	xft-devel >= 2.1.2
@@ -103,9 +104,9 @@ internacionalizado.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
-#rm -f missing acinclude.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -124,6 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir} \
 	HTML_DIR=%{_gtkdocdir}
+
 %{__perl} -pi -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
