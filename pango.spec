@@ -17,7 +17,6 @@ BuildRequires:	freetype-devel >= 2.0.1
 BuildRequires:	glib2-devel >= 2.0.1
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	gtk-doc >= 0.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
 
@@ -74,6 +73,29 @@ Biblioteki statyczne %{name}.
 Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
+%package modules
+Summary:	System for layout and rendering of internationalized text
+Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
+Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
+Group:		X11/Development/Libraries
+Requires:	%{name} = %{version}
+
+%description modules
+System for layout and rendering of internationalized text.
+
+This package contains pango modules for: arabic, bengali, devanagari,
+gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
+
+%description modules -l pl
+System obs³ugi i renderowania miêdzynarodowego tekstu.
+
+Pakiet zawiera modu³y pango dla jêzyków: arabic, bengali, devanagari,
+gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
+
+%description modules -l pt_BR
+Pango é um sistema para layout e renderização de texto
+internacionalizado.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -81,12 +103,12 @@ internacionalizado.
 %build
 rm -f missing acinclude.m4
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
 	--with-fribidi \
-	--enable-gtk-doc \
+	--disable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--enable-static
 %{__make}
@@ -113,20 +135,21 @@ umask 022
 
 %files
 %defattr(644,root,root,755)
-%doc README AUTHORS ChangeLog TODO examples/HELLO.utf8
+%doc README AUTHORS examples/HELLO.utf8
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/1.0.0
 %dir %{_libdir}/pango/1.0.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.so
-%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.la
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*basic*.so
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*basic*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
 
 %files devel
 %defattr(644,root,root,755)
+%doc ChangeLog TODO
 %attr(755,root,root) %{_libdir}/libpango*.so
 %attr(755,root,root) %{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
@@ -137,3 +160,10 @@ umask 022
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
 %attr(644,root,root) %{_libdir}/pango/1.0.0/modules/*.a
+
+%files modules
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.so
+%exclude %{_libdir}/pango/1.0.0/modules/*basic*.so
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.la
+%exclude %{_libdir}/pango/1.0.0/modules/*basic*.la
