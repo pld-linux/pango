@@ -78,6 +78,29 @@ Biblioteki statyczne %{name}.
 Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
+%package modules
+Summary:	System for layout and rendering of internationalized text
+Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
+Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
+Group:		X11/Development/Libraries
+Requires:	%{name} = %{version}
+
+%description modules
+System for layout and rendering of internationalized text.
+
+This package contains pango modules for: arabic, bengali, devanagari,
+gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
+
+%description modules -l pl
+System obs³ugi i renderowania miêdzynarodowego tekstu.
+
+Pakiet zawiera modu³y pango dla jêzyków: arabic, bengali, devanagari,
+gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
+
+%description modules -l pt_BR
+Pango é um sistema para layout e renderização de texto
+internacionalizado.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -123,8 +146,8 @@ umask 022
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/1.0.0
 %dir %{_libdir}/pango/1.0.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.so
-%{_libdir}/pango/1.0.0/modules/*.la
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*basic*.so
+%{_libdir}/pango/1.0.0/modules/*basic*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
@@ -140,3 +163,10 @@ umask 022
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
+
+%files modules
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/pango/1.0.0/modules/*.so
+%exclude %{_libdir}/pango/1.0.0/modules/*basic*.so
+%{_libdir}/pango/1.0.0/modules/*.la
+%exclude %{_libdir}/pango/1.0.0/modules/*basic*.la
