@@ -1,7 +1,7 @@
 Summary:	System for layout and rendering of internationalized text
 Name:		pango
 Version:	0.16
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
@@ -70,8 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz examples/*gz
-%attr(755,root,root) %{_libdir}/libpango-*.so
-%attr(755,root,root) %{_libdir}/libpangox-*.so
+%attr(755,root,root) %{_libdir}/libpango*-%{version}.so
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/modules
@@ -82,8 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpango.so
-%attr(755,root,root) %{_libdir}/libpangox.so
+%attr(755,root,root) %{_libdir}/libpango*[^%{version}].so
 #%attr(755,root,root) %{_bindir}/pango-config
 %{_includedir}/*
 
