@@ -2,18 +2,16 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Name:		pango
 Version:	1.0.0
-Release:	0.1
+Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/testing/%{name}-rc2-%{version}.tar.gz
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am_ac.patch
-Patch1:		%{name}-use_system_fribidi.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	fribidi-devel
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -37,7 +35,6 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	fribidi-devel
 Obsoletes:	libpango24-devel
 
 %description devel
@@ -59,9 +56,8 @@ Static %{name} libraries.
 Biblioteki statyczne %{name}.
 
 %prep
-%setup -q -n %{name}-rc2-%{version}
+%setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 rm -f missing acinclude.m4
