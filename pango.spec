@@ -168,7 +168,7 @@ umask 022
 %dir %{_libdir}/pango/1.1.0
 %dir %{_libdir}/pango/1.1.0/modules
 %attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*basic*.so
-%attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*basic*.la
+%{_libdir}/pango/1.1.0/modules/*basic*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
@@ -177,7 +177,7 @@ umask 022
 %defattr(644,root,root,755)
 %doc ChangeLog TODO
 %attr(755,root,root) %{_libdir}/libpango*.so
-%attr(755,root,root) %{_libdir}/libpango*.la
+%{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_gtkdocdir}/pango
@@ -190,5 +190,5 @@ umask 022
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*.so
 %exclude %{_libdir}/pango/1.1.0/modules/*basic*.so
-%attr(755,root,root) %{_libdir}/pango/1.1.0/modules/*.la
+%{_libdir}/pango/1.1.0/modules/*.la
 %exclude %{_libdir}/pango/1.1.0/modules/*basic*.la
