@@ -5,15 +5,17 @@ Version:	0.24
 Release:	2
 License:	LGPL
 Group:		Libraries
-Group(de):	Libraries
+Group(de):	Bibliotheken
 Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt):	Bibliotecas
 Group(pt_BR):	Bibliotecas
 Group(ru):	Библиотеки
 Group(uk):	Б╕бл╕отеки
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am_ac.patch
+Patch1:		%{name}-use_system_fribidi.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -24,6 +26,7 @@ BuildRequires:	glib2-devel >= 1.3.13
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libpango24
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
@@ -42,15 +45,17 @@ System obsЁugi i renderowania miЙdzynarodowego tekstu.
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obsЁugi i renderowania miЙdzynarodowego tekstu
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
+Group(de):	Entwicklung/Bibliotheken
 Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(pt):	Desenvolvimento/Bibliotecas
 Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Requires:	fribidi-devel
+Obsoletes:	libpango24-devel
 
 %description devel
 Developer files for pango.
@@ -62,11 +67,12 @@ Pliki developerskie pango.
 Summary:	Static %{name} libraries
 Summary(pl):	Biblioteki statyczne %{name}
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
+Group(de):	Entwicklung/Bibliotheken
 Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(pt):	Desenvolvimento/Bibliotecas
 Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
@@ -80,6 +86,7 @@ Biblioteki statyczne %{name}.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing acinclude.m4
