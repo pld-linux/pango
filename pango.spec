@@ -1,3 +1,6 @@
+# WARNING: you need to have linkable -lpango-1.0 in /usr/X11R6/lib in 
+#          order to build this... fix it... I dare you
+
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
