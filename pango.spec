@@ -2,12 +2,12 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.4.0
+Version:	1.5.0
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	9b5d9a5dcce5b3899d401f9c2cd6873f
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	cd79d36eb62592cf9cce750d6df0618b
 Patch0:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
@@ -15,8 +15,9 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	fontconfig-devel >= 1.0.1
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.4.0
+BuildRequires:	glib2-devel >= 1:2.4.2
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
@@ -25,7 +26,7 @@ BuildRequires:	rpm-build >= 4.1-8.2
 BuildRequires:	xft-devel >= 2.1.2
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.4.0
+Requires:	glib2 >= 1:2.4.2
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,7 +48,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	XFree86-devel
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.4.0
+Requires:	glib2-devel >= 1:2.4.2
 Requires:	gtk-doc-common
 Requires:	xft-devel >= 2.1.2
 Obsoletes:	libpango24-devel
@@ -63,17 +64,17 @@ Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
 %package static
-Summary:	Static %{name} libraries
-Summary(pl):	Biblioteki statyczne %{name}
+Summary:	Static pango libraries
+Summary(pl):	Biblioteki statyczne pango
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static %{name} libraries.
+Static pango libraries.
 
 %description static -l pl
-Biblioteki statyczne %{name}.
+Biblioteki statyczne pango.
 
 %description static -l pt_BR
 Pango é um sistema para layout e renderização de texto
