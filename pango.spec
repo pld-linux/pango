@@ -64,7 +64,7 @@ rm -f missing acinclude.m4
 libtoolize --copy --force
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure \
 	--with-fribidi \
 	--enable-gtk-doc=no \
