@@ -111,10 +111,10 @@ internacionalizado.
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-fribidi \
+	--enable-static \
+	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--enable-static
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
