@@ -1,16 +1,22 @@
-diff -urN pango-0.25.org/pango/Makefile.am pango-0.25/pango/Makefile.am
---- pango-0.25.org/pango/Makefile.am	Tue Feb 19 00:11:36 2002
-+++ pango-0.25/pango/Makefile.am	Tue Feb 19 00:12:07 2002
-@@ -261,10 +261,10 @@
+diff -urN pango-rc2-1.0.0.org/pango/Makefile.am pango-rc2-1.0.0/pango/Makefile.am
+--- pango-rc2-1.0.0.org/pango/Makefile.am	Thu Mar  7 11:25:05 2002
++++ pango-rc2-1.0.0/pango/Makefile.am	Thu Mar  7 11:27:37 2002
+@@ -12,6 +12,7 @@
+ endif
+ 
+ if HAVE_FRIBIDI
++FRIBIDI_SUBDIR =
+ else
+ FRIBIDI_SUBDIR = mini-fribidi
+ endif
+@@ -266,10 +268,8 @@
  
  if HAVE_XFT
- pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la $(GLIB_LIBS) $(FRIBIDI_LIBS) $(XFT_LIBS) $(FREETYPE_LIBS)
--pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la
-+#pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la
+ pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft-$(PANGO_API_VERSION).la $(GLIB_LIBS) $(FRIBIDI_LIBS) $(XFT_LIBS) $(FREETYPE_LIBS)
+-pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft-$(PANGO_API_VERSION).la libpango-$(PANGO_API_VERSION).la
  else
- pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) $(GLIB_LIBS) $(FRIBIDI_LIBS) $(X_LIBS) $(FREETYPE_LIBS)
--pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) libpango.la
-+#pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) libpango.la
+ pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) $(GLIB_LIBS) $(FRIBIDI_LIBS) $(X_LIBS) $(FREETYPE_LIBS) $(X_EXTRA_LIBS)
+-pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) libpango-$(PANGO_API_VERSION).la
  endif
  
  EXTRA_DIST =					\

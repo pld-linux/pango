@@ -59,7 +59,7 @@
  endif
  
  if HAVE_FRIBIDI
-+libpango_la_LIBADD = $(FRIBIDI_LIBS)
++libpango_1_0_la_LIBADD = $(FRIBIDI_LIBS)
  else
  FRIBIDI_SUBDIR = mini-fribidi
  endif
