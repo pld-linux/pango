@@ -8,8 +8,7 @@ License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
 # Source0-md5:	df00fe3e71cd297010f24f439b6c8ee6
-#Patch0:		%{name}-freetype.patch
-Patch1:		%{name}-xfonts.patch
+Patch0:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.53
@@ -103,16 +102,14 @@ internacionalizado.
 
 %prep
 %setup -q
-##%patch0 -p1
-%patch1 -p1
+%patch0 -p1
 
 %build
-rm -f missing acinclude.m4
+#rm -f missing acinclude.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-
 %configure \
 	--with-fribidi \
 	--enable-gtk-doc \
@@ -127,11 +124,11 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir} \
 	HTML_DIR=%{_gtkdocdir}
-perl -p -i -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
+%{__perl} -pi -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
-#Remove uneeded static files from modules dir
-rm $RPM_BUILD_ROOT%{_libdir}/%{name}/1.2.0/modules/*.a
+# useless (modules loaded through libgmodule)
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.2.0/modules/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -160,7 +157,6 @@ umask 022
 %dir %{_libdir}/pango/1.2.0
 %dir %{_libdir}/pango/1.2.0/modules
 %attr(755,root,root) %{_libdir}/pango/1.2.0/modules/*basic*.so
-%{_libdir}/pango/1.2.0/modules/*basic*.la
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
@@ -182,5 +178,3 @@ umask 022
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/pango/1.2.0/modules/*.so
 %exclude %{_libdir}/pango/1.2.0/modules/*basic*.so
-%{_libdir}/pango/1.2.0/modules/*.la
-%exclude %{_libdir}/pango/1.2.0/modules/*basic*.la
