@@ -3,20 +3,20 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.3.1
-Release:	1.%{snap}.1
+Version:	1.3.2
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	%{name}-%{version}-%{snap}.tar.bz2
-# Source0-md5:	83a9df0047a06e69e337eea93f3d6042
-#Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	724cbc3236b99a43b5b077cb9801ec19
+#Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Patch0:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.3
-BuildRequires:	glib2-devel >= 2.3.1-2.20040114.1
+BuildRequires:	glib2-devel >= 2.3.2
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
@@ -46,7 +46,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	XFree86-devel
 Requires:	freetype-devel >= 2.1.3
-Requires:	glib2-devel >= 2.3.1
+Requires:	glib2-devel >= 2.3.2
 Requires:	gtk-doc-common
 Requires:	xft-devel >= 2.1.2
 Obsoletes:	libpango24-devel
