@@ -1,6 +1,6 @@
 Summary:	System for layout and rendering of internationalized text
 Name:		pango
-Version:	0.12
+Version:	0.13
 Release:	1
 License:	LGPL
 Group:		Libraries
