@@ -1,3 +1,7 @@
+#
+# Conditional build
+%bcond_with	xlibs	# use fdo xlibs instead of XFree86
+#
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
@@ -10,7 +14,11 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.5/%{name}-%{version}.t
 # Source0-md5:	cd79d36eb62592cf9cce750d6df0618b
 Patch0:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
+%if %{with xlibs}
+BuildRequires:	libX11-devel
+%else
 BuildRequires:	XFree86-devel
+%endif
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	docbook-dtd412-xml
@@ -46,7 +54,11 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%if %{with xlibs}
+Requires:	libX11-devel
+%else
 Requires:	XFree86-devel
+%endif
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.4.2
 Requires:	gtk-doc-common
