@@ -3,7 +3,7 @@ Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.1.4
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
@@ -13,23 +13,21 @@ Patch2:		%{name}-slighthint.patch
 Patch3:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	Xft-devel >= 1.1.3
+BuildRequires:	Xft-devel >= 2.0-4
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.2-2
-BuildRequires:	glib2-devel >= 2.0.1
+BuildRequires:	glib2-devel >= 2.1.3
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.1-8.2
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.2-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpango24
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
-%define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 # pango is not GNOME-specific
 %define		_sysconfdir	/etc/X11
