@@ -2,7 +2,7 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Name:		pango
 Version:	0.23
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -88,7 +88,8 @@ aclocal
 autoconf
 automake -a -c
 %configure \
-	--with-fribidi
+	--with-fribidi \
+	--enable-gtk-doc=no
 %{__make}
 
 %install
