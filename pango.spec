@@ -8,6 +8,7 @@ Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
 URL:		http://www.pango.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	libunicode-devel
+BuildRequires:	pkgconfig
 
 %define		_prefix		/usr/X11R6
 
