@@ -1,0 +1,31 @@
+diff -urN pango-0.21.org/pango/Makefile.am pango-0.21/pango/Makefile.am
+--- pango-0.21.org/pango/Makefile.am	Mon Oct 29 17:16:34 2001
++++ pango-0.21/pango/Makefile.am	Mon Oct 29 17:22:03 2001
+@@ -222,10 +222,10 @@
+ 
+ if HAVE_XFT
+ pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la $(GLIB_LIBS) $(FRIBIDI_LIBS) $(XFT_LIBS) $(FREETYPE_LIBS)
+-pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la
++#pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la
+ else
+ pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpango.la $(GLIB_LIBS) $(FRIBIDI_LIBS) $(X_LIBS) $(FREETYPE_LIBS)
+-pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpango.la
++#pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpango.la
+ endif
+ 
+ EXTRA_DIST =					\
+diff -urN pango-0.21.org/tests/Makefile.am pango-0.21/tests/Makefile.am
+--- pango-0.21.org/tests/Makefile.am	Mon Oct 29 17:16:34 2001
++++ pango-0.21/tests/Makefile.am	Mon Oct 29 17:18:09 2001
+@@ -13,9 +13,9 @@
+ dump_boundaries_SOURCES = dump-boundaries.c
+ 
+ ## pangox should not actually be required, this is broken
+-testboundaries_LDADD = ../pango/libpango.la ../pango/libpangox.la $(X_LIBS)
++testboundaries_LDADD = ../pango/libpango.la ../pango/libpangox.la $(X_LIBS) $(FRIBIDI_LIBS)
+ 
+-dump_boundaries_LDADD = ../pango/libpango.la ../pango/libpangox.la $(X_LIBS)
++dump_boundaries_LDADD = ../pango/libpango.la ../pango/libpangox.la $(X_LIBS) $(FRIBIDI_LIBS)
+ 
+ EXTRA_DIST = 			\
+ 	all-unicode.txt		\
