@@ -10,7 +10,7 @@ Name:		pango
 %define		_minor_ver	1
 Epoch:		1
 Version:	%{_major_ver}.%{_minor_ver}
-Release:	3
+Release:	4
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/%{_major_ver}/%{name}-%{version}.tar.bz2
@@ -31,7 +31,7 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-8.2
-BuildRequires:	xft-devel >= 2.1.2
+BuildRequires:	xft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.4.0
@@ -59,7 +59,7 @@ Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.4.0
 Requires:	gtk-doc-common
 %{?with_xlibs:Requires:	libX11-devel}
-Requires:	xft-devel >= 2.1.2
+Requires:	xft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
