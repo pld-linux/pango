@@ -44,7 +44,7 @@ Obsoletes:	libpango24-devel
 %description devel
 Developer files for pango.
 
-%description -l pl devel
+%description devel -l pl
 Pliki developerskie pango.
 
 %package static
@@ -56,7 +56,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static %{name} libraries.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne %{name}.
 
 %prep
