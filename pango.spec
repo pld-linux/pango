@@ -3,7 +3,7 @@ Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.1.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
@@ -129,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir} \
 	HTML_DIR=%{_gtkdocdir}
+perl -p -i -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
 
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
