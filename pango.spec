@@ -15,15 +15,15 @@ Group(uk):	Б╕бл╕отеки
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am_ac.patch
 URL:		http://www.pango.org/
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	XFree86-devel
-BuildRequires:	freetype-devel >= 2.0.1
-BuildRequires:	glib2-devel >= 1.3.10
-BuildRequires:	fribidi-devel
-BuildRequires:	pkgconfig
-BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	freetype-devel >= 2.0.1
+BuildRequires:	fribidi-devel
+BuildRequires:	glib2-devel >= 1.3.10
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
@@ -50,6 +50,7 @@ Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	Разработка/Библиотеки
 Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
+Requires:	fribidi-devel
 
 %description devel
 Developer files for pango.
