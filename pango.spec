@@ -8,8 +8,7 @@ License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-freetype.patch
-#Patch1:		%{name}-slighthint.patch
-Patch2:		%{name}-xfonts.patch
+Patch1:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	Xft-devel >= 2.1-2
@@ -104,8 +103,7 @@ internacionalizado.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
-%patch2 -p1
+%patch1 -p1
 
 %build
 rm -f missing acinclude.m4
