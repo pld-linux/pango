@@ -2,11 +2,11 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.1.6
+Version:	1.2.0
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.1/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-freetype.patch
 Patch1:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
@@ -15,7 +15,7 @@ BuildRequires:	Xft-devel >= 2.1-2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.3
-BuildRequires:	glib2-devel >= 2.1.5
+BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
@@ -127,8 +127,10 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir} \
 	HTML_DIR=%{_gtkdocdir}
 perl -p -i -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
-
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
+
+#Remove uneeded static files from modules dir
+rm $RPM_BUILD_ROOT%{_libdir}/%{name}/%{version}/modules/*.a
 
 
 %clean
