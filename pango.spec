@@ -50,7 +50,6 @@ Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
 Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
 Requires:	%{name} = %{version}
-Requires:	libunicode-devel
 
 %description devel
 Developer files for pango.
@@ -76,64 +75,6 @@ Static %{name} libraries.
 
 %description -l pl static
 Biblioteki statyczne %{name}.
-
-%package X11
-Summary:	System for layout and rendering of internationalized text - X11 version
-Summary(pl):	System renderowania miÍdzynarodowego tekstu - wersja X11
-Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	‚…¬Ã…œ‘≈À…
-Group(uk):	‚¶¬Ã¶œ‘≈À…
-
-%description X11
-System for layout and rendering of internationalized text - X11
-version.
-
-%description -l pl X11
-System renderowania miÍdzynarodowego tekstu - wersja X11.
-
-%package freetype
-Summary:	System for layout and rendering of internationalized text - FreeType version
-Summary(pl):	System renderowania miÍdzynarodowego tekstu - wersja FreeType
-Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	‚…¬Ã…œ‘≈À…
-Group(uk):	‚¶¬Ã¶œ‘≈À…
-
-%description freetype
-System for layout and rendering of internationalized text - FreeType
-version.
-
-%description -l pl freetype
-System renderowania miÍdzynarodowego tekstu - wersja FreeType.
-
-%package XRender
-Summary:	System for layout and rendering of internationalized text - X11 version with XRender support
-Summary(pl):	System renderowania miÍdzynarodowego tekstu - wersja X11 z obs≥ug± XRender
-Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	‚…¬Ã…œ‘≈À…
-Group(uk):	‚¶¬Ã¶œ‘≈À…
-
-%description XRender
-System for layout and rendering of internationalized text - X11
-version with XRender support.
-
-%description -l pl XRender
-System renderowania miÍdzynarodowego tekstu - wersja X11 z obs≥ug±
-XRender.
 
 %prep
 %setup -q
@@ -179,30 +120,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz examples/*gz
 %attr(755,root,root) %{_bindir}/pango-querymodules
-%attr(755,root,root) %{_libdir}/libpango-*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/modules
+%attr(755,root,root) %{_libdir}/pango/modules/*.so
+%attr(755,root,root) %{_libdir}/pango/modules/*.la
 %dir %{_sysconfdir}/pango
-%ghost %{_sysconfdir}/pango/pango.modules
-
-%files X11
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpangox-*.so
-%attr(755,root,root) %{_libdir}/pango/modules/*-x.so
-%attr(755,root,root) %{_libdir}/pango/modules/*-x.la
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
-
-%files XRender
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpangoxft-*.so
-%attr(755,root,root) %{_libdir}/pango/modules/*-xft.so
-%attr(755,root,root) %{_libdir}/pango/modules/*-xft.la
-
-%files freetype
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpangoft2-*.so
-%attr(755,root,root) %{_libdir}/pango/modules/*-ft2.so
-%attr(755,root,root) %{_libdir}/pango/modules/*-ft2.la
+%ghost %{_sysconfdir}/pango/pango.modules
 
 %files devel
 %defattr(644,root,root,755)
