@@ -2,19 +2,19 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.3.0
-Release:	0.1
+Version:	1.3.1
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	5fc4a79d901f4c0bf98ad0194f4a87a7
+# Source0-md5:	c5f1689623ae04a6276327e54927b656
 Patch0:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.3
-BuildRequires:	glib2-devel >= 2.3.0
+BuildRequires:	glib2-devel >= 2.3.1-1
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
