@@ -1,12 +1,9 @@
-# WARNING: you need to have linkable -lpango-1.0 in /usr/X11R6/lib in 
-#          order to build this... fix it... I dare you
-
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.1.3
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/%{name}-%{version}.tar.bz2
@@ -124,6 +121,9 @@ rm -f missing acinclude.m4
 %{__aclocal}
 %{__autoconf}
 %{__automake}
+
+# Workaround as in glib2.spec
+LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--with-fribidi \
 	--enable-gtk-doc \
@@ -141,6 +141,11 @@ rm -rf $RPM_BUILD_ROOT
 perl -p -i -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
 
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
+
+for i in %{buildroot}%{_libdir}/*.la; do
+	cat $i|sed -e "s,-L%{buildroot}%{_libdir},,">$i.tmp;
+	mv $i.tmp $i;
+done;
 
 %clean
 rm -rf $RPM_BUILD_ROOT
