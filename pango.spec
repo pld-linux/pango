@@ -3,23 +3,25 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.3.2
+Version:	1.3.3
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	724cbc3236b99a43b5b077cb9801ec19
+# Source0-md5:	b8a2723780fc8163c265e83f2f278263
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Patch0:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
-BuildRequires:	autoconf >= 2.53
+BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
+BuildRequires:	docbook-dtd412-xml
+BuildRequires:	docbook-style-xsl
 BuildRequires:	freetype-devel >= 2.1.3
-BuildRequires:	glib2-devel >= 2.3.2
-BuildRequires:	gtk-doc >= 0.9-4
+BuildRequires:	glib2-devel >= 2.3.3
+BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
-BuildRequires:	perl
+BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-8.2
 BuildRequires:	xft-devel >= 2.1.2
@@ -43,10 +45,10 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	XFree86-devel
 Requires:	freetype-devel >= 2.1.3
-Requires:	glib2-devel >= 2.3.2
+Requires:	glib2-devel >= 2.3.3
 Requires:	gtk-doc-common
 Requires:	xft-devel >= 2.1.2
 Obsoletes:	libpango24-devel
@@ -66,7 +68,7 @@ Summary:	Static %{name} libraries
 Summary(pl):	Biblioteki statyczne %{name}
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static %{name} libraries.
@@ -83,8 +85,8 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
-Requires(post,postun):	%{name} = %{version}
-Requires:	%{name} = %{version}
+Requires(post,postun):	%{name} = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description modules
 System for layout and rendering of internationalized text.
@@ -117,7 +119,8 @@ gtkdocize --copy
 	--with-fribidi \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
-	--enable-static
+	--enable-static \
+	--enable-man
 %{__make}
 
 %install
