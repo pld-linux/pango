@@ -2,19 +2,19 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.2.5
-Release:	1
+Version:	1.3.0
+Release:	0.1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	df00fe3e71cd297010f24f439b6c8ee6
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	5fc4a79d901f4c0bf98ad0194f4a87a7
 Patch0:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.3
-BuildRequires:	glib2-devel >= 2.2.3
+BuildRequires:	glib2-devel >= 2.3.0
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	perl
@@ -105,11 +105,10 @@ internacionalizado.
 %patch0 -p1
 
 %build
-#rm -f missing acinclude.m4
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
+#%%{__libtoolize}
+#%%{__aclocal}
+#%%{__autoconf}
+#%%{__automake}
 %configure \
 	--with-fribidi \
 	--enable-gtk-doc \
@@ -128,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
 # useless (modules loaded through libgmodule)
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.2.0/modules/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.4.0/modules/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -154,12 +153,13 @@ umask 022
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/1.2.0
-%dir %{_libdir}/pango/1.2.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.2.0/modules/*basic*.so
+%dir %{_libdir}/pango/1.4.0
+%dir %{_libdir}/pango/1.4.0/modules
+%attr(755,root,root) %{_libdir}/pango/1.4.0/modules/*basic*.so
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
@@ -176,5 +176,5 @@ umask 022
 
 %files modules
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/pango/1.2.0/modules/*.so
-%exclude %{_libdir}/pango/1.2.0/modules/*basic*.so
+%attr(755,root,root) %{_libdir}/pango/1.4.0/modules/*.so
+%exclude %{_libdir}/pango/1.4.0/modules/*basic*.so
