@@ -3,7 +3,7 @@ Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.0.3
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/%{name}-%{version}.tar.bz2
@@ -134,3 +134,4 @@ umask 022
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
+%attr(644,root,root) %{_libdir}/pango/1.0.0/modules/*.a
