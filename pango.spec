@@ -55,8 +55,8 @@ LDFLAGS="-s"; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/var/lib/pango
-touch $RPM_BUILD_ROOT/var/lib/pango/pango.modules
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/pango
+touch $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-/usr/bin/pango-querymodules /usr/lib/pango/modules/*.so > /var/lib/pango/pango.modules
+/usr/bin/pango-querymodules /usr/lib/pango/modules/*.so > %{_sysconfdir}/pango/pango.modules
 
 %postun -p /sbin/ldconfig
 
@@ -78,8 +78,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %{_libdir}/pango
 %config %{_sysconfdir}/pango/pangox.aliases
-%config /var/lib/pango/*
-%dir /var/lib/pango
+%config %{_sysconfdir}/pango/*
+%dir %{_sysconfdir}/pango
 
 %files devel
 %defattr(644,root,root,755)
