@@ -1,27 +1,16 @@
-diff -Nur pango-0.23/pango/Makefile.am pango-0.23.new/pango/Makefile.am
---- pango-0.23/pango/Makefile.am	Fri Dec 14 20:22:38 2001
-+++ pango-0.23.new/pango/Makefile.am	Sat Jan 12 21:37:15 2002
+diff -urN pango-0.25.org/pango/Makefile.am pango-0.25/pango/Makefile.am
+--- pango-0.25.org/pango/Makefile.am	Tue Feb 19 00:11:36 2002
++++ pango-0.25/pango/Makefile.am	Tue Feb 19 00:12:07 2002
 @@ -261,10 +261,10 @@
  
  if HAVE_XFT
- pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la $(GLIB_LIBS) $(FRIBIDI_LIBS) $(XFT_LIBS) $(FREETYPE_LIBS)
+ pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la $(GLIB_LIBS) $(FRIBIDI_LIBS) $(XFT_LIBS) $(FREETYPE_LIBS)
 -pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la
 +#pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpangoxft.la libpango.la
  else
- pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpango.la $(GLIB_LIBS) $(FRIBIDI_LIBS) $(X_LIBS) $(FREETYPE_LIBS)
--pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpango.la
-+#pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) libpango.la
+ pango_querymodules_LDADD = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) $(GLIB_LIBS) $(FRIBIDI_LIBS) $(X_LIBS) $(FREETYPE_LIBS)
+-pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) libpango.la
++#pango_querymodules_DEPENDENCIES = $(FT2_BUILD_LIBS) $(X_BUILD_LIBS) $(WIN32_BUILD_LIBS) libpango.la
  endif
  
  EXTRA_DIST =					\
---- pango-0.24/modules/hebrew/Makefile.am~	Sat Feb  2 07:31:16 2002
-+++ pango-0.24/modules/hebrew/Makefile.am	Sat Feb  2 07:31:16 2002
-@@ -85,7 +85,7 @@
- pango_hebrew_xft_la_SOURCES = $(hebrew_xft_sources)
- libpango_hebrew_xft_la_SOURCES = $(hebrew_xft_sources)
- 
--pango_hebrew_ft2_la_LDFLAGS = -export-dynamic -avoid-version -module $(no_undefined)
-+pango_hebrew_ft2_la_LDFLAGS = -export-dynamic -avoid-version -module
- pango_hebrew_ft2_la_LIBADD = $(hebrew_ft2_libadd)
- pango_hebrew_ft2_la_SOURCES = $(hebrew_ft2_sources)
- libpango_hebrew_ft2_la_SOURCES = $(hebrew_ft2_sources)
