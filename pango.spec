@@ -9,6 +9,8 @@ URL:		http://www.pango.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	libunicode-devel
 BuildRequires:	pkgconfig
+BuildRequires:	automake
+BuildRequires:	autoconf
 
 %define		_prefix		/usr/X11R6
 
@@ -48,6 +50,8 @@ Biblioteki statyczne %{name}.
 %setup -q
 
 %build
+aclocal
+autoconf
 %configure
 %{__make}
 
