@@ -7,9 +7,14 @@ Group:		Libraries
 Source0:	http://www.pango.org/download/%{name}-%{version}.tar.gz
 URL:		http://www.pango.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	libunicode-devel
+BuildRequires:	fribidi-devel
 
 %define		_prefix		/usr/X11R6
-%define		_sysconfdir	/etc/X11/GNOME
+
+# pango is not GNOME-specific
+# %define		_sysconfdir	/etc/X11/GNOME
+%define		_sysconfdir	/etc/X11
 
 %description
 System for layout and rendering of internationalized text.
@@ -19,12 +24,23 @@ Summary:	System for layout and rendering of internationalized text
 Group:		Development/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
-Requires:	libunicode-devel
-Requires:	fribidi-devel
-Requires:	XFree86-devel
 Requires:	%{name} = %{version}
 
 %description devel
+
+%package static
+Summary:	Static %{name} libraries
+Summary(pl):	Biblioteki statyczne %{name}
+Group:		Development/Libraries
+Group(fr):	Development/Librairies
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
+
+%description static
+Static %{name} libraries.
+
+%description -l pl static
+Biblioteki statyczne %{name}.
 
 %prep
 %setup -q
@@ -53,7 +69,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz examples/*gz
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libpango-*.so
+%attr(755,root,root) %{_libdir}/libpangox-*.so
 %{_bindir}/pango-querymodules
 %{_bindir}/pango-viewer
 %{_libdir}/pango/modules/*
@@ -61,7 +78,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libpango.so
+%attr(755,root,root) %{_libdir}/libpangox.so
 %{_bindir}/pango-config
-%{_libdir}/libpango*.a
 %{_includedir}/*
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libpango*.a
