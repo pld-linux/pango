@@ -122,7 +122,6 @@ rm -f missing acinclude.m4
 %{__autoconf}
 %{__automake}
 
-# Workaround as in glib2.spec
 %configure \
 	--with-fribidi \
 	--enable-gtk-doc \
