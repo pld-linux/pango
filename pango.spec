@@ -1,15 +1,13 @@
-%define	_rc	rc1
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.2.4
-Release:	0.%{_rc}.1
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.2/testing/%{name}-%{_rc}-%{version}.tar.gz
-# Source0-md5:	69d682874bac7fbac8aefa91270dd5ae
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	ddca316a0ce4ea6a0832b7a4f874cdfb
 #Patch0:		%{name}-freetype.patch
 Patch1:		%{name}-xfonts.patch
 URL:		http://www.pango.org/
@@ -104,7 +102,7 @@ Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
 %prep
-%setup -q -n %{name}-%{_rc}-%{version}
+%setup -q
 ##%patch0 -p1
 %patch1 -p1
 
