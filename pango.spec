@@ -2,7 +2,7 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Name:		pango
 Version:	0.24
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Group(de):	Bibliotheken
