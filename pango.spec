@@ -2,8 +2,8 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.2.0
-Release:	2
+Version:	1.2.1
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
@@ -130,7 +130,7 @@ perl -p -i -e 's|-I/usr/include | |g' $RPM_BUILD_ROOT%{_pkgconfigdir}/*.pc
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
 
 #Remove uneeded static files from modules dir
-rm $RPM_BUILD_ROOT%{_libdir}/%{name}/%{version}/modules/*.a
+rm $RPM_BUILD_ROOT%{_libdir}/%{name}/1.2.0/modules/*.a
 
 
 %clean
