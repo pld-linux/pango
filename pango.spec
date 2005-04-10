@@ -7,7 +7,7 @@ Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.8.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
@@ -29,7 +29,7 @@ BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.98
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
 Requires:	freetype >= 2.1.7
@@ -118,7 +118,7 @@ internacionalizado.
 %{?with_xlibs:%patch1 -p1}
 
 %build
-gtkdocize --copy
+%{__gtkdocize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -149,12 +149,13 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.4.0/modules/*.{la,a}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
+%ldconfig_post
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
 exit 0
 
-%postun -p /sbin/ldconfig
+%postun
+%ldconfig_postun
 
 %post modules
 umask 022
