@@ -31,7 +31,7 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xft-devel >= 2.1.0
-Requires(post):	/sbin/ldconfig
+Requires(post,postun):	/sbin/ldconfig
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.6.0-2
 Obsoletes:	libpango24
