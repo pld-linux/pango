@@ -149,13 +149,12 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.4.0/modules/*.{la,a}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%ldconfig_post
+/sbin/ldconfig
 umask 022
 %{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
 exit 0
 
-%postun
-%ldconfig_postun
+%postun -p /sbin/ldconfig
 
 %post modules
 umask 022
