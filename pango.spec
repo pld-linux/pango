@@ -11,7 +11,7 @@ Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.8/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.8/%{name}-%{version}.tar.bz2
 # Source0-md5:	88aa6bf1876766db6864f3b93577887c
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
