@@ -2,24 +2,26 @@
 # Conditional build:
 %bcond_with	xlibs	# use pkgconfig to find libX11 CFLAGS
 #
+%define		snap	20050814
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.9.1
-Release:	1
+Version:	1.9.2
+Release:	0.%{snap}.1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	91f386893ff483e14dc4571e352150e4
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
+# Source0-md5:	f6e512545317ea8a3313d05a5c97bb90
+#Source0:	ftp://ftp.gtk.org/pub/gtk/v2.7/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
 URL:		http://www.pango.org/
 %{!?with_xlibs:BuildRequires:	XFree86-devel}
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	cairo-devel >= 0.5.3
+BuildRequires:	cairo-devel >= 0.9.2
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1.0.1
@@ -33,7 +35,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
-Requires:	cairo >= 0.5.3
+Requires:	cairo >= 0.9.2
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.7.0
 Obsoletes:	libpango24
