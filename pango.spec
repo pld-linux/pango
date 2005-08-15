@@ -2,19 +2,17 @@
 # Conditional build:
 %bcond_with	xlibs	# use pkgconfig to find libX11 CFLAGS
 #
-%define		snap	20050814
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.9.2
-Release:	0.%{snap}.1
+Version:	1.10.0
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	%{name}-%{version}-%{snap}.tar.bz2
-# Source0-md5:	f6e512545317ea8a3313d05a5c97bb90
-#Source0:	ftp://ftp.gtk.org/pub/gtk/v2.7/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	c75489ec7f5fe77e31e4cbde71ad0c16
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
 URL:		http://www.pango.org/
