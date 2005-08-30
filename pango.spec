@@ -6,24 +6,25 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.8.2
+Version:	1.10.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	f5b5da7a173f0566d8217ec112fde993
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/%{name}-%{version}.tar.bz2
+# Source0-md5:	c75489ec7f5fe77e31e4cbde71ad0c16
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
 URL:		http://www.pango.org/
 %{!?with_xlibs:BuildRequires:	XFree86-devel}
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
+BuildRequires:	cairo-devel >= 1.0.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1.0.1
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.6.0-2
+BuildRequires:	glib2-devel >= 1:2.8.0
 BuildRequires:	gtk-doc >= 1.0
 %{?with_xlibs:BuildRequires:	libX11-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
@@ -32,8 +33,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
+Requires:	cairo >= 1.0.0
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.6.0-2
+Requires:	glib2 >= 1:2.8.0
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,8 +56,9 @@ Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{!?with_xlibs:Requires:	XFree86-devel}
+Requires:	cairo-devel >= 1.0.0
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.6.0-2
+Requires:	glib2-devel >= 1:2.8.0
 Requires:	gtk-doc-common
 %{?with_xlibs:Requires:	libX11-devel}
 Requires:	xft-devel >= 2.1.0
