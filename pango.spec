@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	xlibs	# use pkgconfig to find libX11 CFLAGS
+%bcond_without	apidocs
 #
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
@@ -25,7 +26,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1.0.1
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.8.0
-BuildRequires:	gtk-doc >= 1.0
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
 %{?with_xlibs:BuildRequires:	libX11-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
@@ -129,9 +130,9 @@ internacionalizado.
 %{__automake}
 %configure \
 	--with-fribidi \
-	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--enable-static \
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
+	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-man
 %{__make}
