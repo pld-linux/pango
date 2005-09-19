@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_with	xlibs	# use pkgconfig to find libX11 CFLAGS
 %bcond_without	apidocs
+%bcond_without	static_libs
 #
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
@@ -191,11 +192,13 @@ exit 0
 %{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
-%{_gtkdocdir}/pango
+%{?with_apidocs:%{_gtkdocdir}/pango}
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango*.a
+%endif
 
 %files modules
 %defattr(644,root,root,755)
