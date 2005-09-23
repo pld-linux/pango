@@ -1,8 +1,8 @@
 #
 # Conditional build:
-%bcond_with	xlibs	# use pkgconfig to find libX11 CFLAGS
-%bcond_without	apidocs
-%bcond_without	static_libs
+%bcond_with	xlibs		# use pkgconfig to find libX11 CFLAGS
+%bcond_without	apidocs		# disable gtk-doc
+%bcond_without	static_libs	# don't build static library
 #
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
