@@ -123,7 +123,7 @@ internacionalizado.
 %{?with_xlibs:%patch1 -p1}
 
 %build
-%{__gtkdocize}
+%{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
