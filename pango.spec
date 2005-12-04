@@ -182,7 +182,7 @@ exit 0
 %dir %{_libdir}/pango/1.4.0/modules
 %attr(755,root,root) %{_libdir}/pango/1.4.0/modules/*basic*.so
 %dir %{_sysconfdir}/pango
-%config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/pango/pangox.aliases
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
 %{_mandir}/man1/*
 
