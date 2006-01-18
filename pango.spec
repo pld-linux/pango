@@ -9,13 +9,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.10.2
+Version:	1.11.2
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	7302220d93ac17d2c44f356d852e81dc
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.9/%{name}-%{version}.tar.bz2
+# Source0-md5:	3e1a72b0324a03f8710b9cd13f98c81f
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
 Patch2:		%{name}-arch_confdir.patch
@@ -120,6 +120,18 @@ gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
 Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
+%package apidocs
+Summary:	Pango API documentation
+Summary(pl):	Dokumentacja API pango
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Pango API documentation.
+
+%description apidocs -l pl
+Dokumentacja API pango.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -202,7 +214,6 @@ exit 0
 %{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
-%{?with_apidocs:%{_gtkdocdir}/pango}
 
 %if %{with static_libs}
 %files static
@@ -214,3 +225,9 @@ exit 0
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/pango/1.4.0/modules/*.so
 %exclude %{_libdir}/pango/1.4.0/modules/*basic*.so
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/pango
+%endif
