@@ -28,7 +28,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1.0.1
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.8.0
+BuildRequires:	glib2-devel >= 1:2.9.1
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
 BuildRequires:	gtk-doc-automake >= 1.0
 %{?with_xlibs:BuildRequires:	libX11-devel}
@@ -37,10 +37,9 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xft-devel >= 2.1.0
-Requires(post):	/sbin/ldconfig
 Requires:	cairo >= 1.0.0
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.8.0
+Requires:	glib2 >= 1:2.9.1
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
