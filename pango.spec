@@ -9,13 +9,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.10.2
+Version:	1.10.3
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	7302220d93ac17d2c44f356d852e81dc
+# Source0-md5:	6fc5097f9c10d90ed386e074cb22cf6f
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-xlibs.patch
 Patch2:		%{name}-arch_confdir.patch
