@@ -1,7 +1,4 @@
 #
-# TODO:
-# - /usr/bin/pango-view
-#
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
@@ -11,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.11.4
+Version:	1.11.5
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	eb605a207bcc44ad7554c56c073aa17b
+# Source0-md5:	f3b0d6211679664720d20410069757a4
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -191,6 +188,7 @@ exit 0
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README examples/HELLO.utf8
 %attr(755,root,root) %{_bindir}/pango-querymodules
+%attr(755,root,root) %{_bindir}/pango-view
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/1.5.0
