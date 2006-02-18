@@ -18,7 +18,6 @@ Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	cairo-devel >= 1.0.0
@@ -33,7 +32,8 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	xft-devel >= 2.1.0
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 Requires(post):	/sbin/ldconfig
 Requires:	cairo >= 1.0.0
 Requires:	freetype >= 2.1.7
@@ -57,12 +57,12 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	XFree86-devel
 Requires:	cairo-devel >= 1.0.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.8.0
 Requires:	gtk-doc-common
-Requires:	xft-devel >= 2.1.0
+Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
