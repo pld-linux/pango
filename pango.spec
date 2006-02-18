@@ -33,8 +33,7 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXft-devel
-BuildRequires:	xorg-lib-libXrender-devel
+BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 Requires:	cairo >= 1.0.0
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.9.1
@@ -62,8 +61,7 @@ Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.8.0
 Requires:	gtk-doc-common
 Requires:	xorg-lib-libX11-devel
-Requires:	xorg-lib-libXft-devel
-Requires:	xorg-lib-libXrender-devel
+Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
