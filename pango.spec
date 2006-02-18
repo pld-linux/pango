@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_with	xlibs		# use pkgconfig to find libX11 CFLAGS
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
 %bcond_with	arch_confdir	# build with arch-dependant config dir
@@ -17,10 +16,9 @@ Group:		X11/Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/%{name}-%{version}.tar.bz2
 # Source0-md5:	6fc5097f9c10d90ed386e074cb22cf6f
 Patch0:		%{name}-xfonts.patch
-Patch1:		%{name}-xlibs.patch
-Patch2:		%{name}-arch_confdir.patch
+Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
-%{!?with_xlibs:BuildRequires:	XFree86-devel}
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	cairo-devel >= 1.0.0
@@ -31,7 +29,6 @@ BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.8.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
 BuildRequires:	gtk-doc-automake >= 1.0
-%{?with_xlibs:BuildRequires:	libX11-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -60,12 +57,11 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{!?with_xlibs:Requires:	XFree86-devel}
+Requires:	XFree86-devel
 Requires:	cairo-devel >= 1.0.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.8.0
 Requires:	gtk-doc-common
-%{?with_xlibs:Requires:	libX11-devel}
 Requires:	xft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
@@ -123,8 +119,7 @@ internacionalizado.
 %prep
 %setup -q
 %patch0 -p1
-%{?with_xlibs:%patch1 -p1}
-%{?with_arch_confdir:%patch2 -p1}
+%{?with_arch_confdir:%patch1 -p1}
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
