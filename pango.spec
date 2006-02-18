@@ -18,7 +18,7 @@ Source0:	ftp://ftp.gtk.org/pub/gtk/v2.9/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
-BuildRequires:	autoconf >= 2.54
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	cairo-devel >= 1.0.0
 BuildRequires:	docbook-dtd412-xml
