@@ -1,44 +1,42 @@
 #
 # Conditional build:
-%bcond_with	xlibs		# use pkgconfig to find libX11 CFLAGS
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
+%bcond_with	arch_confdir	# build with arch-dependant config dir
 #
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.10.2
+Version:	1.12.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	7302220d93ac17d2c44f356d852e81dc
+Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.12/%{name}-%{version}.tar.bz2
+# Source0-md5:	86c3e08169a18200e64a0c5ee1be7fd9
 Patch0:		%{name}-xfonts.patch
-Patch1:		%{name}-xlibs.patch
+Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
-%{!?with_xlibs:BuildRequires:	XFree86-devel}
-BuildRequires:	autoconf >= 2.54
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	cairo-devel >= 1.0.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1.0.1
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.8.0
+BuildRequires:	glib2-devel >= 1:2.10.1
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
 BuildRequires:	gtk-doc-automake >= 1.0
-%{?with_xlibs:BuildRequires:	libX11-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	xft-devel >= 2.1.0
-Requires(post):	/sbin/ldconfig
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 Requires:	cairo >= 1.0.0
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.8.0
+Requires:	glib2 >= 1:2.10.1
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -58,13 +56,12 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{!?with_xlibs:Requires:	XFree86-devel}
 Requires:	cairo-devel >= 1.0.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.8.0
 Requires:	gtk-doc-common
-%{?with_xlibs:Requires:	libX11-devel}
-Requires:	xft-devel >= 2.1.0
+Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
@@ -118,10 +115,23 @@ gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
 Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
+%package apidocs
+Summary:	Pango API documentation
+Summary(pl):	Dokumentacja API pango
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Pango API documentation.
+
+%description apidocs -l pl
+Dokumentacja API pango.
+
 %prep
 %setup -q
 %patch0 -p1
 %{?with_xlibs:%patch1 -p1}
+%{?with_arch_confdir:%patch2 -p1}
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
@@ -146,10 +156,10 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-> $RPM_BUILD_ROOT%{_sysconfdir}/pango/pango.modules
+> $RPM_BUILD_ROOT%{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
 
 # useless (modules loaded through libgmodule)
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.4.0/modules/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.5.0/modules/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -157,43 +167,49 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
 exit 0
 
 %postun -p /sbin/ldconfig
 
 %post modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
 exit 0
 
 %postun modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
 exit 0
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README examples/HELLO.utf8
 %attr(755,root,root) %{_bindir}/pango-querymodules
+%attr(755,root,root) %{_bindir}/pango-view
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/1.4.0
-%dir %{_libdir}/pango/1.4.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.4.0/modules/*basic*.so
+%dir %{_libdir}/pango/1.5.0
+%dir %{_libdir}/pango/1.5.0/modules
+%attr(755,root,root) %{_libdir}/pango/1.5.0/modules/*basic*.so
+%if %{with arch_confdir}
+%dir %{_sysconfdir}/pango-%{_host_cpu}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango-%{_host_cpu}/pangox.aliases
+%ghost %{_sysconfdir}/pango-%{_host_cpu}/pango.modules
+%else
 %dir %{_sysconfdir}/pango
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango/pangox.aliases
 %ghost %{_sysconfdir}/pango/pango.modules
+%endif
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog TODO
+%doc ChangeLog
 %attr(755,root,root) %{_libdir}/libpango*.so
 %{_libdir}/libpango*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
-%{?with_apidocs:%{_gtkdocdir}/pango}
 
 %if %{with static_libs}
 %files static
@@ -203,5 +219,11 @@ exit 0
 
 %files modules
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/pango/1.4.0/modules/*.so
-%exclude %{_libdir}/pango/1.4.0/modules/*basic*.so
+%attr(755,root,root) %{_libdir}/pango/1.5.0/modules/*.so
+%exclude %{_libdir}/pango/1.5.0/modules/*basic*.so
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/pango
+%endif
