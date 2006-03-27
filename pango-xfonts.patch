@@ -1,5 +1,5 @@
---- pango-1.0.99.020606/examples/pangox.aliases.xfonts	Mon Jun 24 20:19:34 2002
-+++ pango-1.0.99.020606/examples/pangox.aliases	Mon Jun 24 20:26:34 2002
+--- pango-1.0.99.020606/pango/pangox.aliases.xfonts	Mon Jun 24 20:19:34 2002
++++ pango-1.0.99.020606/pango/pangox.aliases	Mon Jun 24 20:26:34 2002
 @@ -4,6 +4,7 @@
  
  sans normal normal normal normal \
