@@ -18,9 +18,9 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.12/%{name}-%{version}.ta
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
-BuildRequires:	autoconf >= 2.59-9
+BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	cairo-devel >= 1.0.0
+BuildRequires:	cairo-devel >= 1.0.4
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1.0.1
@@ -32,9 +32,8 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
-Requires:	cairo >= 1.0.0
+BuildRequires:	xft-devel >= 2.1.0
+Requires:	cairo >= 1.0.4
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.10.1
 Obsoletes:	libpango24
@@ -56,12 +55,11 @@ Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.0.0
+Requires:	cairo-devel >= 1.0.4
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.8.0
+Requires:	glib2-devel >= 1:2.10.1
 Requires:	gtk-doc-common
-Requires:	xorg-lib-libX11-devel
-Requires:	xorg-lib-libXft-devel >= 2.1.0
+Requires:	xft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
