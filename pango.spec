@@ -1,4 +1,7 @@
 #
+# TODO:
+# - update arch_confdir patch
+#
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
