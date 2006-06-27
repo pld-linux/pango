@@ -12,24 +12,13 @@ diff -Nur pango-1.10.2/configure.in pango-1.10.2.arch_confdir/configure.in
  #
  # Checks for Cairo
  #
-diff -Nur pango-1.10.2/examples/Makefile.am pango-1.10.2.arch_confdir/examples/Makefile.am
---- pango-1.10.2/examples/Makefile.am	2005-11-15 09:03:51.000000000 +0000
-+++ pango-1.10.2.arch_confdir/examples/Makefile.am	2005-12-10 16:57:38.000000000 +0000
-@@ -1,6 +1,6 @@
- ## Process this file with automake to create Makefile.in.
- 
--aliasdir = $(sysconfdir)/pango
-+aliasdir = $(sysconfdir)/pango-$(ARCH)
- 
- INCLUDES =				\
- 	-DG_DISABLE_DEPRECATED		\
 diff -Nur pango-1.10.2/modules/Makefile.am pango-1.10.2.arch_confdir/modules/Makefile.am
 --- pango-1.10.2/modules/Makefile.am	2005-06-21 16:02:55.000000000 +0000
 +++ pango-1.10.2.arch_confdir/modules/Makefile.am	2005-12-10 16:57:38.000000000 +0000
-@@ -22,12 +22,12 @@
+@@ -28,15 +28,15 @@
  
- install-data-local:
- 	@if $(RUN_QUERY_IMMODULES_TEST) ; then 				\
+ install-data-local: $(top_builddir)/pango/pango-querymodules
+ 	@if $(RUN_QUERY_MODULES_TEST) ; then 				\
 -	  echo $(mkinstalldirs) $(DESTDIR)$(sysconfdir)/pango \&\& 	\
 +	  echo $(mkinstalldirs) $(DESTDIR)$(sysconfdir)/pango-$(ARCH) \&\& 	\
  	  $(top_builddir)/pango/pango-querymodules 			\
@@ -42,7 +31,11 @@ diff -Nur pango-1.10.2/modules/Makefile.am pango-1.10.2.arch_confdir/modules/Mak
 +		> $(DESTDIR)$(sysconfdir)/pango-$(ARCH)/pango.modules ;		\
  	else								\
  	  echo "***" ; 							\
- 	  echo "*** Warning: pango.modules not created" ; 		\
+-	  echo "*** Warning: $(sysconfdir)/pango/pango.modules" ; 	\
++	  echo "*** Warning: $(sysconfdir)/pango-$(ARCH)/pango.modules" ; 	\
+ 	  echo "*** not created" ; 					\
+ 	  echo "*** Generate this file on the target system" ; 		\
+ 	  echo "*** using pango-querymodules" ; 			\
 diff -Nur pango-1.10.2/pango/pango-utils.c pango-1.10.2.arch_confdir/pango/pango-utils.c
 --- pango-1.10.2/pango/pango-utils.c	2005-11-23 17:53:30.000000000 +0000
 +++ pango-1.10.2.arch_confdir/pango/pango-utils.c	2005-12-10 16:57:38.000000000 +0000
@@ -76,3 +69,14 @@ diff -Nur pango-1.10.2/pango/pangox-fontmap.c pango-1.10.2.arch_confdir/pango/pa
  
    files = pango_split_file_list (files_str);
    
+--- pango-1.10.2/pango/Makefile.am	2006-02-03 06:42:33.000000000 +0000
++++ pango-1.10.2.arch_confdir/pango/Makefile.am	2006-06-27 14:28:44.000000000 +0000
+@@ -148,7 +148,7 @@
+ if HAVE_X
+ pangoinclude_HEADERS += pangox.h
+ lib_LTLIBRARIES += libpangox-1.0.la
+-aliasdir = $(sysconfdir)/pango
++aliasdir = $(sysconfdir)/pango-$(ARCH)
+ alias_DATA = pangox.aliases
+ endif
+ 
