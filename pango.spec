@@ -11,13 +11,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.14.2
+Version:	1.14.3
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	67b68a6b42dce1eb26e2e9abc31192c5
+# Source0-md5:	afaf7128791f31b225079f73322eb67d
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -28,7 +28,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.12.2
+BuildRequires:	glib2-devel >= 1:2.12.3
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
 BuildRequires:	gtk-doc-automake >= 1.7
 BuildRequires:	libtool >= 1:1.4.2-9
@@ -39,7 +39,7 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 Requires:	cairo >= 1.2.4
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.12.2
+Requires:	glib2 >= 1:2.12.3
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -61,7 +61,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.2.4
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.12.2
+Requires:	glib2-devel >= 1:2.12.3
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
