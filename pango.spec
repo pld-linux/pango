@@ -24,7 +24,7 @@ URL:		http://www.pango.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	cairo-devel >= 1.0.4
+BuildRequires:	cairo-devel >= 1.2.2
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.4.0
