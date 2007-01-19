@@ -11,13 +11,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.15.3
+Version:	1.15.4
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.15/%{name}-%{version}.tar.bz2
-# Source0-md5:	f77ff87808d8e54e15a23913a13be337
+# Source0-md5:	02c8ea6d3851e44520b131f509bea9ff
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -160,7 +160,7 @@ rm -rf $RPM_BUILD_ROOT
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
 
 # useless (modules loaded through libgmodule)
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.5.0/modules/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -185,14 +185,14 @@ exit 0
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README examples/HELLO.utf8
+%doc AUTHORS ChangeLog HACKING NEWS README THANKS
 %attr(755,root,root) %{_bindir}/pango-querymodules
 %attr(755,root,root) %{_bindir}/pango-view
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/1.5.0
-%dir %{_libdir}/pango/1.5.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.5.0/modules/*basic*.so
+%dir %{_libdir}/pango/1.6.0
+%dir %{_libdir}/pango/1.6.0/modules
+%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/*basic*.so
 %if %{with arch_confdir}
 %dir %{_sysconfdir}/pango-%{_host_cpu}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango-%{_host_cpu}/pangox.aliases
@@ -220,8 +220,8 @@ exit 0
 
 %files modules
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/pango/1.5.0/modules/*.so
-%exclude %{_libdir}/pango/1.5.0/modules/*basic*.so
+%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/*.so
+%exclude %{_libdir}/pango/1.6.0/modules/*basic*.so
 
 %if %{with apidocs}
 %files apidocs
