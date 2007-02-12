@@ -8,8 +8,8 @@
 %bcond_with	arch_confdir	# build with arch-dependant config dir
 #
 Summary:	System for layout and rendering of internationalized text
-Summary(pl):	System renderowania miêdzynarodowego tekstu
-Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):   System renderowania miÄ™dzynarodowego tekstu
+Summary(pt_BR.UTF-8):   Sistema para layout e renderizaÃ§Ã£o de texto internacionalizado
 Name:		pango
 Version:	1.15.4
 Release:	1
@@ -46,17 +46,17 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 System for layout and rendering of internationalized text.
 
-%description -l pl
-System obs³ugi i renderowania miêdzynarodowego tekstu.
+%description -l pl.UTF-8
+System obsÅ‚ugi i renderowania miÄ™dzynarodowego tekstu.
 
-%description -l pt_BR
-Pango é um sistema para layout e renderização de texto
+%description -l pt_BR.UTF-8
+Pango Ã© um sistema para layout e renderizaÃ§Ã£o de texto
 internacionalizado.
 
 %package devel
 Summary:	System for layout and rendering of internationalized text
-Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
-Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):   System obsÅ‚ugi i renderowania miÄ™dzynarodowego tekstu
+Summary(pt_BR.UTF-8):   Sistema para layout e renderizaÃ§Ã£o de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.2.4
@@ -69,34 +69,34 @@ Obsoletes:	libpango24-devel
 %description devel
 Developer files for pango.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki developerskie pango.
 
-%description devel -l pt_BR
-Pango é um sistema para layout e renderização de texto
+%description devel -l pt_BR.UTF-8
+Pango Ã© um sistema para layout e renderizaÃ§Ã£o de texto
 internacionalizado.
 
 %package static
 Summary:	Static pango libraries
-Summary(pl):	Biblioteki statyczne pango
-Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):   Biblioteki statyczne pango
+Summary(pt_BR.UTF-8):   Sistema para layout e renderizaÃ§Ã£o de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static pango libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne pango.
 
-%description static -l pt_BR
-Pango é um sistema para layout e renderização de texto
+%description static -l pt_BR.UTF-8
+Pango Ã© um sistema para layout e renderizaÃ§Ã£o de texto
 internacionalizado.
 
 %package modules
 Summary:	System for layout and rendering of internationalized text
-Summary(pl):	System obs³ugi i renderowania miêdzynarodowego tekstu
-Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):   System obsÅ‚ugi i renderowania miÄ™dzynarodowego tekstu
+Summary(pt_BR.UTF-8):   Sistema para layout e renderizaÃ§Ã£o de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
@@ -107,26 +107,26 @@ System for layout and rendering of internationalized text.
 This package contains pango modules for: arabic, bengali, devanagari,
 gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
 
-%description modules -l pl
-System obs³ugi i renderowania miêdzynarodowego tekstu.
+%description modules -l pl.UTF-8
+System obsÅ‚ugi i renderowania miÄ™dzynarodowego tekstu.
 
-Pakiet zawiera modu³y pango dla jêzyków: arabic, bengali, devanagari,
+Pakiet zawiera moduÅ‚y pango dla jÄ™zykÃ³w: arabic, bengali, devanagari,
 gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
 
-%description modules -l pt_BR
-Pango é um sistema para layout e renderização de texto
+%description modules -l pt_BR.UTF-8
+Pango Ã© um sistema para layout e renderizaÃ§Ã£o de texto
 internacionalizado.
 
 %package apidocs
 Summary:	Pango API documentation
-Summary(pl):	Dokumentacja API pango
+Summary(pl.UTF-8):   Dokumentacja API pango
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
 Pango API documentation.
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja API pango.
 
 %prep
