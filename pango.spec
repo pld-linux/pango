@@ -8,8 +8,8 @@
 %bcond_with	arch_confdir	# build with arch-dependant config dir
 #
 Summary:	System for layout and rendering of internationalized text
-Summary(pl.UTF-8):   System renderowania międzynarodowego tekstu
-Summary(pt_BR.UTF-8):   Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
+Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.14.10
 Release:	1
@@ -55,8 +55,8 @@ internacionalizado.
 
 %package devel
 Summary:	System for layout and rendering of internationalized text
-Summary(pl.UTF-8):   System obsługi i renderowania międzynarodowego tekstu
-Summary(pt_BR.UTF-8):   Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
+Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.2.4
@@ -78,8 +78,8 @@ internacionalizado.
 
 %package static
 Summary:	Static pango libraries
-Summary(pl.UTF-8):   Biblioteki statyczne pango
-Summary(pt_BR.UTF-8):   Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):	Biblioteki statyczne pango
+Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -95,8 +95,8 @@ internacionalizado.
 
 %package modules
 Summary:	System for layout and rendering of internationalized text
-Summary(pl.UTF-8):   System obsługi i renderowania międzynarodowego tekstu
-Summary(pt_BR.UTF-8):   Sistema para layout e renderização de texto internacionalizado
+Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
+Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
@@ -119,7 +119,7 @@ internacionalizado.
 
 %package apidocs
 Summary:	Pango API documentation
-Summary(pl.UTF-8):   Dokumentacja API pango
+Summary(pl.UTF-8):	Dokumentacja API pango
 Group:		Documentation
 Requires:	gtk-doc-common
 
