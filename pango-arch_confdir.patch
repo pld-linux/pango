@@ -1,7 +1,7 @@
-diff -Nur pango-1.10.2/configure.in pango-1.10.2.arch_confdir/configure.in
---- pango-1.10.2/configure.in	2005-11-29 05:28:16.000000000 +0000
-+++ pango-1.10.2.arch_confdir/configure.in	2005-12-10 16:57:38.000000000 +0000
-@@ -270,6 +270,10 @@
+diff -urN pango-1.16.0/configure.in pango-1.16.0.new/configure.in
+--- pango-1.16.0/configure.in	2007-02-26 20:13:10.000000000 +0100
++++ pango-1.16.0.new/configure.in	2007-03-10 14:33:28.000000000 +0100
+@@ -282,6 +282,10 @@
  AC_SUBST(WIN32_LIBS)
  AM_CONDITIONAL(HAVE_WIN32, $have_win32) 
  
@@ -9,27 +9,16 @@ diff -Nur pango-1.10.2/configure.in pango-1.10.2.arch_confdir/configure.in
 +AC_SUBST(ARCH)
 +AC_DEFINE_UNQUOTED(ARCH, "${ARCH}", [Architecture])
 +
- #
- # Checks for Cairo
- #
-diff -Nur pango-1.10.2/examples/Makefile.am pango-1.10.2.arch_confdir/examples/Makefile.am
---- pango-1.10.2/examples/Makefile.am	2005-11-15 09:03:51.000000000 +0000
-+++ pango-1.10.2.arch_confdir/examples/Makefile.am	2005-12-10 16:57:38.000000000 +0000
-@@ -1,6 +1,6 @@
- ## Process this file with automake to create Makefile.in.
+ # Ensure MSVC-compatible struct packing convention is used when
+ # compiling for Win32 with gcc.
+ # What flag to depends on gcc version: gcc3 uses "-mms-bitfields", while
+diff -urN pango-1.16.0/modules/Makefile.am pango-1.16.0.new/modules/Makefile.am
+--- pango-1.16.0/modules/Makefile.am	2007-01-03 09:15:03.000000000 +0100
++++ pango-1.16.0.new/modules/Makefile.am	2007-03-10 14:35:45.000000000 +0100
+@@ -28,15 +28,15 @@
  
--aliasdir = $(sysconfdir)/pango
-+aliasdir = $(sysconfdir)/pango-$(ARCH)
- 
- INCLUDES =				\
- 	-DG_DISABLE_DEPRECATED		\
-diff -Nur pango-1.10.2/modules/Makefile.am pango-1.10.2.arch_confdir/modules/Makefile.am
---- pango-1.10.2/modules/Makefile.am	2005-06-21 16:02:55.000000000 +0000
-+++ pango-1.10.2.arch_confdir/modules/Makefile.am	2005-12-10 16:57:38.000000000 +0000
-@@ -22,12 +22,12 @@
- 
- install-data-local:
- 	@if $(RUN_QUERY_IMMODULES_TEST) ; then 				\
+ install-data-local: $(top_builddir)/pango/pango-querymodules
+ 	@if $(RUN_QUERY_MODULES_TEST) ; then 				\
 -	  echo $(mkinstalldirs) $(DESTDIR)$(sysconfdir)/pango \&\& 	\
 +	  echo $(mkinstalldirs) $(DESTDIR)$(sysconfdir)/pango-$(ARCH) \&\& 	\
  	  $(top_builddir)/pango/pango-querymodules 			\
@@ -42,32 +31,48 @@ diff -Nur pango-1.10.2/modules/Makefile.am pango-1.10.2.arch_confdir/modules/Mak
 +		> $(DESTDIR)$(sysconfdir)/pango-$(ARCH)/pango.modules ;		\
  	else								\
  	  echo "***" ; 							\
- 	  echo "*** Warning: pango.modules not created" ; 		\
-diff -Nur pango-1.10.2/pango/pango-utils.c pango-1.10.2.arch_confdir/pango/pango-utils.c
---- pango-1.10.2/pango/pango-utils.c	2005-11-23 17:53:30.000000000 +0000
-+++ pango-1.10.2.arch_confdir/pango/pango-utils.c	2005-12-10 16:57:38.000000000 +0000
-@@ -672,7 +672,7 @@
+-	  echo "*** Warning: $(sysconfdir)/pango/pango.modules" ; 	\
++	  echo "*** Warning: $(sysconfdir)/pango-$(ARCH)/pango.modules" ; 	\
+ 	  echo "*** not created" ; 					\
+ 	  echo "*** Generate this file on the target system" ; 		\
+ 	  echo "*** using pango-querymodules" ; 			\
+@@ -44,7 +44,7 @@
+ 	fi
+ 
+ uninstall-local:
+-	$(RM) $(DESTDIR)$(sysconfdir)/pango/pango.modules
++	$(RM) $(DESTDIR)$(sysconfdir)/pango-$(ARCH)/pango.modules
+ 
+ pango.modules:						\
+ 	$(SUBDIRS)					\
+diff -urN pango-1.16.0/pango/Makefile.am pango-1.16.0.new/pango/Makefile.am
+--- pango-1.16.0/pango/Makefile.am	2007-02-18 18:10:43.000000000 +0100
++++ pango-1.16.0.new/pango/Makefile.am	2007-03-10 14:53:50.000000000 +0100
+@@ -158,7 +158,7 @@
+ if HAVE_X
+ pangoinclude_HEADERS += pangox.h
+ lib_LTLIBRARIES += libpangox-1.0.la
+-aliasdir = $(sysconfdir)/pango
++aliasdir = $(sysconfdir)/pango-$(ARCH)
+ alias_DATA = pangox.aliases
+ endif
+ 
+diff -urN pango-1.16.0/pango/pango-utils.c pango-1.16.0.new/pango/pango-utils.c
+--- pango-1.16.0/pango/pango-utils.c	2007-01-23 00:41:43.000000000 +0100
++++ pango-1.16.0.new/pango/pango-utils.c	2007-03-10 14:37:03.000000000 +0100
+@@ -690,7 +690,7 @@
  
    return result;
  #else
 -  return SYSCONFDIR "/pango";
-+  return SYSCONFDIR "/pango-" ARCH ;
++  return SYSCONFDIR "/pango-" ARCH;
  #endif
  }
  
-diff -Nur pango-1.10.2/pango/pangox-fontmap.c pango-1.10.2.arch_confdir/pango/pangox-fontmap.c
---- pango-1.10.2/pango/pangox-fontmap.c	2005-07-22 19:05:45.000000000 +0000
-+++ pango-1.10.2.arch_confdir/pango/pangox-fontmap.c	2005-12-10 16:58:49.000000000 +0000
-@@ -30,6 +30,8 @@
- /* For XExtSetCloseDisplay */
- #include <X11/Xlibint.h>
- 
-+#include "config.h"
-+
- #include "pango-engine-private.h"
- #include "pango-fontmap.h"
- #include "pango-utils.h"
-@@ -917,7 +919,7 @@
+diff -urN pango-1.16.0/pango/pangox-fontmap.c pango-1.16.0.new/pango/pangox-fontmap.c
+--- pango-1.16.0/pango/pangox-fontmap.c	2007-01-23 00:41:43.000000000 +0100
++++ pango-1.16.0.new/pango/pangox-fontmap.c	2007-03-10 14:38:04.000000000 +0100
+@@ -921,7 +921,7 @@
    int n;
  
    if (!files_str)
@@ -75,4 +80,4 @@ diff -Nur pango-1.10.2/pango/pangox-fontmap.c pango-1.10.2.arch_confdir/pango/pa
 +    files_str = g_strdup ("~/.pangox_aliases:" SYSCONFDIR "/pango-" ARCH "/pangox.aliases");
  
    files = pango_split_file_list (files_str);
-   
+ 
