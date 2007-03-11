@@ -1,23 +1,19 @@
-#
-# TODO:
-# - update arch_confdir patch
-#
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
-%bcond_with	arch_confdir	# build with arch-dependant config dir
+%bcond_without	arch_confdir	# build with arch-dependant config dir
 #
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.12.3
+Version:	1.12.4
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.12/%{name}-%{version}.tar.bz2
-# Source0-md5:	c8178e11a895166d86990bb2c38d831b
+# Source0-md5:	8f6749fe961e41dbeed72d1efcd55224
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
