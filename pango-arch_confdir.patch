@@ -1,4 +1,3 @@
-diff -Nur pango-1.10.2/configure.in pango-1.10.2.arch_confdir/configure.in
 --- pango-1.10.2/configure.in	2005-11-29 05:28:16.000000000 +0000
 +++ pango-1.10.2.arch_confdir/configure.in	2005-12-10 16:57:38.000000000 +0000
 @@ -270,6 +270,10 @@
@@ -12,9 +11,8 @@ diff -Nur pango-1.10.2/configure.in pango-1.10.2.arch_confdir/configure.in
  #
  # Checks for Cairo
  #
-diff -Nur pango-1.10.2/modules/Makefile.am pango-1.10.2.arch_confdir/modules/Makefile.am
---- pango-1.10.2/modules/Makefile.am	2005-06-21 16:02:55.000000000 +0000
-+++ pango-1.10.2.arch_confdir/modules/Makefile.am	2005-12-10 16:57:38.000000000 +0000
+--- pango-1.12.3/modules/Makefile.am~	2007-03-11 20:47:10.000000000 +0200
++++ pango-1.12.3/modules/Makefile.am	2007-03-11 20:50:06.000000000 +0200
 @@ -28,15 +28,15 @@
  
  install-data-local: $(top_builddir)/pango/pango-querymodules
@@ -36,7 +34,15 @@ diff -Nur pango-1.10.2/modules/Makefile.am pango-1.10.2.arch_confdir/modules/Mak
  	  echo "*** not created" ; 					\
  	  echo "*** Generate this file on the target system" ; 		\
  	  echo "*** using pango-querymodules" ; 			\
-diff -Nur pango-1.10.2/pango/pango-utils.c pango-1.10.2.arch_confdir/pango/pango-utils.c
+@@ -44,7 +44,7 @@
+ 	fi
+ 
+ uninstall-local:
+-	$(RM) $(DESTDIR)$(sysconfdir)/pango/pango.modules
++	$(RM) $(DESTDIR)$(sysconfdir)/pango-$(ARCH)/pango.modules
+ 
+ pango.modules: $(top_builddir)/pango/pango-querymodules $(SUBDIRS)
+ 	@if find . -name '*.so' | grep 'so' > /dev/null ; then \
 --- pango-1.10.2/pango/pango-utils.c	2005-11-23 17:53:30.000000000 +0000
 +++ pango-1.10.2.arch_confdir/pango/pango-utils.c	2005-12-10 16:57:38.000000000 +0000
 @@ -672,7 +672,7 @@
@@ -48,7 +54,6 @@ diff -Nur pango-1.10.2/pango/pango-utils.c pango-1.10.2.arch_confdir/pango/pango
  #endif
  }
  
-diff -Nur pango-1.10.2/pango/pangox-fontmap.c pango-1.10.2.arch_confdir/pango/pangox-fontmap.c
 --- pango-1.10.2/pango/pangox-fontmap.c	2005-07-22 19:05:45.000000000 +0000
 +++ pango-1.10.2.arch_confdir/pango/pangox-fontmap.c	2005-12-10 16:58:49.000000000 +0000
 @@ -30,6 +30,8 @@
@@ -69,8 +74,8 @@ diff -Nur pango-1.10.2/pango/pangox-fontmap.c pango-1.10.2.arch_confdir/pango/pa
  
    files = pango_split_file_list (files_str);
    
---- pango-1.10.2/pango/Makefile.am	2006-02-03 06:42:33.000000000 +0000
-+++ pango-1.10.2.arch_confdir/pango/Makefile.am	2006-06-27 14:28:44.000000000 +0000
+--- pango-1.12.3/pango/Makefile.am~	2006-02-03 08:42:33.000000000 +0200
++++ pango-1.12.3/pango/Makefile.am	2007-03-11 20:55:00.000000000 +0200
 @@ -148,7 +148,7 @@
  if HAVE_X
  pangoinclude_HEADERS += pangox.h
