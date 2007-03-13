@@ -4,31 +4,31 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
+%bcond_without	arch_confdir	# build with arch-dependant config dir
 %bcond_without	static_libs	# don't build static library
-%bcond_with	arch_confdir	# build with arch-dependant config dir
 #
 Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.16.0
+Version:	1.16.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	3ff23998479e98c5dd9a7eaf08f6249d
+# Source0-md5:	4aa720633e53701a652f27700a7946dd
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cairo-devel >= 1.2.6
+BuildRequires:	cairo-devel >= 1.4.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.4.0
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.12.9
+BuildRequires:	glib2-devel >= 1:2.12.11
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
 BuildRequires:	libtool >= 1:1.4.2-9
@@ -37,9 +37,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
-Requires:	cairo >= 1.2.6
+Requires:	cairo >= 1.4.0
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.12.9
+Requires:	glib2 >= 1:2.12.11
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -59,9 +59,9 @@ Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.2.6
+Requires:	cairo-devel >= 1.4.0
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.12.9
+Requires:	glib2-devel >= 1:2.12.11
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
