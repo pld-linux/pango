@@ -1,6 +1,5 @@
-#
 # TODO:
-# - update arch_confdir patch
+# - revise arch_confdir patch to use /etc/pango and /etc/pango64 dirs
 #
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
