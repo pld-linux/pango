@@ -16,7 +16,6 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.16/%{name}-%{version}.ta
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
-BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.4.0
@@ -31,7 +30,8 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	xft-devel >= 2.1.0
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 Requires:	cairo >= 1.4.0
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.12.11
@@ -60,11 +60,11 @@ Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	XFree86-devel
 Requires:	cairo-devel >= 1.4.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.12.11
-Requires:	xft-devel >= 2.1.0
+Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
