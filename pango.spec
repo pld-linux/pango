@@ -1,9 +1,5 @@
-# TODO:
-# - revise arch_confdir patch to use /etc/pango and /etc/pango64 dirs
-#
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_without	arch_confdir	# build with arch-dependant config dir
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	System for layout and rendering of internationalized text
@@ -11,7 +7,7 @@ Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.16.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
@@ -20,6 +16,7 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/pango/1.16/%{name}-%{version}.ta
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.4.0
@@ -34,13 +31,18 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
+BuildRequires:	xft-devel >= 2.1.0
 Requires:	cairo >= 1.4.0
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.12.11
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%if "%{_lib}" != "lib"
+%define		_sysconfdir	/etc/%{name}64
+%else
+%define		_sysconfdir	/etc/%{name}
+%endif
 
 %description
 System for layout and rendering of internationalized text.
@@ -58,11 +60,11 @@ Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	XFree86-devel
 Requires:	cairo-devel >= 1.4.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.12.11
-Requires:	xorg-lib-libX11-devel
-Requires:	xorg-lib-libXft-devel >= 2.1.0
+Requires:	xft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
@@ -131,7 +133,7 @@ Dokumentacja API pango.
 %prep
 %setup -q
 %patch0 -p1
-%{?with_arch_confdir:%patch1 -p1}
+%patch1 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
@@ -156,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-> $RPM_BUILD_ROOT%{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+> $RPM_BUILD_ROOT%{_sysconfdir}/pango.modules
 
 # useless (modules loaded through libgmodule)
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
@@ -167,19 +169,19 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun -p /sbin/ldconfig
 
 %post modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
 exit 0
 
 %files
@@ -197,15 +199,9 @@ exit 0
 %dir %{_libdir}/pango/1.6.0/modules
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-basic-fc.so
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-basic-x.so
-%if %{with arch_confdir}
-%dir %{_sysconfdir}/pango-%{_host_cpu}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango-%{_host_cpu}/pangox.aliases
-%ghost %{_sysconfdir}/pango-%{_host_cpu}/pango.modules
-%else
-%dir %{_sysconfdir}/pango
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango/pangox.aliases
-%ghost %{_sysconfdir}/pango/pango.modules
-%endif
+%dir %{_sysconfdir}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pangox.aliases
+%ghost %{_sysconfdir}/pango.modules
 %{_mandir}/man1/pango-querymodules.1*
 
 %files devel
