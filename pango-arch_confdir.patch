@@ -1,17 +1,17 @@
---- pango-1.16.2.orig/modules/Makefile.am	2007-04-12 23:54:05.089269961 +0200
-+++ pango-1.16.2/modules/Makefile.am	2007-04-12 23:57:47.497317696 +0200
+--- pango-1.18.0/modules/Makefile.am.orig	2007-07-05 23:30:28.000000000 +0200
++++ pango-1.18.0/modules/Makefile.am	2007-08-26 20:39:17.982104313 +0200
 @@ -28,15 +28,15 @@
  
  install-data-local: $(top_builddir)/pango/pango-querymodules$(EXEEXT)
- 	@if $(RUN_QUERY_MODULES_TEST) ; then 				\
+ 	@if $(RUN_QUERY_MODULES_TEST) && test -z "$(DESTDIR)" ; then 	\
 -	  echo $(mkinstalldirs) $(DESTDIR)$(sysconfdir)/pango \&\& 	\
 +	  echo $(mkinstalldirs) $(DESTDIR)$(sysconfdir) \&\& 	\
- 	  $(top_builddir)/pango/pango-querymodules$(EXEEXT) 			\
+ 	  $(top_builddir)/pango/pango-querymodules$(EXEEXT) 		\
 -		\> $(DESTDIR)$(sysconfdir)/pango/pango.modules ;	\
 -	  $(mkinstalldirs) $(DESTDIR)$(sysconfdir)/pango && 		\
 +		\> $(DESTDIR)$(sysconfdir)/pango.modules ;	\
 +	  $(mkinstalldirs) $(DESTDIR)$(sysconfdir) && 		\
- 	  $(top_builddir)/pango/pango-querymodules$(EXEEXT) 			\
+ 	  $(top_builddir)/pango/pango-querymodules$(EXEEXT) 		\
 -		> $(DESTDIR)$(sysconfdir)/pango/pango.modules ;		\
 +		> $(DESTDIR)$(sysconfdir)/pango.modules ;		\
  	else								\
