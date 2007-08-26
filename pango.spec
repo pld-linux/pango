@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
+%bcond_without	libthai		# don't build thai-lang module
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	System for layout and rendering of internationalized text
@@ -27,6 +28,7 @@ BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.14.0
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
+%{?with_libthai:BuildRequires:	libthai-devel >= 0.1.7}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -102,6 +104,7 @@ Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internaciona
 Group:		X11/Development/Libraries
 Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+%{?with_libthai:Requires:	libthai >= 0.1.7}
 
 %description modules
 System for layout and rendering of internationalized text.
@@ -245,6 +248,9 @@ exit 0
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-khmer-fc.so
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-syriac-fc.so
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-thai-fc.so
+%if %{with libthai}
+%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-thai-lang.so
+%endif
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-tibetan-fc.so
 %exclude %{_libdir}/pango/1.6.0/modules/pango-basic-fc.so
 %exclude %{_libdir}/pango/1.6.0/modules/pango-basic-x.so
