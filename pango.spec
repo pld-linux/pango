@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.18.0
+Version:	1.18.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	5a3cbda73be7277a20d97f2bc89b0737
+# Source0-md5:	282dcff56292359f6a5c75be0b4fe3df
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -134,6 +134,17 @@ Pango API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API pango.
 
+%package examples
+Summary:	pango - example programs
+Summary(pl.UTF-8):	pango - przykładowe programy
+Group:		X11/Development/Libraries
+
+%description examples
+pango - example programs.
+
+%description examples -l pl.UTF-8
+pango - przykładowe programy.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -157,12 +168,15 @@ Dokumentacja API pango.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
 > $RPM_BUILD_ROOT%{_sysconfdir}/pango.modules
+
+cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # useless (modules loaded through libgmodule)
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
@@ -260,3 +274,7 @@ exit 0
 %defattr(644,root,root,755)
 %{_gtkdocdir}/pango
 %endif
+
+%files examples
+%defattr(644,root,root,755)
+%{_examplesdir}/%{name}-%{version}
