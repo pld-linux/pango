@@ -8,36 +8,36 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.18.1
+Version:	1.18.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	282dcff56292359f6a5c75be0b4fe3df
+# Source0-md5:	81efeac639977ed3f56c82f16ee0be74
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cairo-devel >= 1.4.0
+BuildRequires:	cairo-devel >= 1.4.10
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.4.0
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.14.0
+BuildRequires:	glib2-devel >= 1:2.14.1
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
-%{?with_libthai:BuildRequires:	libthai-devel >= 0.1.7}
+%{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
-Requires:	cairo >= 1.4.0
+Requires:	cairo >= 1.4.10
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.14.0
+Requires:	glib2 >= 1:2.14.1
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -63,9 +63,9 @@ Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.4.0
+Requires:	cairo-devel >= 1.4.10
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.14.0
+Requires:	glib2-devel >= 1:2.14.1
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
@@ -104,7 +104,7 @@ Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internaciona
 Group:		X11/Development/Libraries
 Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_libthai:Requires:	libthai >= 0.1.7}
+%{?with_libthai:Requires:	libthai >= 0.1.9}
 
 %description modules
 System for layout and rendering of internationalized text.
