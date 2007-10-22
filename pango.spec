@@ -1,14 +1,13 @@
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# don't build static library
-%bcond_without	arch_confdir	# build with arch-dependant config dir
 #
 Summary:	System for layout and rendering of internationalized text
 Summary(pl):	System renderowania miêdzynarodowego tekstu
 Summary(pt_BR):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.12.4
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL
 Group:		X11/Libraries
@@ -39,6 +38,12 @@ Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.10.3
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%if "%{_lib}" != "lib"
+%define		_sysconfdir	/etc/%{name}64
+%else
+%define		_sysconfdir	/etc/%{name}
+%endif
 
 %description
 System for layout and rendering of internationalized text.
@@ -130,7 +135,7 @@ Dokumentacja API pango.
 %prep
 %setup -q
 %patch0 -p1
-%{?with_arch_confdir:%patch1 -p1}
+%patch1 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
@@ -155,7 +160,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-> $RPM_BUILD_ROOT%{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+> $RPM_BUILD_ROOT%{_sysconfdir}/pango.modules
 
 # useless (modules loaded through libgmodule)
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.5.0/modules/*.{la,a}
@@ -166,19 +171,19 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun -p /sbin/ldconfig
 
 %post modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango%{?with_arch_confdir:-%{_host_cpu}}/pango.modules
+%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
 exit 0
 
 %files
@@ -191,15 +196,9 @@ exit 0
 %dir %{_libdir}/pango/1.5.0
 %dir %{_libdir}/pango/1.5.0/modules
 %attr(755,root,root) %{_libdir}/pango/1.5.0/modules/*basic*.so
-%if %{with arch_confdir}
-%dir %{_sysconfdir}/pango-%{_host_cpu}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango-%{_host_cpu}/pangox.aliases
-%ghost %{_sysconfdir}/pango-%{_host_cpu}/pango.modules
-%else
-%dir %{_sysconfdir}/pango
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pango/pangox.aliases
-%ghost %{_sysconfdir}/pango/pango.modules
-%endif
+%dir %{_sysconfdir}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pangox.aliases
+%ghost %{_sysconfdir}/pango.modules
 %{_mandir}/man1/*
 
 %files devel
