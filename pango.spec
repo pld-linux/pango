@@ -42,7 +42,7 @@ Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{_lib}" != "lib"
-%define		libext		%(echo "%{_lib}" | sed -e 's/^lib//')
+%define		libext		%(lib="%{_lib}"; echo ${lib#lib})
 %define		_sysconfdir	/etc/%{name}%{libext}
 %define		pqext		-%{libext}
 %else
