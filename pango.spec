@@ -42,11 +42,12 @@ Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{_lib}" != "lib"
-%define		_sysconfdir	/etc/%{name}64
-%define		_pqext		-64
+%define		libext		%(echo "%{_lib}" | sed -e 's/^lib//')
+%define		_sysconfdir	/etc/%{name}%{libext}
+%define		pqext		-%{libext}
 %else
 %define		_sysconfdir	/etc/%{name}
-%define		_pqext		-32
+%define		pqext		%{nil}
 %endif
 
 %description
@@ -183,9 +184,9 @@ cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 # We need to have 32-bit and 64-bit pango-querymodules binaries
 # as they have hardcoded LIBDIR.
 # (needed when multilib is used)
-mv $RPM_BUILD_ROOT%{_bindir}/pango-querymodules{,%{_pqext}}
+mv $RPM_BUILD_ROOT%{_bindir}/pango-querymodules{,%{pqext}}
 # fix man page too
-mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{_pqext}}.1
+mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{pqext}}.1
 
 # useless (modules loaded through libgmodule)
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
@@ -196,31 +197,36 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-%{_bindir}/pango-querymodules%{_pqext} > %{_sysconfdir}/pango.modules
+%{_bindir}/pango-querymodules%{pqext} > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun -p /sbin/ldconfig
 
 %post modules
 umask 022
-%{_bindir}/pango-querymodules%{_pqext} > %{_sysconfdir}/pango.modules
+%{_bindir}/pango-querymodules%{pqext} > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun modules
 umask 022
-%{_bindir}/pango-querymodules%{_pqext} > %{_sysconfdir}/pango.modules
+%{_bindir}/pango-querymodules%{pqext} > %{_sysconfdir}/pango.modules
 exit 0
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog HACKING NEWS README THANKS
-%attr(755,root,root) %{_bindir}/pango-querymodules%{_pqext}
+%attr(755,root,root) %{_bindir}/pango-querymodules%{pqext}
 %attr(755,root,root) %{_bindir}/pango-view
 %attr(755,root,root) %{_libdir}/libpango-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpango-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpangocairo-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangoft2-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpangoft2-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangox-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpangox-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpangoxft-1.0.so.0
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/1.6.0
 %dir %{_libdir}/pango/1.6.0/modules
@@ -229,7 +235,7 @@ exit 0
 %dir %{_sysconfdir}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pangox.aliases
 %ghost %{_sysconfdir}/pango.modules
-%{_mandir}/man1/pango-querymodules%{_pqext}.1*
+%{_mandir}/man1/pango-querymodules%{pqext}.1*
 
 %files devel
 %defattr(644,root,root,755)
