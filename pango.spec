@@ -181,12 +181,14 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+%if "%{_lib}" != "lib"
 # We need to have 32-bit and 64-bit pango-querymodules binaries
 # as they have hardcoded LIBDIR.
 # (needed when multilib is used)
 mv $RPM_BUILD_ROOT%{_bindir}/pango-querymodules{,%{pqext}}
 # fix man page too
 mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{pqext}}.1
+%endif
 
 # useless (modules loaded through libgmodule)
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
