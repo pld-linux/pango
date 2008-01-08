@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.18.3
+Version:	1.18.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	4a9862b5151f16dcad8e30dd6ef08549
+# Source0-md5:	5f4a24eb03789746a13e41beb7044776
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -43,8 +43,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if "%{_lib}" != "lib"
 %define		_sysconfdir	/etc/%{name}64
+%define		_pqext		-64
 %else
 %define		_sysconfdir	/etc/%{name}
+%define		_pqext		-32
 %endif
 
 %description
@@ -178,6 +180,13 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+# We need to have 32-bit and 64-bit pango-querymodules binaries
+# as they have hardcoded LIBDIR.
+# (needed when multilib is used)
+mv $RPM_BUILD_ROOT%{_bindir}/pango-querymodules{,%{_pqext}}
+# fix man page too
+mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{_pqext}}.1
+
 # useless (modules loaded through libgmodule)
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
 
@@ -187,25 +196,25 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
+%{_bindir}/pango-querymodules%{_pqext} > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun -p /sbin/ldconfig
 
 %post modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
+%{_bindir}/pango-querymodules%{_pqext} > %{_sysconfdir}/pango.modules
 exit 0
 
 %postun modules
 umask 022
-%{_bindir}/pango-querymodules > %{_sysconfdir}/pango.modules
+%{_bindir}/pango-querymodules%{_pqext} > %{_sysconfdir}/pango.modules
 exit 0
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog HACKING NEWS README THANKS
-%attr(755,root,root) %{_bindir}/pango-querymodules
+%attr(755,root,root) %{_bindir}/pango-querymodules%{_pqext}
 %attr(755,root,root) %{_bindir}/pango-view
 %attr(755,root,root) %{_libdir}/libpango-1.0.so.*.*.*
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so.*.*.*
@@ -220,7 +229,7 @@ exit 0
 %dir %{_sysconfdir}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pangox.aliases
 %ghost %{_sysconfdir}/pango.modules
-%{_mandir}/man1/pango-querymodules.1*
+%{_mandir}/man1/pango-querymodules%{_pqext}.1*
 
 %files devel
 %defattr(644,root,root,755)
