@@ -163,7 +163,7 @@ pango - przykładowe programy.
 %configure \
 	--with-fribidi \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
-	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
+	--with-html-dir=%{_gtkdocdir} \
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-man
@@ -192,6 +192,8 @@ mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{pqext}}.1
 
 # useless (modules loaded through libgmodule)
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
+
+%{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
