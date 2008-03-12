@@ -1,0 +1,11 @@
+--- pango-1.20.0/configure.in.orig	2008-03-10 16:19:53.000000000 +0100
++++ pango-1.20.0/configure.in	2008-03-12 23:58:25.478798103 +0100
+@@ -124,6 +124,8 @@
+ fi
+ 
+ AM_PROG_LIBTOOL
++dnl when using libtool 2.x create libtool early, because it's used in configure
++m4_ifdef([LT_OUTPUT], [LT_OUTPUT])
+ 
+ AC_MSG_CHECKING([for some Win32 platform])
+ case "$host" in
