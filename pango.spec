@@ -17,6 +17,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.20/%{name}-%{version}.ta
 # Source0-md5:	f0959c4b9b058ba9e4d13fc9086b7e7d
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
+Patch2:		%{name}-lt.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
@@ -152,6 +153,7 @@ pango - przykładowe programy.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
