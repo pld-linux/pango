@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.20.1
+Version:	1.20.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	376e6d94686b888fb70f24d191b84f82
+# Source0-md5:	b90d82bb5a92c7dd346c1eac97285e37
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 Patch2:		%{name}-lt.patch
