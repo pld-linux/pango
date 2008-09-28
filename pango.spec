@@ -8,25 +8,25 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.20.5
+Version:	1.22.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	052b60a12f6b2eb4f251ab961f2b2b84
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	37a185a3cb5c1a39ade7fdc3e6c75349
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 Patch2:		%{name}-lt.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cairo-devel >= 1.4.10
+BuildRequires:	cairo-devel >= 1.7.6
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.4.0
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.16.3
+BuildRequires:	glib2-devel >= 1:2.17.3
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
@@ -36,9 +36,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
-Requires:	cairo >= 1.4.10
+Requires:	cairo >= 1.7.6
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.16.3
+Requires:	glib2 >= 1:2.17.3
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,9 +67,9 @@ Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.4.10
+Requires:	cairo-devel >= 1.7.6
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.16.3
+Requires:	glib2-devel >= 1:2.17.3
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
@@ -163,12 +163,11 @@ pango - przykładowe programy.
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-fribidi \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
-	--enable-man
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	--enable-man \
+	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
