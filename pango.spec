@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.22.4
+Version:	1.23.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	7c3f3748052799746d73c6d3a0cc1205
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.23/%{name}-%{version}.tar.bz2
+# Source0-md5:	358a87607c0a5b4889bab52b1cf5e921
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -23,7 +23,7 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.7.6
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	fontconfig-devel >= 1:2.4.0
+BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.17.3
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
