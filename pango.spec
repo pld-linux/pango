@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.25.4
+Version:	1.25.5
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.25/%{name}-%{version}.tar.bz2
-# Source0-md5:	c46848c6a065e0a71764626a1fcf995e
+# Source0-md5:	3f0b5f9b58f951ddaffbdb45b2d12741
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -26,6 +26,8 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.17.3
+BuildRequires:	gir-repository-devel >= 0.6.4
+BuildRequires:	gobject-introspection-devel >= 0.6.4
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
@@ -240,6 +242,7 @@ exit 0
 %ghost %{_sysconfdir}/pango.modules
 %{_mandir}/man1/pango-querymodules%{pqext}.1*
 %{_mandir}/man1/pango-view.1*
+%{_libdir}/girepository-1.0/*.typelib
 
 %files devel
 %defattr(644,root,root,755)
@@ -259,6 +262,7 @@ exit 0
 %{_pkgconfigdir}/pangox.pc
 %{_pkgconfigdir}/pangoxft.pc
 %{_includedir}/pango-1.0
+%{_datadir}/gir-1.0/*.gir
 
 %if %{with static_libs}
 %files static
