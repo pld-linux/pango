@@ -26,6 +26,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.17.3
+BuildRequires:	gobject-introspection-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
