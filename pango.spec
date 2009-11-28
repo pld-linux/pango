@@ -169,6 +169,10 @@ pango - przykładowe programy.
 	--enable-man \
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--with-html-dir=%{_gtkdocdir}
+
+# some generator script requires access to newely created .pc files
+export PKG_CONFIG_PATH="$PWD"
+
 %{__make}
 
 %install
