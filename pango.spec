@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.26.2
-Release:	2
+Version:	1.27.1
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	f30212b8833af3ce5c82121dc309e3d0
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.27/%{name}-%{version}.tar.bz2
+# Source0-md5:	ffc867ee6c3173bc3941002f33ea4148
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -25,7 +25,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.17.3
+BuildRequires:	glib2-devel >= 1:2.18.0
 BuildRequires:	gobject-introspection-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
@@ -40,7 +40,7 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 Requires:	cairo >= 1.7.6
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.17.3
+Requires:	glib2 >= 1:2.18.0
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -71,7 +71,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.7.6
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.17.3
+Requires:	glib2-devel >= 1:2.18.0
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
