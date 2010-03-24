@@ -164,6 +164,7 @@ pango - przykładowe programy.
 %{__autoconf}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	--enable-man \
