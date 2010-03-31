@@ -243,12 +243,12 @@ exit 0
 %dir %{_libdir}/pango/1.6.0/modules
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-basic-fc.so
 %attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-basic-x.so
+%{_libdir}/girepository-1.0/Pango*-1.0.typelib
 %dir %{_sysconfdir}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pangox.aliases
 %ghost %{_sysconfdir}/pango.modules
 %{_mandir}/man1/pango-querymodules%{pqext}.1*
 %{_mandir}/man1/pango-view.1*
-%{_libdir}/girepository-1.0/*.typelib
 
 %files devel
 %defattr(644,root,root,755)
@@ -268,7 +268,7 @@ exit 0
 %{_pkgconfigdir}/pangox.pc
 %{_pkgconfigdir}/pangoxft.pc
 %{_includedir}/pango-1.0
-%{_datadir}/gir-1.0/*.gir
+%{_datadir}/gir-1.0/Pango*-1.0.gir
 
 %if %{with static_libs}
 %files static
