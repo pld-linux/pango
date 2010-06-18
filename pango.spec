@@ -110,7 +110,7 @@ Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internaciona
 Group:		X11/Development/Libraries
 Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_libthai:Requires:	libthai:Requires:	libthai >= 0.1.9}
+%{?with_libthai:Requires:	libthai >= 0.1.9}
 
 %description modules
 System for layout and rendering of internationalized text.
