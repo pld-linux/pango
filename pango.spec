@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.28.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -26,7 +26,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.18.0
-BuildRequires:	gobject-introspection-devel >= 0.6.7
+BuildRequires:	gobject-introspection-devel >= 0.9.5
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
 BuildRequires:	libstdc++-devel
@@ -202,6 +202,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -257,11 +259,6 @@ exit 0
 %attr(755,root,root) %{_libdir}/libpangoft2-1.0.so
 %attr(755,root,root) %{_libdir}/libpangox-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so
-%{_libdir}/libpango-1.0.la
-%{_libdir}/libpangocairo-1.0.la
-%{_libdir}/libpangoft2-1.0.la
-%{_libdir}/libpangox-1.0.la
-%{_libdir}/libpangoxft-1.0.la
 %{_pkgconfigdir}/pango.pc
 %{_pkgconfigdir}/pangocairo.pc
 %{_pkgconfigdir}/pangoft2.pc
