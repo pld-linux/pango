@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.28.1
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -202,8 +202,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -240,6 +238,11 @@ exit 0
 %attr(755,root,root) %ghost %{_libdir}/libpangox-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpangoxft-1.0.so.0
+%{_libdir}/libpango-1.0.la
+%{_libdir}/libpangocairo-1.0.la
+%{_libdir}/libpangoft2-1.0.la
+%{_libdir}/libpangox-1.0.la
+%{_libdir}/libpangoxft-1.0.la
 %dir %{_libdir}/pango
 %dir %{_libdir}/pango/1.6.0
 %dir %{_libdir}/pango/1.6.0/modules
