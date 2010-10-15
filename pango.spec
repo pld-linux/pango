@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.28.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -62,6 +62,18 @@ System obsługi i renderowania międzynarodowego tekstu.
 %description -l pt_BR.UTF-8
 Pango é um sistema para layout e renderização de texto
 internacionalizado.
+
+%package view
+Summary:	Pango text viewer
+Summary(pl.UTF-8):	Przeglądarka tekstu pango
+Group:		X11/Applications
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description view
+Pango text viewer.
+
+%description view -l pl.UTF-8
+Przeglądarka tekstu pango.
 
 %package devel
 Summary:	System for layout and rendering of internationalized text
@@ -227,7 +239,6 @@ exit 0
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog HACKING NEWS README THANKS
 %attr(755,root,root) %{_bindir}/pango-querymodules%{pqext}
-%attr(755,root,root) %{_bindir}/pango-view
 %attr(755,root,root) %{_libdir}/libpango-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpango-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so.*.*.*
@@ -253,6 +264,10 @@ exit 0
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pangox.aliases
 %ghost %{_sysconfdir}/pango.modules
 %{_mandir}/man1/pango-querymodules%{pqext}.1*
+
+%files view
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/pango-view
 %{_mandir}/man1/pango-view.1*
 
 %files devel
