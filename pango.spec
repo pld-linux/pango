@@ -29,6 +29,7 @@ BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
+# opentype code uses C++ internally
 BuildRequires:	libstdc++-devel
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	libtool >= 1:1.4.2-9
