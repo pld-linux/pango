@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.29.3
+Version:	1.29.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.29/%{name}-%{version}.tar.bz2
-# Source0-md5:	be4e3891353fae6b62a6f8d7689c4266
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.29/%{name}-%{version}.tar.xz
+# Source0-md5:	9d5aba73897d2e8e8115b3f4fddbc0af
 Patch0:		%{name}-xfonts.patch
 Patch1:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
@@ -37,8 +37,10 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
+BuildRequires:	xz
 Requires:	cairo >= 1.7.6
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.24.0
