@@ -43,15 +43,15 @@
  
 --- pango-1.16.2.orig/pango/pango-utils.c	2007-04-12 23:54:03.899351741 +0200
 +++ pango-1.16.2/pango/pango-utils.c	2007-04-12 23:54:27.631054049 +0200
-@@ -690,7 +690,7 @@
- 
-   return result;
- #else
--  return SYSCONFDIR "/pango";
-+  return SYSCONFDIR;
+@@ -706,7 +706,7 @@
+       if (sysconfdir != NULL)
+ 	result = g_build_filename (sysconfdir, "pango", NULL);
+       else
+-	result = SYSCONFDIR "/pango";
++	result = SYSCONFDIR;
  #endif
- }
- 
+     }
+   return result;
 --- pango-1.16.2.orig/pango/pangox-fontmap.c	2007-04-12 23:54:04.026009703 +0200
 +++ pango-1.16.2/pango/pangox-fontmap.c	2007-04-12 23:54:27.634387153 +0200
 @@ -921,7 +921,7 @@
