@@ -25,7 +25,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.24.0
+BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
@@ -42,8 +42,9 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 BuildRequires:	xz
 Requires:	cairo >= 1.7.6
+Requires:	fontconfig-libs >= 1:2.5.0
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.24.0
+Requires:	glib2 >= 1:2.26.0
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -85,8 +86,9 @@ Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internaciona
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.7.6
+Requires:	fontconfig-devel >= 1:2.5.0
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.24.0
+Requires:	glib2-devel >= 1:2.26.0
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
