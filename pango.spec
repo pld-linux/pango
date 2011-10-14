@@ -21,6 +21,7 @@ URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.7.6
+BuildRequires:	cairo-gobject-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
