@@ -26,14 +26,14 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
-BuildRequires:	glib2-devel >= 1:2.31.0
+BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 BuildRequires:	gtk-doc-automake >= 1.8
 # opentype code uses C++ internally
 BuildRequires:	libstdc++-devel
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
-BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
@@ -45,7 +45,7 @@ BuildRequires:	xz
 Requires:	cairo >= 1.7.6
 Requires:	fontconfig-libs >= 1:2.5.0
 Requires:	freetype >= 2.1.7
-Requires:	glib2 >= 1:2.31.0
+Requires:	glib2 >= 1:2.32.0
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -89,7 +89,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.7.6
 Requires:	fontconfig-devel >= 1:2.5.0
 Requires:	freetype-devel >= 2.1.7
-Requires:	glib2-devel >= 1:2.26.0
+Requires:	glib2-devel >= 1:2.32.0
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
