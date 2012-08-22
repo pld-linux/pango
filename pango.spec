@@ -8,15 +8,14 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.30.1
-Release:	2
+Version:	1.31.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.30/%{name}-%{version}.tar.xz
-# Source0-md5:	ec3c1f236ee9bd4a982a5f46fcaff7b9
-Patch0:		%{name}-xfonts.patch
-Patch1:		%{name}-arch_confdir.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.31/%{name}-%{version}.tar.xz
+# Source0-md5:	660dbd93aa004a3fbe64c08da207e654
+Patch0:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
@@ -28,8 +27,11 @@ BuildRequires:	fontconfig-devel >= 1:2.5.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
+%if %{with apidocs}
+BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	gtk-doc-automake >= 1.8
+%endif
+BuildRequires:	harfbuzz-devel >= 0.9
 # opentype code uses C++ internally
 BuildRequires:	libstdc++-devel
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
@@ -172,7 +174,6 @@ pango - przykładowe programy.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
@@ -184,9 +185,9 @@ pango - przykładowe programy.
 %configure \
 	--disable-silent-rules \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	%{__enable_disable apidocs gtk-doc} \
 	--enable-man \
-	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
+	%{__enable_disable static_libs static} \
 	--with-html-dir=%{_gtkdocdir}
 
 # some generator script requires access to newely created .pc files
@@ -196,7 +197,8 @@ export PKG_CONFIG_PATH="$PWD"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version} \
+    $RPM_BUILD_ROOT%{_sysconfdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -216,7 +218,9 @@ mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{pqext}}.1
 %endif
 
 # useless (modules loaded through libgmodule)
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.6.0/modules/*.{la,a}
+%{__rm} -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.8.0/modules/*.{la,a}
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
@@ -251,23 +255,14 @@ exit 0
 %attr(755,root,root) %ghost %{_libdir}/libpangocairo-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangoft2-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpangoft2-1.0.so.0
-%attr(755,root,root) %{_libdir}/libpangox-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpangox-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpangoxft-1.0.so.0
-%{_libdir}/libpango-1.0.la
-%{_libdir}/libpangocairo-1.0.la
-%{_libdir}/libpangoft2-1.0.la
-%{_libdir}/libpangox-1.0.la
-%{_libdir}/libpangoxft-1.0.la
 %dir %{_libdir}/pango
-%dir %{_libdir}/pango/1.6.0
-%dir %{_libdir}/pango/1.6.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-basic-fc.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-basic-x.so
+%dir %{_libdir}/pango/1.8.0
+%dir %{_libdir}/pango/1.8.0/modules
+%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-basic-fc.so
 %{_libdir}/girepository-1.0/Pango*-1.0.typelib
 %dir %{_sysconfdir}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pangox.aliases
 %ghost %{_sysconfdir}/pango.modules
 %{_mandir}/man1/pango-querymodules%{pqext}.1*
 
@@ -281,12 +276,10 @@ exit 0
 %attr(755,root,root) %{_libdir}/libpango-1.0.so
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoft2-1.0.so
-%attr(755,root,root) %{_libdir}/libpangox-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so
 %{_pkgconfigdir}/pango.pc
 %{_pkgconfigdir}/pangocairo.pc
 %{_pkgconfigdir}/pangoft2.pc
-%{_pkgconfigdir}/pangox.pc
 %{_pkgconfigdir}/pangoxft.pc
 %{_includedir}/pango-1.0
 %{_datadir}/gir-1.0/Pango*-1.0.gir
@@ -297,27 +290,17 @@ exit 0
 %{_libdir}/libpango-1.0.a
 %{_libdir}/libpangocairo-1.0.a
 %{_libdir}/libpangoft2-1.0.a
-%{_libdir}/libpangox-1.0.a
 %{_libdir}/libpangoxft-1.0.a
 %endif
 
 %files modules
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-arabic-fc.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-arabic-lang.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-hangul-fc.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-hebrew-fc.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-indic-fc.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-indic-lang.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-khmer-fc.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-syriac-fc.so
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-thai-fc.so
+%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-arabic-lang.so
+%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-indic-lang.so
 %if %{with libthai}
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-thai-lang.so
+%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-thai-lang.so
 %endif
-%attr(755,root,root) %{_libdir}/pango/1.6.0/modules/pango-tibetan-fc.so
-%exclude %{_libdir}/pango/1.6.0/modules/pango-basic-fc.so
-%exclude %{_libdir}/pango/1.6.0/modules/pango-basic-x.so
+%exclude %{_libdir}/pango/1.8.0/modules/pango-basic-fc.so
 
 %if %{with apidocs}
 %files apidocs
