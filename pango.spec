@@ -20,7 +20,7 @@ URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cairo-devel >= 1.7.6
-BuildRequires:	cairo-gobject-devel
+BuildRequires:	cairo-gobject-devel >= 1.7.6
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.5.0
@@ -32,8 +32,6 @@ BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	gtk-doc-automake >= 1.8
 %endif
 BuildRequires:	harfbuzz-devel >= 0.9.3
-# opentype code uses C++ internally
-BuildRequires:	libstdc++-devel
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-base
@@ -48,6 +46,7 @@ Requires:	cairo >= 1.7.6
 Requires:	fontconfig-libs >= 1:2.5.0
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
+Requires:	harfbuzz >= 0.9.3
 Obsoletes:	libpango24
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -92,6 +91,7 @@ Requires:	cairo-devel >= 1.7.6
 Requires:	fontconfig-devel >= 1:2.5.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.33.12
+Requires:	harfbuzz-devel >= 0.9.3
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
