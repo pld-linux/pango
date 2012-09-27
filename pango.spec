@@ -220,8 +220,6 @@ mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{pqext}}.1
 # useless (modules loaded through libgmodule)
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.8.0/modules/*.{la,a}
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
 %clean
@@ -277,6 +275,10 @@ exit 0
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoft2-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so
+%{_libdir}/libpango-1.0.la
+%{_libdir}/libpangocairo-1.0.la
+%{_libdir}/libpangoft2-1.0.la
+%{_libdir}/libpangoxft-1.0.la
 %{_pkgconfigdir}/pango.pc
 %{_pkgconfigdir}/pangocairo.pc
 %{_pkgconfigdir}/pangoft2.pc
