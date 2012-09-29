@@ -82,9 +82,8 @@ Pango text viewer.
 Przeglądarka tekstu pango.
 
 %package devel
-Summary:	System for layout and rendering of internationalized text
-Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
-Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
+Summary:	Header files for Pango libraries
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Pango
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.7.6
@@ -97,19 +96,14 @@ Requires:	xorg-lib-libXft-devel >= 2.1.0
 Obsoletes:	libpango24-devel
 
 %description devel
-Developer files for pango.
+Header files for Pango libraries.
 
 %description devel -l pl.UTF-8
-Pliki developerskie pango.
-
-%description devel -l pt_BR.UTF-8
-Pango é um sistema para layout e renderização de texto
-internacionalizado.
+Pliki nagłówkowe bibliotek Pango.
 
 %package static
 Summary:	Static pango libraries
 Summary(pl.UTF-8):	Biblioteki statyczne pango
-Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -119,34 +113,25 @@ Static pango libraries.
 %description static -l pl.UTF-8
 Biblioteki statyczne pango.
 
-%description static -l pt_BR.UTF-8
-Pango é um sistema para layout e renderização de texto
-internacionalizado.
-
 %package modules
-Summary:	System for layout and rendering of internationalized text
-Summary(pl.UTF-8):	System obsługi i renderowania międzynarodowego tekstu
-Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
+Summary:	Pango modules for various scripts
+Summary(pl.UTF-8):	Moduły Pango dla różnych systemów pisma
 Group:		X11/Development/Libraries
 Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %{?with_libthai:Requires:	libthai >= 0.1.9}
 
 %description modules
-System for layout and rendering of internationalized text.
+Pango is a system for layout and rendering of internationalized text.
 
 This package contains pango modules for: arabic, bengali, devanagari,
 gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
 
 %description modules -l pl.UTF-8
-System obsługi i renderowania międzynarodowego tekstu.
+Pango to system obsługi i renderowania międzynarodowego tekstu.
 
 Pakiet zawiera moduły pango dla języków: arabic, bengali, devanagari,
 gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
-
-%description modules -l pt_BR.UTF-8
-Pango é um sistema para layout e renderização de texto
-internacionalizado.
 
 %package apidocs
 Summary:	Pango API documentation
