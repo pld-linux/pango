@@ -16,6 +16,7 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.32/%{name}-%{version}.tar.xz
 # Source0-md5:	8e846804d6e219bc795a26a4a39b5bfd
 Patch0:		%{name}-arch_confdir.patch
+Patch1:		%{name}-am.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
@@ -159,6 +160,7 @@ pango - przykładowe programy.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
