@@ -8,15 +8,14 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.32.5
+Version:	1.34.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.32/%{name}-%{version}.tar.xz
-# Source0-md5:	8e846804d6e219bc795a26a4a39b5bfd
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.34/%{name}-%{version}.tar.xz
+# Source0-md5:	eb440fc26b383c0be363e1b952ddc71c
 Patch0:		%{name}-arch_confdir.patch
-Patch1:		%{name}-am.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
@@ -24,7 +23,7 @@ BuildRequires:	cairo-devel >= 1.7.6
 BuildRequires:	cairo-gobject-devel >= 1.7.6
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	fontconfig-devel >= 1:2.5.0
+BuildRequires:	fontconfig-devel >= 1:2.10.91
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.33.12
 BuildRequires:	gobject-introspection-devel >= 0.9.5
@@ -44,7 +43,7 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 BuildRequires:	xz
 Requires:	cairo >= 1.7.6
-Requires:	fontconfig-libs >= 1:2.5.0
+Requires:	fontconfig-libs >= 1:2.10.91
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
 Requires:	harfbuzz >= 0.9.9
@@ -88,7 +87,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Pango
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.7.6
-Requires:	fontconfig-devel >= 1:2.5.0
+Requires:	fontconfig-devel >= 1:2.10.91
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.33.12
 Requires:	harfbuzz-devel >= 0.9.9
@@ -160,7 +159,6 @@ pango - przykładowe programy.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
