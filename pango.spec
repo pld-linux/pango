@@ -8,19 +8,19 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.34.1
+Version:	1.36.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.34/%{name}-%{version}.tar.xz
-# Source0-md5:	e36dc70c0e246db84b41736a40edf7a0
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.36/%{name}-%{version}.tar.xz
+# Source0-md5:	5b50052df366e6d7bf08fdd80d58acce
 Patch0:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cairo-devel >= 1.7.6
-BuildRequires:	cairo-gobject-devel >= 1.7.6
+BuildRequires:	cairo-devel >= 1.12.10
+BuildRequires:	cairo-gobject-devel >= 1.12.10
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.10.91
@@ -42,7 +42,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 BuildRequires:	xz
-Requires:	cairo >= 1.7.6
+Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.10.91
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
@@ -86,7 +86,7 @@ Summary:	Header files for Pango libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Pango
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.7.6
+Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.10.91
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.33.12
