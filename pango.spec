@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.36.7
+Version:	1.36.8
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.36/%{name}-%{version}.tar.xz
-# Source0-md5:	5e8057da0e9e1ed0484f50887ac0ae0f
+# Source0-md5:	217a9a753006275215fa9fa127760ece
 Patch0:		%{name}-arch_confdir.patch
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
