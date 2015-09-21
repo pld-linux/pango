@@ -8,14 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.36.8
-Release:	2
+Version:	1.38.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.36/%{name}-%{version}.tar.xz
-# Source0-md5:	217a9a753006275215fa9fa127760ece
-Patch0:		%{name}-arch_confdir.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.38/%{name}-%{version}.tar.xz
+# Source0-md5:	5a358e5afbb6b2e82cf2cb02ca9cce86
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
@@ -48,16 +47,8 @@ Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
 Requires:	harfbuzz >= 0.9.9
 Obsoletes:	libpango24
+Obsoletes:	pango-modules < 1:1.38.0-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%if "%{_lib}" != "lib"
-%define		libext		%(lib="%{_lib}"; echo ${lib#lib})
-%define		_sysconfdir	/etc/%{name}%{libext}
-%define		pqext		-%{libext}
-%else
-%define		_sysconfdir	/etc/%{name}
-%define		pqext		%{nil}
-%endif
 
 %description
 System for layout and rendering of internationalized text.
@@ -158,7 +149,6 @@ pango - przykładowe programy.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
@@ -182,56 +172,25 @@ export PKG_CONFIG_PATH="$PWD"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version} \
-    $RPM_BUILD_ROOT%{_sysconfdir}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
 
-> $RPM_BUILD_ROOT%{_sysconfdir}/pango.modules
-
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-
-%if "%{_lib}" != "lib"
-# We need to have 32-bit and 64-bit pango-querymodules binaries
-# as they have hardcoded LIBDIR.
-# (needed when multilib is used)
-mv $RPM_BUILD_ROOT%{_bindir}/pango-querymodules{,%{pqext}}
-# fix man page too
-mv $RPM_BUILD_ROOT%{_mandir}/man1/pango-querymodules{,%{pqext}}.1
-%endif
-
-# useless (modules loaded through libgmodule)
-%{__rm} -f $RPM_BUILD_ROOT%{_libdir}/%{name}/1.8.0/modules/*.{la,a}
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-umask 022
-%{_bindir}/pango-querymodules%{pqext} > %{_sysconfdir}/pango.modules
-exit 0
-
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
-
-%post modules
-umask 022
-%{_bindir}/pango-querymodules%{pqext} > %{_sysconfdir}/pango.modules
-exit 0
-
-%postun modules
-umask 022
-%{_bindir}/pango-querymodules%{pqext} > %{_sysconfdir}/pango.modules
-exit 0
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog HACKING NEWS README THANKS
-%attr(755,root,root) %{_bindir}/pango-querymodules%{pqext}
 %attr(755,root,root) %{_libdir}/libpango-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpango-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so.*.*.*
@@ -240,14 +199,7 @@ exit 0
 %attr(755,root,root) %ghost %{_libdir}/libpangoft2-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpangoxft-1.0.so.0
-%dir %{_libdir}/pango
-%dir %{_libdir}/pango/1.8.0
-%dir %{_libdir}/pango/1.8.0/modules
-%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-basic-fc.so
 %{_libdir}/girepository-1.0/Pango*-1.0.typelib
-%dir %{_sysconfdir}
-%ghost %{_sysconfdir}/pango.modules
-%{_mandir}/man1/pango-querymodules%{pqext}.1*
 
 %files view
 %defattr(644,root,root,755)
@@ -279,15 +231,6 @@ exit 0
 %{_libdir}/libpangoft2-1.0.a
 %{_libdir}/libpangoxft-1.0.a
 %endif
-
-%files modules
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-arabic-lang.so
-%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-indic-lang.so
-%if %{with libthai}
-%attr(755,root,root) %{_libdir}/pango/1.8.0/modules/pango-thai-lang.so
-%endif
-%exclude %{_libdir}/pango/1.8.0/modules/pango-basic-fc.so
 
 %if %{with apidocs}
 %files apidocs
