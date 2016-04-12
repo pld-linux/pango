@@ -18,6 +18,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.40/%{name}-%{version}.ta
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
+# cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
 BuildRequires:	cairo-gobject-devel >= 1.12.10
 BuildRequires:	docbook-dtd412-xml
@@ -27,8 +28,8 @@ BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	glib2-devel >= 1:2.33.12
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 %if %{with apidocs}
-BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	gtk-doc-automake >= 1.8
+BuildRequires:	gtk-doc >= 1.15
+BuildRequires:	gtk-doc-automake >= 1.15
 %endif
 BuildRequires:	harfbuzz-devel >= 0.9.30
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
@@ -40,6 +41,7 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
+BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xz
 Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.10.91
