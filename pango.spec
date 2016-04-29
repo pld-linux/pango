@@ -3,13 +3,13 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libthai		# don't build thai-lang module
 %bcond_without	static_libs	# don't build static library
-#
+
 Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.40.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -132,6 +132,9 @@ Summary:	Pango API documentation
 Summary(pl.UTF-8):	Dokumentacja API pango
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 Pango API documentation.
@@ -143,6 +146,9 @@ Dokumentacja API pango.
 Summary:	pango - example programs
 Summary(pl.UTF-8):	pango - przykładowe programy
 Group:		X11/Development/Libraries
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description examples
 pango - example programs.
