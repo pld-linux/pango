@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.40.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -47,7 +47,7 @@ Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.10.91
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
-Requires:	harfbuzz >= 0.9.30
+Requires:	harfbuzz >= 0.9.42
 Obsoletes:	libpango24
 Obsoletes:	pango-modules < 1:1.38.0-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -188,6 +188,8 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpangoxft-1.0.la
+
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
 %clean
@@ -223,7 +225,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libpango-1.0.la
 %{_libdir}/libpangocairo-1.0.la
 %{_libdir}/libpangoft2-1.0.la
-%{_libdir}/libpangoxft-1.0.la
 %{_pkgconfigdir}/pango.pc
 %{_pkgconfigdir}/pangocairo.pc
 %{_pkgconfigdir}/pangoft2.pc
