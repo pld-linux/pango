@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.40.5
+Version:	1.40.6
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.40/%{name}-%{version}.tar.xz
-# Source0-md5:	11fb1e94c486507a94c4a905d86e70ce
+# Source0-md5:	507c6746fbf53fc9d48c577f1e265de3
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
@@ -31,7 +31,7 @@ BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	gtk-doc-automake >= 1.15
 %endif
-BuildRequires:	harfbuzz-devel >= 0.9.30
+BuildRequires:	harfbuzz-devel >= 1.2.3
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-base
@@ -47,7 +47,7 @@ Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.10.91
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
-Requires:	harfbuzz >= 0.9.42
+Requires:	harfbuzz >= 1.2.3
 Obsoletes:	libpango24
 Obsoletes:	pango-modules < 1:1.38.0-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -83,7 +83,7 @@ Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.10.91
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.33.12
-Requires:	harfbuzz-devel >= 0.9.30
+Requires:	harfbuzz-devel >= 1.2.3
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
