@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.42.1
+Version:	1.42.3
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.42/%{name}-%{version}.tar.xz
-# Source0-md5:	d66d2f29e92d33b6da5e19c563520f7c
+# Source0-md5:	b281b95bca4591c28b3b784aadaa6f81
 URL:		http://www.pango.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1:1.9
@@ -32,7 +32,7 @@ BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	gtk-doc-automake >= 1.15
 %endif
-BuildRequires:	harfbuzz-devel >= 1.2.3
+BuildRequires:	harfbuzz-devel >= 1.4.2
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	perl-base
@@ -48,7 +48,7 @@ Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.10.91
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
-Requires:	harfbuzz >= 1.2.3
+Requires:	harfbuzz >= 1.4.2
 Obsoletes:	libpango24
 Obsoletes:	pango-modules < 1:1.38.0-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -63,17 +63,22 @@ System obsługi i renderowania międzynarodowego tekstu.
 Pango é um sistema para layout e renderização de texto
 internacionalizado.
 
-%package view
-Summary:	Pango text viewer
-Summary(pl.UTF-8):	Przeglądarka tekstu pango
+%package tools
+Summary:	Pango tools
+Summary(pl.UTF-8):	Narzędzia pango
 Group:		X11/Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Obsoletes:	pango-view < 1:1.42.2
 
-%description view
-Pango text viewer.
+%description tools
+Pango tools:
+- text viewer
+- list availabe fonts
 
-%description view -l pl.UTF-8
-Przeglądarka tekstu pango.
+%description tools -l pl.UTF-8
+Narzędzia pango:
+- przeglądarka tekstu
+- wyświetlanie dostępnych fontów
 
 %package devel
 Summary:	Header files for Pango libraries
@@ -84,7 +89,7 @@ Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.10.91
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.33.12
-Requires:	harfbuzz-devel >= 1.2.3
+Requires:	harfbuzz-devel >= 1.4.2
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
@@ -212,8 +217,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libpangoxft-1.0.so.0
 %{_libdir}/girepository-1.0/Pango*-1.0.typelib
 
-%files view
+%files tools
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/pango-list
 %attr(755,root,root) %{_bindir}/pango-view
 %{_mandir}/man1/pango-view.1*
 
