@@ -47,6 +47,7 @@ BuildRequires:	xz
 Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.11.91
 Requires:	freetype >= 2.1.7
+Requires:	fribidi >= 0.19.7
 Requires:	glib2 >= 1:2.33.12
 Requires:	harfbuzz >= 1.4.2
 Obsoletes:	libpango24
@@ -88,6 +89,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.11.91
 Requires:	freetype-devel >= 2.1.7
+Requires:	fribidi-devel >= 0.19.7
 Requires:	glib2-devel >= 1:2.33.12
 Requires:	harfbuzz-devel >= 1.4.2
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
