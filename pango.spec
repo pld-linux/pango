@@ -23,7 +23,7 @@ BuildRequires:	cairo-devel >= 1.12.10
 BuildRequires:	cairo-gobject-devel >= 1.12.10
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	fontconfig-devel >= 1:2.10.91
+BuildRequires:	fontconfig-devel >= 1:2.11.91
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 0.19.7
 BuildRequires:	glib2-devel >= 1:2.33.12
@@ -45,7 +45,7 @@ BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xz
 Requires:	cairo >= 1.12.10
-Requires:	fontconfig-libs >= 1:2.10.91
+Requires:	fontconfig-libs >= 1:2.11.91
 Requires:	freetype >= 2.1.7
 Requires:	glib2 >= 1:2.33.12
 Requires:	harfbuzz >= 1.4.2
@@ -86,7 +86,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Pango
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.12.10
-Requires:	fontconfig-devel >= 1:2.10.91
+Requires:	fontconfig-devel >= 1:2.11.91
 Requires:	freetype-devel >= 2.1.7
 Requires:	glib2-devel >= 1:2.33.12
 Requires:	harfbuzz-devel >= 1.4.2
