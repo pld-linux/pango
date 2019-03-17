@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.42.4
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -196,15 +196,15 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpangoxft-1.0.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpango*.la
 
 %{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -231,9 +231,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoft2-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so
-%{_libdir}/libpango-1.0.la
-%{_libdir}/libpangocairo-1.0.la
-%{_libdir}/libpangoft2-1.0.la
 %{_pkgconfigdir}/pango.pc
 %{_pkgconfigdir}/pangocairo.pc
 %{_pkgconfigdir}/pangoft2.pc
