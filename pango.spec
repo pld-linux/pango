@@ -2,22 +2,19 @@
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	libthai		# don't build thai-lang module
-%bcond_without	static_libs	# don't build static library
 
 Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.42.4
-Release:	4
+Version:	1.44.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.42/%{name}-%{version}.tar.xz
-# Source0-md5:	deb171a31a3ad76342d5195a1b5bbc7c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.44/%{name}-%{version}.tar.xz
+# Source0-md5:	d62bed89dded6e5b961ef6a1d536d45c
 URL:		http://www.pango.org/
-BuildRequires:	autoconf >= 2.59-9
-BuildRequires:	automake >= 1:1.9
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
 BuildRequires:	cairo-gobject-devel >= 1.12.10
@@ -26,15 +23,15 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.11.91
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 0.19.7
-BuildRequires:	glib2-devel >= 1:2.33.12
+BuildRequires:	glib2-devel >= 1:2.59.2
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 %if %{with apidocs}
 BuildRequires:	gtk-doc >= 1.15
-BuildRequires:	gtk-doc-automake >= 1.15
 %endif
-BuildRequires:	harfbuzz-devel >= 1.4.2
+BuildRequires:	harfbuzz-devel >= 2.0.0
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
-BuildRequires:	libtool >= 2:1.5
+BuildRequires:	meson >= 0.48.0
+BuildRequires:	ninja
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
@@ -48,8 +45,8 @@ Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.11.91
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.33.12
-Requires:	harfbuzz >= 1.4.2
+Requires:	glib2 >= 1:2.59.2
+Requires:	harfbuzz >= 2.0.0
 Obsoletes:	libpango24
 Obsoletes:	pango-modules < 1:1.38.0-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -90,8 +87,8 @@ Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.11.91
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.33.12
-Requires:	harfbuzz-devel >= 1.4.2
+Requires:	glib2-devel >= 1:2.59.2
+Requires:	harfbuzz-devel >= 2.0.0
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
@@ -168,37 +165,18 @@ pango - przykładowe programy.
 %setup -q
 
 %build
-%{?with_apidocs:%{__gtkdocize}}
-%{__libtoolize}
-%{__aclocal}
-%{__autoheader}
-%{__autoconf}
-%{__automake}
-%configure \
-	--disable-silent-rules \
-	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
-	%{__enable_disable apidocs gtk-doc} \
-	%{__enable_disable static_libs static} \
-	--with-html-dir=%{_gtkdocdir}
+%meson build \
+	-Dgtk_doc=%{__true_false apidocs}
 
-# some generator script requires access to newely created .pc files
-export PKG_CONFIG_PATH="$PWD"
-
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+%ninja_install -C build
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpango*.la
-
-%{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}/pango}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -208,7 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog HACKING NEWS README THANKS
+%doc NEWS README.md THANKS
 %attr(755,root,root) %{_libdir}/libpango-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpango-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so.*.*.*
@@ -238,14 +216,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/pango-1.0
 %{_datadir}/gir-1.0/Pango*-1.0.gir
 
-%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango-1.0.a
 %{_libdir}/libpangocairo-1.0.a
 %{_libdir}/libpangoft2-1.0.a
 %{_libdir}/libpangoxft-1.0.a
-%endif
 
 %if %{with apidocs}
 %files apidocs
