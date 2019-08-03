@@ -31,11 +31,11 @@ BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	harfbuzz-devel >= 2.0.0
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	meson >= 0.48.0
-BuildRequires:	ninja
+BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
@@ -195,7 +195,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libpangoft2-1.0.so.0
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libpangoxft-1.0.so.0
-%{_libdir}/girepository-1.0/Pango*-1.0.typelib
+%{_libdir}/girepository-1.0/Pango-1.0.typelib
+%{_libdir}/girepository-1.0/PangoCairo-1.0.typelib
+%{_libdir}/girepository-1.0/PangoFT2-1.0.typelib
+%{_libdir}/girepository-1.0/PangoXft-1.0.typelib
 
 %files tools
 %defattr(644,root,root,755)
@@ -209,12 +212,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpangocairo-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoft2-1.0.so
 %attr(755,root,root) %{_libdir}/libpangoxft-1.0.so
+%{_datadir}/gir-1.0/Pango-1.0.gir
+%{_datadir}/gir-1.0/PangoCairo-1.0.gir
+%{_datadir}/gir-1.0/PangoFT2-1.0.gir
+%{_datadir}/gir-1.0/PangoXft-1.0.gir
+%{_includedir}/pango-1.0
 %{_pkgconfigdir}/pango.pc
 %{_pkgconfigdir}/pangocairo.pc
 %{_pkgconfigdir}/pangoft2.pc
 %{_pkgconfigdir}/pangoxft.pc
-%{_includedir}/pango-1.0
-%{_datadir}/gir-1.0/Pango*-1.0.gir
 
 %files static
 %defattr(644,root,root,755)
