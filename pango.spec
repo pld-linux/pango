@@ -7,13 +7,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.44.3
+Version:	1.44.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.44/%{name}-%{version}.tar.xz
-# Source0-md5:	7f91f1b5883ff848b445ab11ebabcf03
+# Source0-md5:	4f356ab60fc48a35e18687bf9c7b394c
 URL:		http://www.pango.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
@@ -198,6 +198,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/girepository-1.0/Pango-1.0.typelib
 %{_libdir}/girepository-1.0/PangoCairo-1.0.typelib
 %{_libdir}/girepository-1.0/PangoFT2-1.0.typelib
+%{_libdir}/girepository-1.0/PangoFc-1.0.typelib
+%{_libdir}/girepository-1.0/PangoOT-1.0.typelib
 %{_libdir}/girepository-1.0/PangoXft-1.0.typelib
 
 %files tools
@@ -215,6 +217,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gir-1.0/Pango-1.0.gir
 %{_datadir}/gir-1.0/PangoCairo-1.0.gir
 %{_datadir}/gir-1.0/PangoFT2-1.0.gir
+%{_datadir}/gir-1.0/PangoFc-1.0.gir
+%{_datadir}/gir-1.0/PangoOT-1.0.gir
 %{_datadir}/gir-1.0/PangoXft-1.0.gir
 %{_includedir}/pango-1.0
 %{_pkgconfigdir}/pango.pc
