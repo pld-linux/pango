@@ -7,13 +7,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.44.7
-Release:	2
+Version:	1.46.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.44/%{name}-%{version}.tar.xz
-# Source0-md5:	c75cc5b833d934d98e83343832e20e5d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.46/%{name}-%{version}.tar.xz
+# Source0-md5:	6fc4e718c846350f81a8b1ac51a502ff
 URL:		http://www.pango.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
@@ -23,14 +23,15 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.11.91
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 0.19.7
-BuildRequires:	glib2-devel >= 1:2.59.2
+BuildRequires:	glib2-devel >= 1:2.60.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 %if %{with apidocs}
 BuildRequires:	gtk-doc >= 1.15
 %endif
 BuildRequires:	harfbuzz-devel >= 2.6.0
+BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
-BuildRequires:	meson >= 0.48.0
+BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -45,7 +46,7 @@ Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.11.91
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.59.2
+Requires:	glib2 >= 1:2.60.0
 Requires:	harfbuzz >= 2.6.0
 Obsoletes:	libpango24
 Obsoletes:	pango-modules < 1:1.38.0-1
@@ -87,7 +88,7 @@ Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.11.91
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.59.2
+Requires:	glib2-devel >= 1:2.60.0
 Requires:	harfbuzz-devel >= 2.6.0
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
@@ -223,7 +224,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/pango-1.0
 %{_pkgconfigdir}/pango.pc
 %{_pkgconfigdir}/pangocairo.pc
+%{_pkgconfigdir}/pangofc.pc
 %{_pkgconfigdir}/pangoft2.pc
+%{_pkgconfigdir}/pangoot.pc
 %{_pkgconfigdir}/pangoxft.pc
 
 %files static
