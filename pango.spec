@@ -7,14 +7,14 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.46.1
+Version:	1.46.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.46/%{name}-%{version}.tar.xz
-# Source0-md5:	fa7f0a1f216a2c97d96138245d0bcac6
-URL:		http://www.pango.org/
+# Source0-md5:	990bedb35be6c2c19f770812cac96de5
+URL:		https://pango.gnome.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
 BuildRequires:	cairo-gobject-devel >= 1.12.10
@@ -138,7 +138,7 @@ Summary:	Pango API documentation
 Summary(pl.UTF-8):	Dokumentacja API pango
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -152,7 +152,7 @@ Dokumentacja API pango.
 Summary:	pango - example programs
 Summary(pl.UTF-8):	pango - przykładowe programy
 Group:		X11/Development/Libraries
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
