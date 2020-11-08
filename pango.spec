@@ -1,26 +1,27 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_without	libthai		# don't build thai-lang module
+%bcond_without	libthai		# thai-lang module
+%bcond_with	sysprof		# sysprof tracing support
 
 Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.46.2
+Version:	1.48.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pango/1.46/%{name}-%{version}.tar.xz
-# Source0-md5:	990bedb35be6c2c19f770812cac96de5
+Source0:	https://download.gnome.org/sources/pango/1.48/%{name}-%{version}.tar.xz
+# Source0-md5:	ee5826242abd661fb5238e19b9e2e1aa
 URL:		https://pango.gnome.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
 BuildRequires:	cairo-gobject-devel >= 1.12.10
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	fontconfig-devel >= 1:2.11.91
+BuildRequires:	fontconfig-devel >= 1:2.12.92
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 0.19.7
 BuildRequires:	glib2-devel >= 1:2.60.0
@@ -31,19 +32,20 @@ BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	harfbuzz-devel >= 2.6.0
 BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
-BuildRequires:	meson >= 0.50.0
+BuildRequires:	meson >= 0.54.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 1.752
+%{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xz
 Requires:	cairo >= 1.12.10
-Requires:	fontconfig-libs >= 1:2.11.91
+Requires:	fontconfig-libs >= 1:2.12.92
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 0.19.7
 Requires:	glib2 >= 1:2.60.0
@@ -85,7 +87,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Pango
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.12.10
-Requires:	fontconfig-devel >= 1:2.11.91
+Requires:	fontconfig-devel >= 1:2.12.92
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 0.19.7
 Requires:	glib2-devel >= 1:2.60.0
@@ -138,9 +140,7 @@ Summary:	Pango API documentation
 Summary(pl.UTF-8):	Dokumentacja API pango
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 Pango API documentation.
@@ -152,9 +152,7 @@ Dokumentacja API pango.
 Summary:	pango - example programs
 Summary(pl.UTF-8):	pango - przykładowe programy
 Group:		X11/Development/Libraries
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description examples
 pango - example programs.
@@ -167,7 +165,8 @@ pango - przykładowe programy.
 
 %build
 %meson build \
-	-Dgtk_doc=%{__true_false apidocs}
+	-Dgtk_doc=%{__true_false apidocs} \
+	%{?with_sysprof:-Dsysprof=enabled}
 
 %ninja_build -C build
 
