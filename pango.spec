@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.48.0
+Version:	1.48.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/pango/1.48/%{name}-%{version}.tar.xz
-# Source0-md5:	ee5826242abd661fb5238e19b9e2e1aa
+# Source0-md5:	97aea993f74241820bfeb07db6c3332b
 URL:		https://pango.gnome.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
@@ -24,7 +24,7 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.12.92
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 0.19.7
-BuildRequires:	glib2-devel >= 1:2.60.0
+BuildRequires:	glib2-devel >= 1:2.62.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 %if %{with apidocs}
 BuildRequires:	gtk-doc >= 1.15
@@ -32,7 +32,7 @@ BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	harfbuzz-devel >= 2.6.0
 BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
-BuildRequires:	meson >= 0.54.0
+BuildRequires:	meson >= 0.55.3
 BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -48,7 +48,7 @@ Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.12.92
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.60.0
+Requires:	glib2 >= 1:2.62.0
 Requires:	harfbuzz >= 2.6.0
 Obsoletes:	libpango24
 Obsoletes:	pango-modules < 1:1.38.0-1
@@ -90,7 +90,7 @@ Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.12.92
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.60.0
+Requires:	glib2-devel >= 1:2.62.0
 Requires:	harfbuzz-devel >= 2.6.0
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
