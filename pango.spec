@@ -140,7 +140,7 @@ Summary:	Pango API documentation
 Summary(pl.UTF-8):	Dokumentacja API pango
 Group:		Documentation
 Requires:	gtk-doc-common
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 Pango API documentation.
@@ -152,7 +152,7 @@ Dokumentacja API pango.
 Summary:	pango - example programs
 Summary(pl.UTF-8):	pango - przykładowe programy
 Group:		X11/Development/Libraries
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description examples
 pango - example programs.
