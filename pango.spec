@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# disable gtk-doc
+%bcond_without	apidocs		# gi documentation
 %bcond_without	libthai		# thai-lang module
 %bcond_with	sysprof		# sysprof tracing support
 
@@ -24,11 +24,11 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel >= 1:2.12.92
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 0.19.7
+%if %{with apidocs}
+BuildRequires:	gi-docgen >= 2021.1
+%endif
 BuildRequires:	glib2-devel >= 1:2.62.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-%if %{with apidocs}
-BuildRequires:	gtk-doc >= 1.15
-%endif
 BuildRequires:	harfbuzz-devel >= 2.6.0
 BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
@@ -37,6 +37,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	python-modules
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 %{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38}
 BuildRequires:	tar >= 1:1.22
@@ -176,6 +177,10 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %ninja_install -C build
 
+# FIXME: where to package gi-docgen generated docs?
+install -d $RPM_BUILD_ROOT%{_gtkdocdir}
+cp -pr build/docs/* $RPM_BUILD_ROOT%{_gtkdocdir}
+
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
@@ -238,7 +243,18 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/pango
+%{_gtkdocdir}/Pango
+%{_gtkdocdir}/PangoCairo
+%{_gtkdocdir}/PangoFT2
+%{_gtkdocdir}/PangoFc
+%{_gtkdocdir}/PangoOT
+%{_gtkdocdir}/PangoXft
+%{_gtkdocdir}/pango.toml
+%{_gtkdocdir}/pangocairo.toml
+%{_gtkdocdir}/pangofc.toml
+%{_gtkdocdir}/pangoft2.toml
+%{_gtkdocdir}/pangoot.toml
+%{_gtkdocdir}/pangoxft.toml
 %endif
 
 %files examples
