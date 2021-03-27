@@ -179,7 +179,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # FIXME: where to package gi-docgen generated docs?
 install -d $RPM_BUILD_ROOT%{_gtkdocdir}
-cp -pr build/docs/* $RPM_BUILD_ROOT%{_gtkdocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/pango/reference/* $RPM_BUILD_ROOT%{_gtkdocdir}
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
@@ -249,12 +249,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/PangoFc
 %{_gtkdocdir}/PangoOT
 %{_gtkdocdir}/PangoXft
-%{_gtkdocdir}/pango.toml
-%{_gtkdocdir}/pangocairo.toml
-%{_gtkdocdir}/pangofc.toml
-%{_gtkdocdir}/pangoft2.toml
-%{_gtkdocdir}/pangoot.toml
-%{_gtkdocdir}/pangoxft.toml
 %endif
 
 %files examples
