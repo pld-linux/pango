@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
 Version:	1.48.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
@@ -27,7 +27,7 @@ BuildRequires:	fribidi-devel >= 0.19.7
 %if %{with apidocs}
 BuildRequires:	gi-docgen >= 2021.1
 %endif
-BuildRequires:	glib2-devel >= 1:2.62.0
+BuildRequires:	glib2-devel >= 1:2.68.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	harfbuzz-devel >= 2.6.0
 BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
@@ -49,7 +49,7 @@ Requires:	cairo >= 1.12.10
 Requires:	fontconfig-libs >= 1:2.12.92
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 0.19.7
-Requires:	glib2 >= 1:2.62.0
+Requires:	glib2 >= 1:2.68.0
 Requires:	harfbuzz >= 2.6.0
 Obsoletes:	libpango24
 Obsoletes:	pango-modules < 1:1.38.0-1
@@ -91,7 +91,7 @@ Requires:	cairo-devel >= 1.12.10
 Requires:	fontconfig-devel >= 1:2.12.92
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 0.19.7
-Requires:	glib2-devel >= 1:2.62.0
+Requires:	glib2-devel >= 1:2.68.0
 Requires:	harfbuzz-devel >= 2.6.0
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
