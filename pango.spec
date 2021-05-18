@@ -177,9 +177,11 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %ninja_install -C build
 
+%if %{with apidocs}
 # FIXME: where to package gi-docgen generated docs?
 install -d $RPM_BUILD_ROOT%{_gtkdocdir}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/pango/reference/* $RPM_BUILD_ROOT%{_gtkdocdir}
+%endif
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
