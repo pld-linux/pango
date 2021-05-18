@@ -8,13 +8,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.48.4
-Release:	2
+Version:	1.48.5
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/pango/1.48/%{name}-%{version}.tar.xz
-# Source0-md5:	6c3cee28fc36118c1c8733160054c7ed
+# Source0-md5:	643fa83bee9d8ceaeb3f314e01257243
 URL:		https://pango.gnome.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
