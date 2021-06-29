@@ -31,6 +31,7 @@ BuildRequires:	glib2-devel >= 1:2.68.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	harfbuzz-devel >= 2.6.0
 BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
+BuildRequires:	help2man
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	meson >= 0.55.3
 BuildRequires:	ninja >= 1.5
