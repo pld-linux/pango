@@ -8,20 +8,20 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.48.10
+Version:	1.50.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/pango/1.48/%{name}-%{version}.tar.xz
-# Source0-md5:	dbc8e76c18da6d7bbb7dab8d5200d83b
+Source0:	https://download.gnome.org/sources/pango/1.50/%{name}-%{version}.tar.xz
+# Source0-md5:	726a7c7b6faf34006d2b5aa0dd8dc1d5
 URL:		https://pango.gnome.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
 BuildRequires:	cairo-gobject-devel >= 1.12.10
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	fontconfig-devel >= 1:2.12.92
+BuildRequires:	fontconfig-devel >= 1:2.13.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 1.0.6
 %if %{with apidocs}
@@ -47,7 +47,7 @@ BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xz
 Requires:	cairo >= 1.12.10
-Requires:	fontconfig-libs >= 1:2.12.92
+Requires:	fontconfig-libs >= 1:2.13.0
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 1.0.6
 Requires:	glib2 >= 1:2.68.0
@@ -91,7 +91,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Pango
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	cairo-devel >= 1.12.10
-Requires:	fontconfig-devel >= 1:2.12.92
+Requires:	fontconfig-devel >= 1:2.13.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 1.0.6
 Requires:	glib2-devel >= 1:2.68.0
