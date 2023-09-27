@@ -38,7 +38,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.752
+BuildRequires:	rpmbuild(macros) >= 2.029
 %{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
@@ -142,7 +142,6 @@ gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
 Summary:	Pango API documentation
 Summary(pl.UTF-8):	Dokumentacja API pango
 Group:		Documentation
-Requires:	gtk-doc-common
 BuildArch:	noarch
 
 %description apidocs
@@ -180,9 +179,8 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %ninja_install -C build
 
 %if %{with apidocs}
-# FIXME: where to package gi-docgen generated docs?
-install -d $RPM_BUILD_ROOT%{_gtkdocdir}
-%{__mv} $RPM_BUILD_ROOT%{_docdir}/Pango* $RPM_BUILD_ROOT%{_gtkdocdir}
+install -d $RPM_BUILD_ROOT%{_gidocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/Pango* $RPM_BUILD_ROOT%{_gidocdir}
 %endif
 
 cp examples/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -248,12 +246,12 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/Pango
-%{_gtkdocdir}/PangoCairo
-%{_gtkdocdir}/PangoFT2
-%{_gtkdocdir}/PangoFc
-%{_gtkdocdir}/PangoOT
-%{_gtkdocdir}/PangoXft
+%{_gidocdir}/Pango
+%{_gidocdir}/PangoCairo
+%{_gidocdir}/PangoFT2
+%{_gidocdir}/PangoFc
+%{_gidocdir}/PangoOT
+%{_gidocdir}/PangoXft
 %endif
 
 %files examples
