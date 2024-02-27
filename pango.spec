@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	apidocs		# gi documentation
 %bcond_without	libthai		# thai-lang module
+%bcond_without	static_libs	# static libraries
 %bcond_with	sysprof		# sysprof tracing support
 
 Summary:	System for layout and rendering of internationalized text
@@ -147,6 +148,7 @@ pango - przykładowe programy.
 
 %build
 %meson build \
+	%{!?with_static_libs:--default-library=shared} \
 	-Dgtk_doc=%{__true_false apidocs} \
 	%{?with_sysprof:-Dsysprof=enabled}
 
@@ -216,12 +218,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/pangoot.pc
 %{_pkgconfigdir}/pangoxft.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libpango-1.0.a
 %{_libdir}/libpangocairo-1.0.a
 %{_libdir}/libpangoft2-1.0.a
 %{_libdir}/libpangoxft-1.0.a
+%endif
 
 %if %{with apidocs}
 %files apidocs
