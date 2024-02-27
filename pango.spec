@@ -118,26 +118,6 @@ Static pango libraries.
 %description static -l pl.UTF-8
 Biblioteki statyczne pango.
 
-%package modules
-Summary:	Pango modules for various scripts
-Summary(pl.UTF-8):	Moduły Pango dla różnych systemów pisma
-Group:		X11/Development/Libraries
-Requires(post,postun):	%{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-%{?with_libthai:Requires:	libthai >= 0.1.9}
-
-%description modules
-Pango is a system for layout and rendering of internationalized text.
-
-This package contains pango modules for: arabic, bengali, devanagari,
-gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
-
-%description modules -l pl.UTF-8
-Pango to system obsługi i renderowania międzynarodowego tekstu.
-
-Pakiet zawiera moduły pango dla języków: arabic, bengali, devanagari,
-gujarati, gurmukhi, hangul, hebrew, indic, myanmar, tamil, thai.
-
 %package apidocs
 Summary:	Pango API documentation
 Summary(pl.UTF-8):	Dokumentacja API pango
