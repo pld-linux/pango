@@ -9,13 +9,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.52.2
+Version:	1.54.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/pango/1.52/%{name}-%{version}.tar.xz
-# Source0-md5:	ed3c57bdaff980ddc4c840919ce512ac
+Source0:	https://download.gnome.org/sources/pango/1.54/%{name}-%{version}.tar.xz
+# Source0-md5:	7ad89b03f6850e0be28f91522b793842
 URL:		https://pango.gnome.org/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.12.10
@@ -34,7 +34,7 @@ BuildRequires:	harfbuzz-devel >= 2.6.0
 BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
 BuildRequires:	help2man
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
-BuildRequires:	meson >= 0.60.0
+BuildRequires:	meson >= 0.63.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -149,7 +149,7 @@ pango - przykładowe programy.
 %build
 %meson build \
 	%{!?with_static_libs:--default-library=shared} \
-	-Dgtk_doc=%{__true_false apidocs} \
+	-Ddocumentation=%{__true_false apidocs} \
 	%{?with_sysprof:-Dsysprof=enabled}
 
 %ninja_build -C build
