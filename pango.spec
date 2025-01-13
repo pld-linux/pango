@@ -9,32 +9,32 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.54.0
+Version:	1.56.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/pango/1.54/%{name}-%{version}.tar.xz
-# Source0-md5:	7ad89b03f6850e0be28f91522b793842
-URL:		https://pango.gnome.org/
+Source0:	https://download.gnome.org/sources/pango/1.56/%{name}-%{version}.tar.xz
+# Source0-md5:	b02fdbbff05f73b2f0ed7ba13ed266e8
+URL:		https://gnome.pages.gitlab.gnome.org/pango/Pango/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
-BuildRequires:	cairo-devel >= 1.12.10
-BuildRequires:	cairo-gobject-devel >= 1.12.10
+BuildRequires:	cairo-devel >= 1.18.0
+BuildRequires:	cairo-gobject-devel >= 1.18.0
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	fontconfig-devel >= 1:2.13.0
+BuildRequires:	fontconfig-devel >= 1:2.15.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 1.0.6
 %if %{with apidocs}
 BuildRequires:	gi-docgen >= 2021.1
 %endif
-BuildRequires:	glib2-devel >= 1:2.68.0
+BuildRequires:	glib2-devel >= 1:2.80
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-BuildRequires:	harfbuzz-devel >= 2.6.0
-BuildRequires:	harfbuzz-gobject-devel >= 2.6.0
+BuildRequires:	harfbuzz-devel >= 8.4.0
+BuildRequires:	harfbuzz-gobject-devel >= 8.4.0
 BuildRequires:	help2man
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
-BuildRequires:	meson >= 0.63.0
+BuildRequires:	meson >= 1.2.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -46,12 +46,12 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1.0
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xz
-Requires:	cairo >= 1.12.10
-Requires:	fontconfig-libs >= 1:2.13.0
+Requires:	cairo >= 1.18.0
+Requires:	fontconfig-libs >= 1:2.15.0
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 1.0.6
-Requires:	glib2 >= 1:2.68.0
-Requires:	harfbuzz >= 2.6.0
+Requires:	glib2 >= 1:2.80
+Requires:	harfbuzz >= 8.4.0
 Obsoletes:	libpango24 < 1
 Obsoletes:	pango-modules < 1:1.38.0-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -90,12 +90,12 @@ Summary:	Header files for Pango libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek Pango
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	cairo-devel >= 1.12.10
-Requires:	fontconfig-devel >= 1:2.13.0
+Requires:	cairo-devel >= 1.18.0
+Requires:	fontconfig-devel >= 1:2.15.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 1.0.6
-Requires:	glib2-devel >= 1:2.68.0
-Requires:	harfbuzz-devel >= 2.6.0
+Requires:	glib2-devel >= 1:2.80
+Requires:	harfbuzz-devel >= 8.4.0
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
 Requires:	xorg-lib-libXft-devel >= 2.1.0
@@ -196,7 +196,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pango-list
 %attr(755,root,root) %{_bindir}/pango-segmentation
 %attr(755,root,root) %{_bindir}/pango-view
-%{_mandir}/man1/pango-view.1*
 
 %files devel
 %defattr(644,root,root,755)
