@@ -20,19 +20,15 @@ URL:		https://gnome.pages.gitlab.gnome.org/pango/Pango/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.18.0
 BuildRequires:	cairo-gobject-devel >= 1.18.0
-BuildRequires:	docbook-dtd412-xml
-BuildRequires:	docbook-style-xsl
+%{?with_apidocs:BuildRequires:	docutils >= 0.13.1}
 BuildRequires:	fontconfig-devel >= 1:2.15.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 1.0.6
-%if %{with apidocs}
-BuildRequires:	gi-docgen >= 2021.1
-%endif
+%{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
 BuildRequires:	glib2-devel >= 1:2.80
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	harfbuzz-devel >= 8.4.0
 BuildRequires:	harfbuzz-gobject-devel >= 8.4.0
-BuildRequires:	help2man
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
 BuildRequires:	meson >= 1.2.0
 BuildRequires:	ninja >= 1.5
@@ -150,6 +146,7 @@ pango - przykładowe programy.
 %meson build \
 	%{!?with_static_libs:--default-library=shared} \
 	-Ddocumentation=%{__true_false apidocs} \
+	-Dman-pages=%{__true_false apidocs} \
 	%{?with_sysprof:-Dsysprof=enabled}
 
 %ninja_build -C build
@@ -196,6 +193,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pango-list
 %attr(755,root,root) %{_bindir}/pango-segmentation
 %attr(755,root,root) %{_bindir}/pango-view
+%if %{with apidocs}
+%{_mandir}/man1/pango-list.1*
+%{_mandir}/man1/pango-segmentation.1*
+%{_mandir}/man1/pango-view.1*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
