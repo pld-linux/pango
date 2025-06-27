@@ -9,13 +9,13 @@ Summary:	System for layout and rendering of internationalized text
 Summary(pl.UTF-8):	System renderowania międzynarodowego tekstu
 Summary(pt_BR.UTF-8):	Sistema para layout e renderização de texto internacionalizado
 Name:		pango
-Version:	1.56.3
+Version:	1.56.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	https://download.gnome.org/sources/pango/1.56/%{name}-%{version}.tar.xz
-# Source0-md5:	71615b3aaca41195d4aca28052495832
+# Source0-md5:	3db267bc07bfd96615c652e9187b85b5
 URL:		https://gnome.pages.gitlab.gnome.org/pango/Pango/
 # cairo-ft cairo-pdf cairo-png cairo-ps cairo-xlib
 BuildRequires:	cairo-devel >= 1.18.0
@@ -25,8 +25,8 @@ BuildRequires:	fontconfig-devel >= 1:2.15.0
 BuildRequires:	freetype-devel >= 2.1.7
 BuildRequires:	fribidi-devel >= 1.0.6
 %{?with_apidocs:BuildRequires:	gi-docgen >= 2021.1}
-BuildRequires:	glib2-devel >= 1:2.80
-BuildRequires:	gobject-introspection-devel >= 0.9.5
+BuildRequires:	glib2-devel >= 1:2.82
+BuildRequires:	gobject-introspection-devel >= 1.83.2
 BuildRequires:	harfbuzz-devel >= 8.4.0
 BuildRequires:	harfbuzz-gobject-devel >= 8.4.0
 %{?with_libthai:BuildRequires:	libthai-devel >= 0.1.9}
@@ -46,7 +46,7 @@ Requires:	cairo >= 1.18.0
 Requires:	fontconfig-libs >= 1:2.15.0
 Requires:	freetype >= 2.1.7
 Requires:	fribidi >= 1.0.6
-Requires:	glib2 >= 1:2.80
+Requires:	glib2 >= 1:2.82
 Requires:	harfbuzz >= 8.4.0
 Obsoletes:	libpango24 < 1
 Obsoletes:	pango-modules < 1:1.38.0-1
@@ -90,7 +90,7 @@ Requires:	cairo-devel >= 1.18.0
 Requires:	fontconfig-devel >= 1:2.15.0
 Requires:	freetype-devel >= 2.1.7
 Requires:	fribidi-devel >= 1.0.6
-Requires:	glib2-devel >= 1:2.80
+Requires:	glib2-devel >= 1:2.82
 Requires:	harfbuzz-devel >= 8.4.0
 %{?with_libthai:Requires:	libthai-devel >= 0.1.9}
 Requires:	xorg-lib-libX11-devel
